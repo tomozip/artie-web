@@ -1,0 +1,80 @@
+.l-wrapper {
+  @include relative;
+  height: 100%;
+}
+
+.l-container {
+  @include absolute($top: $default_space * 12, $right: 0, $left: 0);
+  @include pie-clearfix;
+  height: 100%;
+  // padding-top: $default_space * 24;
+  //
+  // @media #{$ipad_media_query} {
+  //   padding-top: $default_space * 18;
+  // }
+  //
+  // @media #{$iphone_large_media_query} {
+  //   padding-top: $default_space * 12.5;
+  // }
+  //
+  // @media #{$iphone_small_media_query} {
+  //   padding-top: $default_space * 12;
+  // }
+}
+
+.l-content_block {
+  @include calc('width', '100% - #{$default_space * 70}');
+  float: right;
+  padding: $default_space * 10 0;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.l-post_block {
+  width: $default_space * 200;
+  border-radius: $default_space * 1.5;
+  overflow: hidden;
+  margin: 0 auto;
+
+  // margin: $default_space * 4;
+  // width: $default_space * 156;
+  //
+  // @media #{$pc_medium_media_query} {
+  //   width: $default_space * 141;
+  // }
+  //
+  // @media #{$pc_small_media_query} {
+  //   display: inline-block;
+  //   float: none;
+  //   text-align: left;
+  //   width: $default_space * 176;
+  // }
+  //
+  // @media #{$ipad_media_query} {
+  //   box-sizing: border-box;
+  //   float: none;
+  //   margin: 0;
+  //   padding: $default_space * 8;
+  //   width: 100%;
+  // }
+  //
+  // @media #{$iphone_large_media_query} {
+  //   padding: 0;
+  // }
+}
+
+.l-right_sidebar_block {
+  margin: $default_space * 4;
+  width: $default_space * 75;
+
+  @media #{$ipad_media_query} {
+    margin: 0;
+    width: 100%;
+  }
+
+  @media #{$iphone_large_media_query} {
+    box-sizing: border-box;
+    padding: ($default_space * 4) 0;
+    width: 100%;
+  }
+}

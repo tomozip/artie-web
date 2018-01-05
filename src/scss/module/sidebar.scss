@@ -1,0 +1,44 @@
+.sidebar {
+  @include fixed($top: $default_space * 12, $bottom: 0, $left: 0);
+  background-color: $blue_gray_color;
+  padding: $default_space * 3 0;
+  width: $default_space * 70;
+  box-sizing: border-box;
+
+  .clickable_row {
+    @include ease_transition;
+    color: $light_gray_color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $light_blue_gray_color;
+      color: $dark_blue_gray_color;
+    }
+  }
+
+  .sidebar_feed_row {
+    margin-bottom: $default_space * 3;
+    padding: $default_space * 5 0;
+    text-align: center;
+  }
+
+  .sidebar_feed_row_title {
+    font-size: $font_size_sub_title_medium;
+    line-height: $line_height_small;
+  }
+
+  .sidebar_title_row {
+    margin-bottom: $default_space * 2;
+    padding: 0 $default_space * 6;
+  }
+
+  .sidebar_title {
+    color: $white_color;
+    font-size: $font_size_head_medium;
+    line-height: $line_height_small;
+  }
+
+  .sidebar_channel_row {
+    padding: $default_space $default_space * 6;
+  }
+}

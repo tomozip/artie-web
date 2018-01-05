@@ -1,0 +1,70 @@
+.header {
+  @include fixed($top: 0, $right: 0, $left: 0);
+  padding: $default_space * 3 0;
+  background-color: $white_color;
+  height: $default_space * 12;
+  box-sizing: border-box;
+  border-bottom: 1px solid $light_blue_gray_color;
+  z-index: 1;
+
+  .header_title_block {
+    @include absolute($top: 0, $right: 50%);
+    transform: translateX(50%);
+  }
+
+  .header_title {
+    font-size: $font_size_title_medium;
+    color: $dark_blue_gray_color;
+  }
+
+  .header_search_block {
+    @include absolute($top: 0, $bottom: 0, $left: 0);
+    width: $default_space * 70;
+    padding: 0 $default_space * 6;
+    box-sizing: border-box;
+  }
+
+  .header_search_input {
+    @include absolute($top: 50%);
+    background-color: $light_gray_color;
+    border-radius: $default_space * 5;
+    font-size: $font_size_footnote_medium;
+    line-height: $line_height_small;
+    height: $default_space * 7.5;
+    width: $default_space * 58;
+    transform: translateY(-50%);
+    padding: $default_space * 1.5;
+    box-sizing: border-box;
+  }
+
+  .header_search_icon {
+    @include absolute($top: 50%, $right: $default_space * 8);
+    transform: translateY(-50%);
+    width: $default_space * 5;
+    height: $default_space * 5;
+  }
+
+  .header_user_block {
+    @include absolute($top: 0, $bottom: 0);
+    @include calc('right', '(100% - #{$default_space * 270}) / 2');
+    text-align: right;
+    padding: $default_space 0;
+  }
+
+  .header_user_image {
+    width: $default_space * 10;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .header_user_name {
+    font-size: $font_size_body_medium;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: $line_height_small;
+    margin-left: $default_space * 1.5;
+  }
+}

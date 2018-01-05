@@ -1,0 +1,173 @@
+{
+  "users": [{
+      "id": 1,
+      "display_name": "kamexx",
+      "account_name": "yuta_kamezaki",
+      "image_data": "https://placehold.jp/150x150.png",
+      "email": "username@example.com",
+      "password": "letmein1234",
+      "evaluation": "86"
+    },
+    {
+      "id": 2,
+      "display_name": "shimatomo",
+      "account_name": "tomoki_shimada",
+      "image_data": "https://placehold.jp/150x150.png",
+      "email": "username@example.com",
+      "password": "shimashima",
+      "evaluation": "29"
+    },
+    {
+      "id": 3,
+      "display_name": "yogoken",
+      "account_name": "kenta_yogo",
+      "image_data": "https://placehold.jp/150x150.png",
+      "email": "username@example.com",
+      "password": "yogoyogo",
+      "evaluation": "280"
+    }
+  ],
+
+  "posts": {
+    "data": [{
+        "id": 1,
+        "text": "そろそろXRPを購入しようと思う！",
+        "created_at": "2018/02/26",
+        "updated_at": "2018/02/26",
+        "user_id": 1,
+        "image_data": [
+          "aws:pig_coin.png"
+        ],
+        "user": {
+          "id": 1,
+          "display_name": "kamexx",
+          "account_name": "yuta_kamezaki",
+          "image_data": "https://placehold.jp/150x150.png",
+          "email": "username@example.com",
+          "password": "letmein1234",
+          "evaluation": "86"
+        },
+        "hashtags": [{
+          "id": 1,
+          "name": "XRP"
+        }],
+        "reaction": {
+          "like": 20,
+          "dislike": 3,
+          "share": 12
+        }
+      },
+      {
+        "id": 2,
+        "text": "億り人になりたいな。",
+        "created_at": "2018/02/26",
+        "updated_at": "2018/02/26",
+        "user_id": 1,
+        "image_data": [
+          "aws:pig_coin.png"
+        ],
+        "user": {
+          "id": 2,
+          "display_name": "shimatomo",
+          "account_name": "tomoki_shimada",
+          "image_data": "https://placehold.jp/150x150.png",
+          "email": "username@example.com",
+          "password": "shimashima",
+          "evaluation": "29"
+        },
+        "hashtags": [],
+        "reaction": {
+          "like": 20,
+          "dislike": 3,
+          "share": 12
+        }
+      },
+      {
+        "id": 3,
+        "text": "bitcoin落ちてきたな。。",
+        "created_at": "2018/02/26",
+        "updated_at": "2018/02/26",
+        "user_id": 1,
+        "image_data": [
+          "aws:pig_coin.png"
+        ],
+        "user": {
+          "id": 3,
+          "display_name": "yogoken",
+          "account_name": "kenta_yogo",
+          "image_data": "https://placehold.jp/150x150.png",
+          "email": "username@example.com",
+          "password": "yogoyogo",
+          "evaluation": "280"
+        },
+        "hashtags": [{
+          "id": 2,
+          "name": "BIT"
+        }],
+        "reaction": {
+          "like": 20,
+          "dislike": 3,
+          "share": 12
+        }
+      },
+      {
+        "id": 4,
+        "text": "ビットコインが下がればリップルが上がる。イケハヤ的にはもう見えてるんですよね。",
+        "created_at": "2018/02/26",
+        "updated_at": "2018/02/26",
+        "user_id": 1,
+        "image_data": [
+          "aws:pig_coin.png"
+        ],
+        "user": {
+          "id": 4,
+          "display_name": "ike",
+          "account_name": "haya",
+          "image_data": "https://placehold.jp/150x150.png",
+          "email": "username@example.com",
+          "password": "yogoyogo",
+          "evaluation": "1090"
+        },
+        "hashtags": [{
+            "id": 1,
+            "name": "XRP"
+          },
+          {
+            "id": 2,
+            "name": "BIT"
+          }
+        ],
+        "reaction": {
+          "like": 20,
+          "dislike": 3,
+          "share": 12
+        }
+      },
+      {
+        "id": 2,
+        "text": "億り人になりたいな。",
+        "created_at": "2018/02/26",
+        "updated_at": "2018/02/26",
+        "user_id": 1,
+        "image_data": [
+          "aws:pig_coin.png"
+        ],
+        "user": {
+          "id": 2,
+          "display_name": "shimatomo",
+          "account_name": "tomoki_shimada",
+          "image_data": "https://placehold.jp/150x150.png",
+          "email": "username@example.com",
+          "password": "shimashima",
+          "evaluation": "29"
+        },
+        "hashtags": [],
+        "reaction": {
+          "like": 20,
+          "dislike": 3,
+          "share": 12
+        }
+      }
+    ]
+  }
+}

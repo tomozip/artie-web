@@ -1,0 +1,29 @@
+@include global-reset;
+
+body {
+  font-family: proxima-nova, "Hiragino Sans", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Arial, Roboto, "Droid Sans", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+input,
+textarea {
+  border: none;
+  resize: none;
+
+  &:focus {
+    outline: none;
+  }
+}

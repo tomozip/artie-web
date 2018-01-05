@@ -1,0 +1,123 @@
+$default_space: 4px;
+$header_height: $default_space * 14;
+
+// media query
+$pc_large_media_query: 'only screen and (max-width: 1440px)';
+$pc_medium_media_query: 'only screen and (max-width: 1024px)';
+$pc_small_media_query: 'only screen and (max-width: 960px)';
+$ipad_media_query: 'only screen and (max-width: 768px)';
+$iphone_large_media_query: 'only screen and (max-width: 414px)';
+$iphone_medium_media_query: 'only screen and (max-width: 375px)';
+$iphone_small_media_query: 'only screen and (max-width: 320px)';
+
+// font-family
+$font_family_default: proxima-nova, 'Hiragino Sans', Helvetica, 'メイリオ', Arial;
+$font_family_feature: proxima-nova-condensed, sans-serif;
+
+// line-height
+$line_height_large: 1.65;
+$line_height_default: 1.4;
+$line_height_small: 1;
+
+// letter-spacing
+$letter_spacing_title_large: 4.25px;
+$letter_spacing_title_medium: 3.5px;
+$letter_spacing_sub_title_large: 2.75px;
+$letter_spacing_sub_title_medium: 1.75px;
+$letter_spacing_head_medium: 2px;
+$letter_spacing_body_medium: 1.75px;
+$letter_spacing_footnone_medium: 1.5px;
+$letter_spacing_caption_large: 1.25px;
+$letter_spacing_caption_medim: 1px;
+
+// v2 colors
+// use v2 color except https://finc.com/web_views/new_arrivals.
+// Because of coexist new arrival try using as web views in iOS and try web.
+// It is needed to distinct.
+// original color
+$white_color: #FFF;
+$black_color: #000;
+$light_pink_color: #E36C96;
+$pink_color: #D94A7E;
+$dark_pink_color: #D9437A;
+$category_label_color: #B8A5B1;
+$base_color: #2D2E2E;
+$dark_gray_color: #4C4C4C;
+$gray_color: #828282;
+// $light_gray_color: #C6C6C6;
+$btn_light_gray_color: #F2F2F2;
+$light_bg_color: #F7FAFA;
+// $bg_color: #F2F5F5;
+$footer_bg_color: #353636;
+$light_border_color: #F6F6F6;
+// $border_color: $bg_color;
+$dark_border_color: #4D4F4F;
+$arrow_gray_color: #EAEAEA;
+$placeholder_dark_gray_color: #F0F0F0;
+$placeholder_default_gray_color: #F2F2F2;
+$placeholder_light_gray_color: #F6F6F6;
+
+// material colors
+$dark_blue_gray_color: #37474F;
+$blue_gray_color: #607D8B;
+$light_blue_gray_color: #B0BEC5;
+$light_gray_color: #ECEFF1;
+$cyan_color: #00BCD4;
+$cyan_gray_color: #0097A7;
+
+// functional colors
+$bg_color: $light_gray_color;
+$border_color: $bg_color;
+$shadow_color: rgba($black_color, .16);
+
+// v2 font
+// use v2 color except https://finc.com/web_views/new_arrivals.
+// Because of coexist new arrival try using as web views in iOS and try web.
+// It is needed to distinct.
+$font_size_title_large: 40px;
+$font_size_title_medium: 32px;
+$font_size_sub_title_large: 24px;
+$font_size_sub_title_medium: 21px;
+$font_size_head_medium: 18px;
+$font_size_body_medium: 16px;
+$font_size_footnote_medium: 14px;
+$font_size_caption_large: 12px;
+$font_size_caption_medium: 10px;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: $bg_color;
+  font-size: $font_size_body_medium;
+  line-height: 1.5;
+  margin: 0;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+p,
+li,
+dt,
+dd {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+a {
+  &:hover {
+    cursor: pointer;
+  }
+}

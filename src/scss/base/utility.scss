@@ -1,0 +1,35 @@
+// block
+.u-block {
+  display: block;
+}
+
+.u-inline_block {
+  display: inline-block;
+}
+
+.u-table {
+  display: table;
+}
+
+// float
+.u-flt-l {
+  float: left;
+}
+
+.u-flt-r {
+  float: right;
+}
+
+.u-p-cr {
+  @include pie-clearfix;
+}
+
+// position
+
+.u-ta-c {
+  text-align: center;
+}
+
+.u-pos-r {
+  @include relative;
+}

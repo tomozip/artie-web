@@ -1,0 +1,72 @@
+.post_form {
+  @include pie-clearfix;
+  padding: $default_space * 5 $default_space * 3.5 $default_space * 4;
+  background-color: $white_color;
+  border-bottom: 1px solid $cyan_color;
+
+  .post_left_block {
+    float: left;
+    width: 7%;
+  }
+
+  .post_user_img {
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .post_right_block {
+    float: left;
+    line-height: $line_height_small;
+    margin-left: 2%;
+    width: 91%;
+  }
+
+  .post_form_text_area {
+    box-sizing: border-box;
+    font-size: $font_size_footnote_medium;
+    height: 32px; // ittan
+    line-height: $line_height_default;
+    padding: $default_space * 2;
+    width: 100%;
+    min-height: $default_space * 15;
+    margin-bottom: $default_space * 2;
+  }
+
+  .post_right_block_bottom {
+
+  }
+
+  .add_images_icon {
+    display: inline-block;
+    vertical-align: middle;
+    height: $default_space * 7;
+    width: $default_space * 7;
+    cursor: pointer;
+  }
+
+  .submit_btn {
+    float: right;
+    border-radius: $default_space * 2.5;
+    background-color: $cyan_color;
+    padding: $default_space $default_space * 3.5;
+    cursor: pointer;
+  }
+
+  .send_icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    color: white;
+    margin-right: $default_space * 1.5;
+  }
+  .send_text {
+    color: $white_color;
+    font-size: $font_size_body_medium;
+    line-height: $line_height_small;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
