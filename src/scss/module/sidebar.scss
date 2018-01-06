@@ -1,6 +1,6 @@
 .sidebar {
   @include fixed($top: $default_space * 12, $bottom: 0, $left: 0);
-  background-color: $blue_gray_color;
+  background: linear-gradient(-274deg, #263238, #455A64);
   padding: $default_space * 3 0;
   width: $default_space * 70;
   box-sizing: border-box;

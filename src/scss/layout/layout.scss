@@ -32,6 +32,7 @@
 
 .l-post_block {
   width: $default_space * 200;
+  box-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
   border-radius: $default_space * 1.5;
   overflow: hidden;
   margin: 0 auto;

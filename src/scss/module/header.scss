@@ -4,7 +4,7 @@
   background-color: $white_color;
   height: $default_space * 12;
   box-sizing: border-box;
-  border-bottom: 1px solid $light_blue_gray_color;
+  box-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
   z-index: 1;
 
   .header_title_block {
@@ -13,6 +13,7 @@
   }
 
   .header_title {
+    font-family: 'Lato';
     font-size: $font_size_title_medium;
     color: $dark_blue_gray_color;
   }

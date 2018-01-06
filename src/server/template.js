@@ -17,6 +17,8 @@ const template = (head, html, preloadedState, env) => {
         </script>
         <!-- End Google Tag Manager -->
 
+        <!-- Import webfonts -->
+        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/dist/style.css" type="text/css">
         <script type="text/javascript" async defer src="//platform.twitter.com/widgets.js"></script>
