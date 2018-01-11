@@ -5,16 +5,28 @@ export default class PostsRepository {
     this.fetcher = fetcher;
   }
 
-  fetch(contentTypes = [], page = 1, limit = 10) {
-    return this.fetcher.get('v1/posts', {
+  fetchFeedPosts(cursor = Date(), limit = 10) {
+    return this.fetcher.get('v1/posts/', {
       params: {
-        page,
+        cursor,
         limit,
-        content_type: contentTypes,
       },
     }).then(res => ({
       posts: res.data.data.map(post => Post.fromJson(post)),
-      page: res.data.page,
+      cursor: res.data.cursor,
+    }));
+  }
+
+  fetchCurrencyPosts(currencyId, cursor = Date(), limit = 10) {
+    return this.fetcher.get(`v1/currencies/${currencyId}/posts`, {
+      params: {
+        cursor,
+        limit,
+        content_id: currencyId,
+      },
+    }).then(res => ({
+      posts: res.data.data.map(post => Post.fromJson(post)),
+      cursor: res.data.cursor,
     }));
   }
 

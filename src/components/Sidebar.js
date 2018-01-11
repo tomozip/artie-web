@@ -2,6 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// entities
+import Currency from '../entities/Currency';
+
 // icon
 // import ArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 // import Send from 'react-icons/lib/md/send';
@@ -10,10 +13,7 @@ import PropTypes from 'prop-types';
 // import Share from 'react-icons/lib/ti/arrow-forward-outline';
 // import BrightShare from 'react-icons/lib/ti/arrow-forward';
 
-// entities
-import Post from '../entities/Post';
-
-const PostPanel = props => (
+const Sidebar = props => (
   <div className="sidebar">
     <div className="sidebar_feed_row clickable_row">
       <p className="sidebar_feed_row_title">Feed</p>
@@ -21,7 +21,18 @@ const PostPanel = props => (
     <div className="sidebar_title_row">
       <p className="sidebar_title">Following Hashtags</p>
     </div>
-    <div className="sidebar_channel_row clickable_row">
+    {
+      props.currencies.map(currency => (
+        <button
+          key={currency.id}
+          onClick={() => props.handleChangeFocusedCurrency(currency.id)}
+          className="sidebar_channel_row clickable_row"
+        >
+          <p className="sidebar_channel_row_title"># {currency.name}</p>
+        </button>
+      ))
+    }
+    {/* <div className="sidebar_channel_row clickable_row">
       <p className="sidebar_channel_row_title"># BIT</p>
     </div>
     <div className="sidebar_channel_row clickable_row">
@@ -29,12 +40,13 @@ const PostPanel = props => (
     </div>
     <div className="sidebar_channel_row clickable_row">
       <p className="sidebar_channel_row_title"># ETH</p>
-    </div>
+    </div> */}
   </div>
 );
 
-PostPanel.propTypes = {
-  post: PropTypes.instanceOf(Post).isRequired,
+Sidebar.propTypes = {
+  currencies: PropTypes.arrayOf(Currency).isRequired,
+  handleChangeFocusedCurrency: PropTypes.func.isRequired,
 }
 
-export default PostPanel;
+export default Sidebar;

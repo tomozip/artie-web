@@ -11,28 +11,30 @@ import * as newArrivalActions from '../actions/newArrival';
 // components
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import PostPanel from '../components/PostPanel';
-import PostForm from '../components/PostForm';
+import PostList from '../components/PostList';
+
 // entities
 import Post from '../entities/Post';
 
 // repositories
 import RootRepository from '../repositories/RootRepository';
 
+// FIXME: rename this class to 'Feed'
 class NewArrivalList extends Component {
-  static fetch(dispatch, params = null) {
-    const fetchNewArrivalPosts = () =>
-      RootRepository.posts.fetch(
-        'new_arrival',
-        params.page,
-      ).then(res => dispatch(newArrivalActions.fetchInitialNewArrivalPosts(res)));
-    const fetchPosts = _.concat(fetchNewArrivalPosts());
+  // ここからrenderまでかなりCurrencyDetailとかぶる部分が多い。
+  // FIXME: refactoring
+  static fecth(dispatch, params = null) {
+    const fetchFeedPosts = () =>
+      RootRepository.posts.fetchFeedPosts(params.page)
+        .then(res => dispatch(newArrivalActions.fetchInitialNewArrivalPosts(res)));
+    const fetchPosts = _.concat(fetchFeedPosts());
     return Promise.all(fetchPosts);
   }
 
   constructor() {
     super();
     this.handleCreatePost = this.handleCreatePost.bind(this);
+    this.handleCreatePost = this.handleDeletePost.bind(this);
   }
 
   handleCreatePost(text, images = []) {
@@ -43,7 +45,7 @@ class NewArrivalList extends Component {
 
   handleDeletePost(postId) {
     return RootRepository.posts.deletePost(postId)
-      .then(res => this.context.dispatch(newArrivalActions.fetchInitialNewArrivalPosts(res)))
+      .then(res => this.context.dispatch(newArrivalActions.fetchInitialNewArrivalPosts(res)));
   }
 
   render() {
@@ -53,16 +55,11 @@ class NewArrivalList extends Component {
         <div className="l-container">
           <Sidebar />
           <div className="l-content_block">
-            <div className="l-post_block">
-              <PostForm onClick={this.handleCreatePost} />
-              {
-                this.props.newArrival.posts.map(post => (
-                  <div className="l-post_panel" key={post.id}>
-                    <PostPanel post={post} handleDeletePost={this.handleDeletePost} />
-                  </div>
-                ))
-              }
-            </div>
+            <PostList
+              posts={this.props.newArrival.posts}
+              handleCreatePost={this.handleCreatePost}
+              handleDeletePost={this.handleDeletePost}
+            />
           </div>
         </div>
       </div>
