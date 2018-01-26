@@ -1,12 +1,13 @@
-.l-wrapper {
+.l_wrapper {
   @include relative;
   height: 100%;
 }
 
-.l-container {
+.l_container {
   @include absolute($top: $default_space * 12, $right: 0, $left: 0);
   @include pie-clearfix;
   height: 100%;
+  padding: $default_space * 7.5 $default_space * 10.5;
   // padding-top: $default_space * 24;
   //
   // @media #{$ipad_media_query} {
@@ -22,15 +23,15 @@
   // }
 }
 
-.l-content_block {
-  @include calc('width', '100% - #{$default_space * 70}');
-  float: right;
-  padding: $default_space * 10 0;
-  min-height: 100%;
-  box-sizing: border-box;
-}
+// .l-content_block {
+//   @include calc('width', '100% - #{$default_space * 70}');
+//   float: right;
+//   padding: $default_space * 10 0;
+//   min-height: 100%;
+//   box-sizing: border-box;
+// }
 
-.l-post_block {
+.l_post_block {
   width: $default_space * 200;
   box-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
   border-radius: $default_space * 1.5;

@@ -12,7 +12,8 @@ $iphone_small_media_query: 'only screen and (max-width: 320px)';
 
 // font-family
 $font_family_default: proxima-nova, 'Hiragino Sans', Helvetica, 'メイリオ', Arial;
-$font_family_feature: proxima-nova-condensed, sans-serif;
+$font_family_feature: lato;
+// $font_family_feature: proxima-nova-condensed, sans-serif;
 
 // line-height
 $line_height_large: 1.65;
@@ -64,11 +65,14 @@ $light_blue_gray_color: #B0BEC5;
 $light_gray_color: #ECEFF1;
 $cyan_color: #00BCD4;
 $cyan_gray_color: #0097A7;
+$cyan_dark_color: #006064;
+$orange_color: #FFC107;
 
 // functional colors
 $bg_color: $light_gray_color;
 $border_color: $bg_color;
 $shadow_color: rgba($black_color, .16);
+$transpicuous_color: rgba(0, 0, 0, 0);
 
 // v2 font
 // use v2 color except https://finc.com/web_views/new_arrivals.

@@ -31,9 +31,8 @@
 
 // part module
 @import 'module/header';
-@import 'module/sidebar';
-@import 'module/post_panel';
-@import 'module/post_form';
+@import 'module/article_list';
+@import 'module/article_card';
 
 // module per page
-@import 'module/routes/new_arrival_list';
+@import 'module/routes/top_article_list';

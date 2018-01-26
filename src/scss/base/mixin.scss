@@ -44,6 +44,14 @@
   #{$property}: calc(#{$expression});
 }
 
+@mixin oneliner {
+  line-height: $line_height_small;
+}
+
+@mixin shadow {
+  box-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
+}
+
 @mixin optimize_length {
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,0 +1,109 @@
+.article_card {
+  @include shadow;
+  border-radius: $default_space * 2;
+  overflow: hidden;
+  cursor: pointer;
+
+  .article_header {
+    @include relative;
+  }
+
+  .c_header_img {
+    @include relative;
+    height: $default_space * 33;
+    overflow: hidden;
+
+    &::before {
+      @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
+      background-image: linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
+      content: '';
+    }
+  }
+
+  .header_img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .review_count {
+    @include absolute($bottom: $default_space * 2, $left: $default_space * 3);
+    line-height: $line_height_small;
+  }
+
+  .review_count_number {
+    @include oneliner;
+    color: $cyan_dark_color;
+    font-family: $font_family_feature;
+    font-size: $font_size_sub_title_medium;
+    margin-right: $default_space;
+  }
+
+  .review_count_unit {
+    @include oneliner;
+    color: $blue_gray_color;
+    font-size: $font_size_footnote_medium;
+    font-family: $font_family_feature;
+  }
+
+  .article_body {
+    @include relative;
+    padding: $default_space * 3;
+  }
+
+  .article_title_text {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow: hidden;
+    font-family: $font_family_default;
+    color: $black_color;
+    line-height: $line_height_default;
+    margin-bottom: $default_space * 2.5;
+  }
+
+  .article_categories {
+    @include calc('width', '100% - #{$default_space * 15}');
+    display: inline-block;
+  }
+
+  .article_category {
+    @include oneliner;
+    padding: $default_space;
+    background-color: $light_blue_gray_color;
+    color: $white_color;
+    font-family: $font_family_default;
+    font-size: $font_size_caption_large;
+    font-weight: 200;
+    border-radius: $default_space;
+
+    &:not(:last-child) {
+      margin-right: $default_space * 1.5;
+    }
+  }
+
+  .article_rating {
+    display: inline-block;
+    width: $default_space * 15;
+    text-align: right;
+  }
+
+  .article_rating_star_icon {
+    @include relative($bottom: $default_space * .5);
+    color: $orange_color;
+    width: $default_space * 5;
+    height: $default_space * 5;
+    margin-right: $default_space * .5;
+  }
+
+  .article_rating_score {
+    @include oneliner;
+    color: $orange_color;
+    font-family: $font_family_feature;
+    font-weight: bold;
+    font-size: $font_size_sub_title_medium;
+    letter-spacing: $letter_spacing_footnone_medium;
+  }
+}
