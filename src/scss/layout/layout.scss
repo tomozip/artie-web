@@ -6,7 +6,6 @@
 .l_container {
   @include absolute($top: $default_space * 12, $right: 0, $left: 0);
   @include pie-clearfix;
-  height: 100%;
   padding: $default_space * 7.5 $default_space * 10.5;
   // padding-top: $default_space * 24;
   //

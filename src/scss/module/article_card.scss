@@ -4,6 +4,12 @@
   overflow: hidden;
   cursor: pointer;
 
+  &:hover {
+    .header_img {
+      @include transform(scale(1.1));
+    }
+  }
+
   .article_header {
     @include relative;
   }
@@ -17,10 +23,12 @@
       @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
       background-image: linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
       content: '';
+      z-index: 1;
     }
   }
 
   .header_img {
+    @include ease_transition;
     display: block;
     height: 100%;
     width: 100%;
@@ -31,6 +39,7 @@
   .review_count {
     @include absolute($bottom: $default_space * 2, $left: $default_space * 3);
     line-height: $line_height_small;
+    z-index: 2;
   }
 
   .review_count_number {
