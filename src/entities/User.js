@@ -5,32 +5,41 @@ export default class Hashtag {
   constructor(params) {
     const {
       id,
-      displayName,
+      fullName,
       accountName,
       imageData,
       email,
       password,
-      evaluation,
+      evaluationPoint,
+      totalLikeCount,
+      followingCount,
+      followersCount,
     } = params;
 
     this.id = assertions.number('id', id);
-    this.displayName = assertions.string('displayName', displayName);
+    this.fullName = assertions.string('fullName', fullName);
     this.accountName = assertions.string('accountName', accountName);
     this.imageData = assertions.string('imageData', imageData);
-    this.email = assertions.string('email', email);
-    this.password = assertions.string('password', password);
-    this.evaluation = assertions.string('evaluation', evaluation);
+    this.email = assertions.string('email', email, true);
+    this.password = assertions.string('password', password, true);
+    this.evaluationPoint = assertions.number('evaluationPoint', evaluationPoint);
+    this.totalLikeCount = assertions.number('totalLikeCount', totalLikeCount);
+    this.followingCount = assertions.number('followingCount', followingCount);
+    this.followersCount = assertions.number('followersCount', followersCount);
   }
 
   static fromJson(json) {
     return new Hashtag({
       id: json.id,
-      displayName: json.display_name,
+      fullName: json.display_name,
       accountName: json.account_name,
       imageData: json.image_data,
-      email: json.email,
-      password: json.password,
-      evaluation: json.evaluation,
+      email: json.email ? null : json.email,
+      password: json.password ? null : json.password,
+      evaluationPoint: json.evaluation_point,
+      totalLikeCount: json.total_like_count,
+      followingCount: json.follwing_count,
+      followersCount: json.follwers_count,
     });
   }
 }

@@ -33,7 +33,10 @@
 @import 'module/header';
 @import 'module/article_list';
 @import 'module/article_card';
+@import 'module/review_form';
+@import 'module/review_row';
 @import 'module/review_btn';
 
 // module per page
 @import 'module/routes/top_article_list';
+@import 'module/routes/article_detail';

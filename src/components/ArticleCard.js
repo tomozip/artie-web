@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 // icon
 // import ArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
-import StarIcon from 'react-icons/lib/md/star';
 // import BrightThumbsUp from 'react-icons/lib/fa/thumbs-up';
 // import BrightThumbsDown from 'react-icons/lib/fa/thumbs-down';
 // import Share from 'react-icons/lib/ti/arrow-forward-outline';
@@ -52,7 +51,7 @@ class ArticleCard extends Component {
             }
           </div>
           <div className="article_rating">
-            <StarIcon className="article_rating_star_icon" />
+            <span className="article_rating_star_icon">★</span>
             <span className="article_rating_score">{this.props.article.ratingScore}</span>
           </div>
         </div>

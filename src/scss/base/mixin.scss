@@ -49,7 +49,7 @@
 }
 
 @mixin shadow {
-  box-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
+  box-shadow: 0 $default_space * .5 $default_space * 3 $shadow_color;
 }
 
 @mixin optimize_length {

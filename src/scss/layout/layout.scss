@@ -5,8 +5,7 @@
 
 .l_container {
   @include absolute($top: $default_space * 12, $right: 0, $left: 0);
-  @include pie-clearfix;
-  padding: $default_space * 7.5 $default_space * 10.5;
+  padding: $default_space * 7.5 $default_space * 10;
   // padding-top: $default_space * 24;
   //
   // @media #{$ipad_media_query} {
@@ -30,12 +29,20 @@
 //   box-sizing: border-box;
 // }
 
-.l_post_block {
-  width: $default_space * 200;
-  box-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
-  border-radius: $default_space * 1.5;
-  overflow: hidden;
+.l_content_wrapper {
+  @include pie-clearfix;
   margin: 0 auto;
+  width: fit-content;
+}
+
+.l_main_block {
+  width: $default_space * 150;
+  margin-right: $default_space * 7;
+  float: left;
+  // box-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
+  // border-radius: $default_space * 1.5;
+  // overflow: hidden;
+  // margin: 0 auto;
 
   // margin: $default_space * 4;
   // width: $default_space * 156;
@@ -64,18 +71,19 @@
   // }
 }
 
-.l-right_sidebar_block {
+.l_right_sidebar_block {
   margin: $default_space * 4;
-  width: $default_space * 75;
+  width: $default_space * 79;
+  float: left;
 
-  @media #{$ipad_media_query} {
-    margin: 0;
-    width: 100%;
-  }
-
-  @media #{$iphone_large_media_query} {
-    box-sizing: border-box;
-    padding: ($default_space * 4) 0;
-    width: 100%;
-  }
+  // @media #{$ipad_media_query} {
+  //   margin: 0;
+  //   width: 100%;
+  // }
+  //
+  // @media #{$iphone_large_media_query} {
+  //   box-sizing: border-box;
+  //   padding: ($default_space * 4) 0;
+  //   width: 100%;
+  // }
 }

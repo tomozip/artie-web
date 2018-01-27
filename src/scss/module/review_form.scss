@@ -1,0 +1,65 @@
+.review_form {
+  @include pie-clearfix;
+  padding: 0 $default_space * 5;
+
+  .form_left_block {
+    margin-right: $default_space * 3;
+    float: left;
+  }
+
+  .form_user_img {
+    @include shadow;
+    width: $default_space * 10;
+    height: $default_space * 10;
+    border-radius: 50%;
+  }
+
+  .form_right_block {
+    @include calc('width', '100% - #{$default_space * 13}');
+    float: left;
+  }
+
+  .form_area {
+    @include shadow;
+    padding: $default_space * 2;
+    margin-bottom: $default_space * 3;
+    display: block;
+    font-family: $font_family_default;
+    font-size: $font_size_footnote_medium;
+    width: 100%;
+    height: $default_space * 25;
+    color: $dark_blue_gray_color;
+    box-sizing: border-box;
+    border-radius: $default_space * 1.5;
+  }
+
+  .form_bottom_block {
+    height: $default_space * 9;
+  }
+
+  .c_form_rating {
+    @include calc('width', '100% - #{$default_space * 26}');
+    float: left;
+    height: 100%;
+    display: table;
+  }
+
+  .form_rating_score {
+    @include oneliner;
+    font-family: $font_family_feature_bold;
+    font-size: $font_size_sub_title_large;
+    display: table-cell;
+    vertical-align: middle;
+    margin-right: $default_space * 3;
+    color: $orange_color;
+    letter-spacing: $letter_spacing_head_medium;
+    text-shadow: 0 $default_space * .5 $default_space * 2 $text_shadow_color;
+  }
+
+  .c_form_post {
+    float: left;
+    text-align: right;
+    height: 100%;
+    width: $default_space * 26;
+  }
+}

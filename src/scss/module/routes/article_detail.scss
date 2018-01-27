@@ -1,0 +1,182 @@
+.article_detail {
+  .article_preview {
+    @include shadow;
+    border-radius: $default_space * 2;
+    overflow: hidden;
+    margin-bottom: $default_space * 8.5;
+  }
+
+  .preview_header {
+    @include relative;
+    display: block;
+
+    &:hover {
+      .header_img {
+        @include transform(scale(1.1));
+      }
+    }
+  }
+
+  .c_header_img {
+    @include relative;
+    height: $default_space * 50;
+    overflow: hidden;
+
+    &::before {
+      @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
+      background-image: linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
+      content: '';
+      z-index: 1;
+    }
+  }
+
+  .header_img {
+    @include ease_transition;
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .review_count {
+    @include absolute($bottom: $default_space * 2, $left: $default_space * 4);
+    line-height: $line_height_small;
+    z-index: 2;
+  }
+
+  .review_count_number {
+    @include oneliner;
+    color: $cyan_dark_color;
+    font-family: $font_family_feature;
+    font-size: $font_size_title_medium;
+    margin-right: $default_space;
+  }
+
+  .review_count_unit {
+    @include oneliner;
+    color: $blue_gray_color;
+    font-size: $font_size_sub_title_medium;
+    font-family: $font_family_feature;
+  }
+
+  .preview_body {
+    @include relative;
+    padding: $default_space * 3.5 $default_space * 5 $default_space * 4;
+  }
+
+  .preview_title_text {
+    @include ease_transition;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow: hidden;
+    font-family: $font_family_default;
+    font-size: $font_size_sub_title_medium;
+    color: $black_color;
+    line-height: $line_height_default;
+    margin-bottom: $default_space * 2.5;
+
+    &:hover {
+      opacity: .4;
+    }
+  }
+
+  .preview_categories {
+    @include calc('width', '100% - #{$default_space * 20}');
+    display: inline-block;
+    margin-bottom: $default_space * 6.5;
+  }
+
+  .preview_category {
+    @include oneliner;
+    padding: $default_space;
+    background-color: $light_blue_gray_color;
+    color: $white_color;
+    font-family: $font_family_default;
+    font-size: $font_size_caption_large;
+    font-weight: 200;
+    border-radius: $default_space;
+
+    &:not(:last-child) {
+      margin-right: $default_space * 1.5;
+    }
+  }
+
+  .preview_rating {
+    display: inline-block;
+    width: $default_space * 20;
+    text-align: right;
+  }
+
+  .preview_rating_star {
+    @include relative($bottom: $default_space * .5);
+    color: $orange_color;
+    font-size: $font_size_sub_title_medium;
+    margin-right: $default_space;
+  }
+
+  .preview_rating_score {
+    @include oneliner;
+    color: $orange_color;
+    font-family: $font_family_feature_bold;
+    font-weight: bold;
+    font-size: $font_size_title_medium;
+    letter-spacing: $letter_spacing_footnone_medium;
+  }
+
+  .preview_read_more_btn {
+    @include ease_transition;
+    @include oneliner;
+    border-radius: $default_space * 2;
+    border: 1px solid $light_blue_gray_color;
+    padding: $default_space * 2.5 0;
+    text-align: center;
+    display: block;
+    color: $blue_gray_color;
+    font-weight: 200;
+    font-family: $font_family_default;
+    font-size: $font_size_body_medium;
+    letter-spacing: $letter_spacing_caption_large;
+
+    &:hover {
+      background-color: $light_blue_gray_color;
+      color: $white_color;
+    }
+  }
+
+  // review list
+  .review_list {
+  }
+
+  .l_review_list_header {
+    margin-bottom: $default_space * 5;
+  }
+
+  .review_list_header {
+    text-align: center;
+  }
+
+  .review_list_header_text {
+    @include oneliner;
+    font-family: $font_family_feature_bold;
+    font-size: $font_size_sub_title_large;
+    letter-spacing: $letter_spacing_footnone_medium;
+    color: $black_color;
+    display: inline-block;
+    margin-bottom: $default_space * 2.5;
+  }
+
+  .review_list_header_border {
+    width: $default_space * 16.5;
+    height: $default_space;
+    background-color: $cyan_color;
+    margin: 0 auto;
+  }
+
+  .l_review_row {
+    &:not(:last-child) {
+      margin-bottom: $default_space * 5;
+    }
+  }
+}

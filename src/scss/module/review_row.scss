@@ -1,0 +1,136 @@
+.review_row {
+  @include shadow;
+  @include pie-clearfix;
+  background-color: $white_color;
+  border-radius: $default_space * 2;
+  padding: $default_space * 3 $default_space * 5;
+
+  .row_left_block {
+    float: left;
+    width: $default_space * 10;
+    margin-right: $default_space * 3;
+  }
+
+  .row_user_img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: $default_space;
+  }
+
+  .user_evaluation_point {
+  }
+
+  .row_right_block {
+    @include calc('width', '100% - #{$default_space * 13}');
+    float: left;
+  }
+
+  .row_meta_block {
+    @include pie-clearfix;
+    margin-bottom: $default_space * 1.5;
+  }
+
+  .row_meta_left_block {
+    float: left;
+    padding: $default_space 0;
+  }
+
+  .user_name {
+    @include oneliner;
+    font-family: $font_family_default;
+    font-size: $font_size_body_medium;
+    font-weight: 600;
+    color: $black_color;
+    margin-bottom: $default_space;
+    letter-spacing: $letter_spacing_caption_medim;
+  }
+
+  .review_posted_date {
+    @include oneliner;
+    font-family: $font_family_default;
+    font-size: $font_size_caption_large;
+    color: $light_blue_gray_color;
+    letter-spacing: $letter_spacing_caption_medim;
+  }
+
+  .row_meta_right_block {
+    float: right;
+    text-align: right;
+  }
+
+  .arrow_down_icon {
+    width: $default_space * 8;
+    height: $default_space * 8;
+    transform: translateX($default_space * 2);
+    cursor: pointer;
+  }
+
+  .row_rating {
+    @include oneliner;
+    margin-bottom: $default_space * 2;
+  }
+
+  .c_row_rating_stars {
+    @include relative;
+    display: inline-block;
+    margin-right: $default_space;
+    height: $default_space * 4;
+    width: $default_space * 20;
+  }
+
+  .row_rating_stars {
+    @include absolute($top: 0, $left: 0);
+    @include oneliner;
+    font-size: $font_size_body_medium;
+    color: $orange_color;
+    width: 0%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .row_rating_stars_track {
+    @include absolute($top: 0, $left: 0);
+    @include oneliner;
+    font-size: $font_size_body_medium;
+    color: $gray_color;
+  }
+
+  .row_rating_point {
+    @include oneliner;
+    display: inline-block;
+    color: $orange_color;
+    font-family: $font_family_feature_bold;
+    font-size: $font_size_head_medium;
+    letter-spacing: $letter_spacing_caption_large;
+  }
+
+  .review_text {
+    font-family: $font_family_default;
+    font-size: $font_size_footnote_medium;
+    line-height: $line_height_default;
+    color: $black_color;
+    margin-bottom: $default_space * 2.5;
+  }
+
+  .row_bottom_block {
+    text-align: right;
+  }
+
+  .row_like_block {
+  }
+
+  .thumbs_up_icon {
+    width: $default_space * 5;
+    height: $default_space * 5;
+    margin-right: $default_space;
+    cursor: pointer;
+  }
+
+  .review_likes_count {
+    @include oneliner;
+    font-family: $font_family_feature_bold;
+    font-size: $font_size_head_medium;
+    letter-spacing: $letter_spacing_caption_large;
+    color: $cyan_color;
+  }
+}
