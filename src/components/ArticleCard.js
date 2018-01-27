@@ -1,6 +1,7 @@
 // libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 // icon
 // import ArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
@@ -13,6 +14,8 @@ import PropTypes from 'prop-types';
 //
 // // entities
 import Article from '../entities/Article';
+
+/* eslint react/prefer-stateless-function: 0 */
 
 class ArticleCard extends Component {
   // constructor(props) {
@@ -31,31 +34,33 @@ class ArticleCard extends Component {
 
   render() {
     return (
-      <div className="article_card">
-        <div className="article_header">
-          <div className="c_header_img">
-            <img src={this.props.article.imageUrl} alt="article header" className="header_img" />
+      <Link to={`/articles/${this.props.article.id}`}>
+        <div className="article_card">
+          <div className="article_header">
+            <div className="c_header_img">
+              <img src={this.props.article.imageUrl} alt="article header" className="header_img" />
+            </div>
+            <div className="review_count">
+              <span className="review_count_number">{this.props.article.reviewCountNumber}</span>
+              <span className="review_count_unit">reviews</span>
+            </div>
           </div>
-          <div className="review_count">
-            <span className="review_count_number">{this.props.article.reviewCountNumber}</span>
-            <span className="review_count_unit">reviews</span>
+          <div className="article_body">
+            <p className="article_title_text">{this.props.article.title}</p>
+            <div className="article_categories">
+              {
+                this.props.article.categories.map(category => (
+                  <span className="article_category" key={category.id}>#{category.name}</span>
+                ))
+              }
+            </div>
+            <div className="article_rating">
+              <span className="article_rating_star_icon">★</span>
+              <span className="article_rating_score">{this.props.article.ratingScore}</span>
+            </div>
           </div>
         </div>
-        <div className="article_body">
-          <p className="article_title_text">{this.props.article.title}</p>
-          <div className="article_categories">
-            {
-              this.props.article.categories.map(category => (
-                <span className="article_category" key={category.id}>#{category.name}</span>
-              ))
-            }
-          </div>
-          <div className="article_rating">
-            <span className="article_rating_star_icon">★</span>
-            <span className="article_rating_score">{this.props.article.ratingScore}</span>
-          </div>
-        </div>
-      </div>
+      </Link>
     );
   }
 }

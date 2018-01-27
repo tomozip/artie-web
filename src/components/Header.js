@@ -1,5 +1,6 @@
 // libs
 import React from 'react';
+import { Link } from 'react-router';
 
 // components
 import ReviewBtn from './ReviewBtn';
@@ -23,7 +24,7 @@ const Header = props => (
       </div>
     </div>
     <div className="c_header_logo">
-      <p className="header_logo">Artie</p>
+      <Link to="/" className="header_logo">Artie</Link>
     </div>
     <div className="header_right_block">
       <div className="header_user_block">
