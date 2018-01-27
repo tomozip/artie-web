@@ -19,12 +19,12 @@ export default class Article {
 
     this.id = assertions.number('id', id);
     this.title = assertions.string('title', title);
-    this.imageUrl = assertions.array('imageUrl', imageUrl);
+    this.imageUrl = assertions.string('imageUrl', imageUrl);
     this.createdAt = assertions.string('createdAt', createdAt);
     this.updatedAt = assertions.string('updatedAt', updatedAt);
     this.categories = assertions.array('categories', categories);
-    this.reviewCountNumber = assertions.object('reviewCountNumber', reviewCountNumber);
-    this.ratingScore = assertions.object('ratingScore', ratingScore);
+    this.reviewCountNumber = assertions.number('reviewCountNumber', reviewCountNumber);
+    this.ratingScore = assertions.number('ratingScore', ratingScore);
   }
 
   static fromJson(json) {

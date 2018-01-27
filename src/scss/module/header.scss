@@ -76,14 +76,14 @@
     object-position: center;
     display: inline-block;
     vertical-align: middle;
+    margin-right: $default_space * 2;
   }
 
   .header_user_name {
-    font-size: $font_size_body_medium;
+    font-size: $font_size_head_medium;
     display: inline-block;
     vertical-align: middle;
     line-height: $line_height_small;
-    margin-left: $default_space * 1.5;
   }
 
   .l_review_btn {

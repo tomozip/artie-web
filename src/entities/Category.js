@@ -12,8 +12,8 @@ export default class Category {
 
     this.id = assertions.number('id', id);
     this.name = assertions.string('name', name);
-    this.createdAt = assertions.string('createdAt', createdAt, true);
-    this.updatedAt = assertions.string('updatedAt', updatedAt, true);
+    this.createdAt = assertions.string('createdAt', createdAt);
+    this.updatedAt = assertions.string('updatedAt', updatedAt);
   }
 
   static fromJson(json) {

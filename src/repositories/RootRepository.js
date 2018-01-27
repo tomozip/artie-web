@@ -5,7 +5,7 @@ import axios from 'axios';
 import { CoinServerBaseUrl } from '../constants/env';
 
 // repositories
-import PostsRepository from './PostsRepository';
+import ArticlesRepository from './ArticlesRepository';
 import CurrencyRepository from './CurrencyRepository';
 
 const fetcher = axios.create({
@@ -14,6 +14,6 @@ const fetcher = axios.create({
 });
 
 export default {
-  posts: new PostsRepository(fetcher),
+  articles: new ArticlesRepository(fetcher),
   currency: new CurrencyRepository(fetcher),
 };

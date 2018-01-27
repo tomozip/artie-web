@@ -3,7 +3,7 @@
   @include shadow;
   background-image: linear-gradient(-180deg, $light_cyan_color 0%, $cyan_color 100%);
   border-radius: $default_space * 25;
-  padding: $default_space * 2 $default_space * 4;
+  padding: $default_space * 1.5 $default_space * 4 $default_space * 2;
   cursor: pointer;
 
   &:hover {
