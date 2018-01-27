@@ -1,0 +1,20 @@
+.review_btn {
+  @include ease-transition;
+  @include shadow;
+  background-image: linear-gradient(-180deg, $light_cyan_color 0%, $cyan_color 100%);
+  border-radius: $default_space * 25;
+  padding: $default_space * 2 $default_space * 4;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .75;
+  }
+
+  .review_btn_text {
+    @include oneliner;
+    font-family: $font_family_feature;
+    font-size: $font_size_sub_title_medium;
+    color: $white_color;
+    letter-spacing: $letter_spacing_caption_large;
+  }
+}

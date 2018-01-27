@@ -13,6 +13,8 @@ $iphone_small_media_query: 'only screen and (max-width: 320px)';
 // font-family
 $font_family_default: proxima-nova, 'Hiragino Sans', Helvetica, 'メイリオ', Arial;
 $font_family_feature: lato;
+$font_family_feature_bold: Lato-Bold;
+$font_family_feature_bold_italic: Lato-BoldItalic;
 // $font_family_feature: proxima-nova-condensed, sans-serif;
 
 // line-height
@@ -63,6 +65,7 @@ $dark_blue_gray_color: #37474F;
 $blue_gray_color: #607D8B;
 $light_blue_gray_color: #B0BEC5;
 $light_gray_color: #ECEFF1;
+$light_cyan_color: #4dd0e1;
 $cyan_color: #00BCD4;
 $cyan_gray_color: #0097A7;
 $cyan_dark_color: #006064;
