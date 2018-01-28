@@ -8,6 +8,7 @@ export default class Article {
   constructor(params) {
     const {
       id,
+      url,
       title,
       imageUrl,
       createdAt,
@@ -18,6 +19,7 @@ export default class Article {
     } = params;
 
     this.id = assertions.number('id', id);
+    this.url = assertions.string('url', url);
     this.title = assertions.string('title', title);
     this.imageUrl = assertions.string('imageUrl', imageUrl);
     this.createdAt = assertions.string('createdAt', createdAt);
@@ -30,6 +32,7 @@ export default class Article {
   static fromJson(json) {
     return new Article({
       id: json.id,
+      url: json.url,
       title: json.title,
       imageUrl: json.image_url,
       createdAt: json.created_at,

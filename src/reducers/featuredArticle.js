@@ -1,3 +1,4 @@
+// constants
 import featuredArticleActionTypes from '../constants/featuredArticleActionTypes';
 
 const initialState = {

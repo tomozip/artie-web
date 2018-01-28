@@ -1,8 +1,26 @@
+// entities
 import Article from '../entities/Article';
+import Review from '../entities/Review';
 
 export default class ArticlesRepository {
   constructor(fetcher) {
     this.fetcher = fetcher;
+  }
+
+  fetchArticle(id) {
+    return this.fetcher.get(`v1/articles/${id}`)
+      .then(res => ({
+        article: Article.fromJson(res.data),
+        // article: Article.fromJson(res.data.data),
+      }));
+  }
+
+  fetchArticleReviews(id) {
+    return this.fetcher.get(`v1/articles/${id}/reviews`)
+      .then(res => ({
+        reviews: res.data.map(review => Review.fromJson(review)),
+        // reviews: res.data.data.map(review => Review.fromJson(review)),
+      }));
   }
 
   fetchFeaturedArticles(cursor = Date(), limit = 10) {
@@ -12,7 +30,8 @@ export default class ArticlesRepository {
         limit,
       },
     }).then(res => ({
-      articles: res.data.data.map(article => Article.fromJson(article)),
+      articles: res.data.map(article => Article.fromJson(article)),
+      // articles: res.data.data.map(article => Article.fromJson(article)),
       cursor: res.data.cursor,
     }));
   }
@@ -34,7 +53,7 @@ export default class ArticlesRepository {
   //   return this.fetcher.article('v1/articles/', {
   //     user_id: userId,
   //     text,
-  //     image_data: images,
+  //     image_data: images,
   //   }).then(res => ({
   //     success: res.data.success,
   //     articles: res.data.data.map(article => Article.fromJson(article)),

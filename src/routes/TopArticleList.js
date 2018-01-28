@@ -36,6 +36,17 @@ class TopArticleList extends Component {
   //   this.handleCreatePost = this.handleDeletePost.bind(this);
   // }
 
+  componentDidMount() {
+    const { dispatch } = this.context;
+
+    if (!this.props.featuredArticle.isFetched) {
+      RootRepository.articles.fetchFeaturedArticles()
+        .then((res) => {
+          dispatch((featuredArticleActions.fetchInitialFeaturedArticles(res)));
+        });
+    }
+  }
+
   // handleCreatePost(text, images = []) {
   // const userId = 1;
   // return RootRepository.articles.createPost(userId, text, images)
@@ -67,11 +78,11 @@ class TopArticleList extends Component {
 const mapStateToProps = state => ({
   featuredArticle: state.app.featuredArticle,
 });
-//
-// TopArticleList.contextTypes = {
-//   dispatch: PropTypes.func.isRequired,
-// };
-//
+
+TopArticleList.contextTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
 TopArticleList.propTypes = {
   featuredArticle: PropTypes.shape({
     articles: PropTypes.arrayOf(PropTypes.instanceOf(Article).isRequired).isRequired,

@@ -32,10 +32,9 @@ app.use((req, res) => {
     } else if (renderProps) {
       const store = configureStore();
 
-      const params = {
-        // ...renderProps.params,
+      const params = Object.assign({}, renderProps.params, {
         page: Number(req.query.page) || 1,
-      };
+      })
 
       const promises = renderProps.components
         .map((c) => {

@@ -1,7 +1,7 @@
 // utils
 import * as assertions from '../utils/assertion';
 
-export default class Hashtag {
+export default class User {
   constructor(params) {
     const {
       id,
@@ -29,17 +29,17 @@ export default class Hashtag {
   }
 
   static fromJson(json) {
-    return new Hashtag({
+    return new User({
       id: json.id,
-      fullName: json.display_name,
+      fullName: json.full_name,
       accountName: json.account_name,
       imageData: json.image_data,
-      email: json.email ? null : json.email,
-      password: json.password ? null : json.password,
+      email: json.email ? json.email : null,
+      password: json.password ? json.password : null,
       evaluationPoint: json.evaluation_point,
       totalLikeCount: json.total_like_count,
-      followingCount: json.follwing_count,
-      followersCount: json.follwers_count,
+      followingCount: json.following_count,
+      followersCount: json.followers_count,
     });
   }
 }

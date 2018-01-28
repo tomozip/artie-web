@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import featuredArticle from './featuredArticle';
+import articleDetail from './articleDetail';
 import newArrival from './newArrival';
-import currencyDetail from './currencyDetail';
 
 const appReducer = combineReducers({
   featuredArticle,
+  articleDetail,
   newArrival,
-  currencyDetail,
 });
 
 export default appReducer;

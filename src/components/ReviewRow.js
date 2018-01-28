@@ -15,11 +15,12 @@ import Review from '../entities/Review';
 
 class ReviewRow extends Component {
   render() {
+    console.log(this.props.review);
     return (
       <div className="review_row">
         <div className="row_left_block">
           <img
-            src={this.props.review.user.imageUrl}
+            src={this.props.review.user.imageData}
             alt="review user profile"
             className="row_user_img"
           />
@@ -29,8 +30,8 @@ class ReviewRow extends Component {
         <div className="row_right_block">
           <div className="row_meta_block">
             <div className="row_meta_left_block">
-              <p className="user_name">{this.props.review.user.name}</p>
-              <p className="review_posted_date">{this.props.review.publishedAt}</p>
+              <p className="user_name">{this.props.review.user.fullName}</p>
+              <p className="review_posted_date">{this.props.review.postedAt}</p>
             </div>
             <div className="row_meta_right_block">
               <ArrowDownIcon className="arrow_down_icon" />
@@ -47,7 +48,7 @@ class ReviewRow extends Component {
           <div className="row_bottom_block">
             <div className="row_like_block">
               <FontAwesomeIcon icon={faThumbsUp} className="thumbs_up_icon" />
-              <span className="review_likes_count">{this.props.review.likes}</span>
+              <span className="review_likes_count">{this.props.review.likesCount}</span>
             </div>
           </div>
         </div>
