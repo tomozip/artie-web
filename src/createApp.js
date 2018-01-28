@@ -1,6 +1,9 @@
+// libs
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, RouterContext } from 'react-router';
+import ReactModal from 'react-modal';
+
 import ContextInjector from './ContextInjector';
 import route from './route';
 

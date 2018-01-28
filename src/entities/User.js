@@ -20,7 +20,7 @@ export default class User {
     // this.accountName = assertions.string('accountName', accountName);
     this.imageUrl = assertions.string('imageUrl', imageUrl);
     this.email = assertions.string('email', email, true);
-    this.evaluationPoint = assertions.number('evaluationPoint', evaluationPoint);
+    this.evaluationPoint = assertions.string('evaluationPoint', evaluationPoint);
     this.totalLikesCount = assertions.number('totalLikesCount', totalLikesCount);
     this.followingsCount = assertions.number('followingsCount', followingsCount);
     this.followersCount = assertions.number('followersCount', followersCount);

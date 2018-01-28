@@ -99,7 +99,11 @@ class ArticleDetail extends Component {
                   <div>
                     {/* ---Article Preview--- */}
                     <div className="article_preview">
-                      <a className="preview_header" href={this.props.articleDetail.article.url}>
+                      <a
+                        className="preview_header"
+                        href={this.props.articleDetail.article.url}
+                        target="_blank"
+                      >
                         <div className="c_header_img">
                           <img
                             src={this.props.articleDetail.article.imageUrl}
@@ -118,6 +122,7 @@ class ArticleDetail extends Component {
                         <a
                           className="preview_title_text"
                           href={this.props.articleDetail.article.url}
+                          target="_blank"
                         >
                           {this.props.articleDetail.article.title}
                         </a>
@@ -139,6 +144,7 @@ class ArticleDetail extends Component {
                         <a
                           className="preview_read_more_btn"
                           href={this.props.articleDetail.article.url}
+                          target="_blank"
                         >
                           続きを読む
                         </a>

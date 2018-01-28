@@ -59,9 +59,9 @@
   }
 
   .arrow_down_icon {
+    @include transform(translateX($default_space * 2));
     width: $default_space * 8;
     height: $default_space * 8;
-    transform: translateX($default_space * 2);
     cursor: pointer;
   }
 
@@ -127,12 +127,12 @@
   }
 
   .bright_thumbs_up_icon {
+    @include transform(translateY(-$default_space * .5));
     width: $default_space * 6;
     height: $default_space * 6;
     margin-right: $default_space;
     cursor: pointer;
     color: $cyan_color;
-    transform: translateY(-$default_space * .5);
   }
 
   .review_likes_count {

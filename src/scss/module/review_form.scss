@@ -1,6 +1,5 @@
 .review_form {
   @include pie-clearfix;
-  padding: 0 $default_space * 5;
 
   .form_left_block {
     margin-right: $default_space * 3;
@@ -56,7 +55,7 @@
 
   .slider {
     @include absolute($top: 50%, $left: $default_space * 13);
-    transform: translateY(-50%);
+    @include transform(translateY(-50%));
     width: $default_space * 40;
 
     & > div {

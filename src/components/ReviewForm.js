@@ -7,6 +7,9 @@ import Slider from 'material-ui/Slider';
 // components
 import ReviewBtn from './ReviewBtn';
 
+// entities
+import User from '../entities/User';
+
 // icons
 // import AddImages from 'react-icons/lib/fa/image';
 
@@ -36,8 +39,9 @@ class ReviewForm extends Component {
   }
 
   handleClick(e) {
-    this.props.handlePostRivew(this.state.text, this.state.rating);
+    this.props.handlePostRivew(this.state.text, this.state.rating.toFixed(1));
     e.preventDefault();
+    this.setState({ text: '', rating: 1.0 });
   }
 
   //
@@ -59,7 +63,7 @@ class ReviewForm extends Component {
         <div className="form_right_block">
           <textarea
             className="form_area"
-            placeholder="コメントを入力（任意）"
+            placeholder="コメントを入力...（任意）"
             value={this.state.text}
             onChange={this.handleTextChange}
           />
@@ -113,9 +117,7 @@ ReviewForm.propTypes = {
 };
 
 ReviewForm.contextTypes = {
-  userData: PropTypes.shape({
-    imageUrl: PropTypes.string.isRequired,
-  }).isRequired,
+  userData: PropTypes.instanceOf(User).isRequired,
 };
 
 export default ReviewForm;

@@ -8,12 +8,12 @@
         "full_name": "shimatomo",
         "account_name": "@aa",
         "image_url": "https://placehold.jp/100x100.png",
-        "evaluation_point": 3,
+        "evaluation_point": "3",
         "total_likes_count": 0,
         "followings_count": 0,
         "followers_count": 0
       },
-      "rating": 4.2,
+      "rating": "4.2",
       "text": "外資系コンサルティング会社にいた頃から、経営陣に近い立場で仕事をする機会が多かったが、その理由が良く分かった。",
       "likes_count": 72,
       "posted_at": "3時間前",
@@ -27,12 +27,12 @@
         "full_name": "shimatomo",
         "account_name": "@aa",
         "image_url": "https://placehold.jp/100x100.png",
-        "evaluation_point": 3,
+        "evaluation_point": "3",
         "total_likes_count": 0,
         "followings_count": 0,
         "followers_count": 0
       },
-      "rating": 4.2,
+      "rating": "4.2",
       "text": "外資系コンサルティング会社にいた頃から、経営陣に近い立場で仕事をする機会が多かったが、その理由が良く分かった。",
       "likes_count": 72,
       "posted_at": "3時間前",
@@ -44,13 +44,13 @@
         "full_name": "shimatomo",
         "account_name": "@aa",
         "image_url": "https://placehold.jp/100x100.png",
-        "evaluation_point": 3,
+        "evaluation_point": "3",
         "total_likes_count": 0,
         "followings_count": 0,
         "followers_count": 0
       },
       "text": "shimad",
-      "rating": 2.5,
+      "rating": "2.5",
       "likes_count": 72,
       "posted_at": "3時間前",
       "is_liked": true,
@@ -77,7 +77,7 @@
           "name": "初心者向け"
         }
       ],
-      "average_rating": 4.2
+      "average_rating": "4.2"
     },
     {
       "id": 2,
@@ -96,7 +96,7 @@
           "name": "初心者向け"
         }
       ],
-      "average_rating": 4.2
+      "average_rating": "4.2"
     },
     {
       "id": 3,
@@ -115,7 +115,7 @@
           "name": "初心者向け"
         }
       ],
-      "average_rating": 4.2
+      "average_rating": "4.2"
     },
     {
       "id": 4,
@@ -134,7 +134,7 @@
           "name": "初心者向け"
         }
       ],
-      "average_rating": 4.2
+      "average_rating": "4.2"
     }
   ]
 }

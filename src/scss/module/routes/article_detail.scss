@@ -85,7 +85,6 @@
   .preview_categories {
     @include calc('width', '100% - #{$default_space * 20}');
     display: inline-block;
-    margin-bottom: $default_space * 6.5;
   }
 
   .preview_category {
@@ -105,6 +104,7 @@
 
   .preview_rating {
     display: inline-block;
+    margin-bottom: $default_space * 3;
     width: $default_space * 20;
     text-align: right;
   }
@@ -143,6 +143,11 @@
       background-color: $light_blue_gray_color;
       color: $white_color;
     }
+  }
+
+  // review form
+  .l_review_form {
+    padding: 0 $default_space * 5;
   }
 
   // review list

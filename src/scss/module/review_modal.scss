@@ -1,0 +1,64 @@
+.review_modal_overlay {
+  @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
+  z-index: 3;
+
+  &::after {
+    @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
+    background-image: linear-gradient(-180deg, $cyan_color 0%, $cyan_dark_color 100%);
+    opacity: .8;
+    content: '';
+  }
+}
+
+.review_modal {
+  @include absolute($top: $default_space * 35, $left: 50%);
+  @include transform(translateX(-50%));
+  width: $default_space * 150;
+  background-color: $white_color;
+  border-radius: $default_space * 2;
+  padding: $default_space * 5 $default_space * 17.5;
+  z-index: 4;
+
+  &:focus {
+    outline: none;
+  }
+
+  .l_modal_title {
+    margin-bottom: $default_space * 7.5;
+  }
+
+  .modal_title {
+    @include oneliner;
+    text-align: center;
+    font-family: $font_family_feature_bold;
+    font-size: $font_size_sub_title_large;
+    letter-spacing: $letter_spacing_footnone_medium;
+    color: $black_color;
+  }
+
+  .l_modal_url_input {
+    margin-bottom: $default_space * 8.5;
+  }
+
+  .modal_url_input {
+    @include oneliner;
+    width: 100%;
+    font-size: $font_size_body_medium;
+    font-family: $font_family_default;
+    color: $dark_blue_gray_color;
+    padding: $default_space;
+    border: none;
+    letter-spacing: $letter_spacing_caption_large;
+  }
+
+  .modal_url_input_border {
+    box-shadow: 0 $default_space * .5 $default_space * 3 $default_space * .5 $shadow_color;
+    height: $default_space * .5;
+    background-color: $light_blue_gray_color;
+    border-radius: $default_space;
+  }
+
+  .l_review_form {
+    width: 100%;
+  }
+}

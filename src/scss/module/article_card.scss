@@ -71,11 +71,13 @@
     color: $black_color;
     line-height: $line_height_default;
     margin-bottom: $default_space * 2.5;
+    height: $default_space * 11;
   }
 
   .article_categories {
     @include calc('width', '100% - #{$default_space * 15}');
     display: inline-block;
+    vertical-align: middle;
   }
 
   .article_category {
@@ -95,6 +97,7 @@
 
   .article_rating {
     display: inline-block;
+    vertical-align: middle;
     width: $default_space * 15;
     text-align: right;
   }

@@ -21,7 +21,7 @@ export default class Review {
     this.postedAt = assertions.string('postedAt', postedAt);
     this.likesCount = assertions.number('likesCount', likesCount);
     this.isLiked = assertions.bool('isLiked', isLiked);
-    this.rating = assertions.number('rating', rating);
+    this.rating = assertions.string('rating', rating);
     this.user = assertions.object('user', user);
   }
 

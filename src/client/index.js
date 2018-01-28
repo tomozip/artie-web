@@ -1,7 +1,10 @@
+// libs
 import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import ReactModal from 'react-modal';
 // import es6Promise from 'es6-promise';
+
 import { createClientApp } from '../createApp';
 import configureStore from '../configureStore';
 // import { getLanguage } from './locale';
@@ -30,6 +33,8 @@ const userDeviceData = {
   // language: getLanguage(),
   // userAgent: navigator.userAgent,
 };
+
+ReactModal.setAppElement('#root');
 
 render(
   createClientApp(store, synced, userDeviceData, accessToken),

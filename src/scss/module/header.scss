@@ -42,20 +42,20 @@
 
   .header_search_input {
     @include absolute($top: 50%);
+    @include transform(translateY(-50%));
     background-color: $light_gray_color;
     border-radius: $default_space * 5;
     font-size: $font_size_footnote_medium;
     line-height: $line_height_small;
     height: $default_space * 7.5;
     width: 100%;
-    transform: translateY(-50%);
     padding: $default_space * 1.5;
     box-sizing: border-box;
   }
 
   .header_search_icon {
     @include absolute($top: 50%, $right: $default_space * 2);
-    transform: translateY(-50%);
+    @include transform(translateY(-50%));
     width: $default_space * 5;
     height: $default_space * 5;
   }
