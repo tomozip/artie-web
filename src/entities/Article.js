@@ -11,22 +11,20 @@ export default class Article {
       url,
       title,
       imageUrl,
-      createdAt,
-      updatedAt,
+      publishedAt,
       categories,
-      reviewCountNumber,
-      ratingScore,
+      reviewsCount,
+      averageRating,
     } = params;
 
     this.id = assertions.number('id', id);
     this.url = assertions.string('url', url);
     this.title = assertions.string('title', title);
     this.imageUrl = assertions.string('imageUrl', imageUrl);
-    this.createdAt = assertions.string('createdAt', createdAt);
-    this.updatedAt = assertions.string('updatedAt', updatedAt);
+    this.publishedAt = assertions.string('publishedAt', publishedAt);
     this.categories = assertions.array('categories', categories);
-    this.reviewCountNumber = assertions.number('reviewCountNumber', reviewCountNumber);
-    this.ratingScore = assertions.number('ratingScore', ratingScore);
+    this.reviewsCount = assertions.number('reviewsCount', reviewsCount);
+    this.averageRating = assertions.string('averageRating', averageRating);
   }
 
   static fromJson(json) {
@@ -35,11 +33,10 @@ export default class Article {
       url: json.url,
       title: json.title,
       imageUrl: json.image_url,
-      createdAt: json.created_at,
-      updatedAt: json.updated_at,
+      publishedAt: json.published_at,
       categories: json.categories.map(category => Category.fromJson(category)),
-      reviewCountNumber: json.review_count_number,
-      ratingScore: json.rating_score,
+      reviewsCount: json.reviews_count,
+      averageRating: json.average_rating,
     });
   }
 }

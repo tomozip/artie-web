@@ -35,7 +35,7 @@ class PostPanel extends Component {
       <div className="post_panel">
         <div className="post_left_block">
           <div className="l-post_user_img">
-            <img className="post_user_img" src={this.props.post.user.imageData} alt="profile" />
+            <img className="post_user_img" src={this.props.post.user.imageUrl} alt="profile" />
           </div>
           <div className="evaluation_drop" />
           <div className="evaluation_drop" />

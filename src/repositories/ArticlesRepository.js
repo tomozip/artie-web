@@ -11,15 +11,6 @@ export default class ArticlesRepository {
     return this.fetcher.get(`v1/articles/${id}`)
       .then(res => ({
         article: Article.fromJson(res.data),
-        // article: Article.fromJson(res.data.data),
-      }));
-  }
-
-  fetchArticleReviews(id) {
-    return this.fetcher.get(`v1/articles/${id}/reviews`)
-      .then(res => ({
-        reviews: res.data.map(review => Review.fromJson(review)),
-        // reviews: res.data.data.map(review => Review.fromJson(review)),
       }));
   }
 
@@ -30,9 +21,21 @@ export default class ArticlesRepository {
         limit,
       },
     }).then(res => ({
-      articles: res.data.map(article => Article.fromJson(article)),
-      // articles: res.data.data.map(article => Article.fromJson(article)),
-      cursor: res.data.cursor,
+      // articles: res.data.map(article => Article.fromJson(article)),
+      articles: res.data.data.map(article => Article.fromJson(article)),
+      // cursor: res.data.cursor,
+    }));
+  }
+
+  fetchArticleReviews(id, cursor = Date(), limit = 10) {
+    return this.fetcher.get(`v1/articles/${id}/reviews`, {
+      params: {
+        cursor,
+        limit,
+      },
+    }).then(res => ({
+      // reviews: res.data.map(review => Review.fromJson(review)),
+      reviews: res.data.data.map(review => Review.fromJson(review)),
     }));
   }
 
@@ -47,19 +50,18 @@ export default class ArticlesRepository {
   }
 
   createLike(reviewId) {
-    return this.fetcher.post(`v1/reviews/${reviewId}/likes`).then(res => ({
+    return this.fetcher.post(`v1/reviews/${reviewId}/like`).then(res => ({
       // エラー処理の時はここを決める。
       res,
     }));
   }
 
   deleteLIke(reviewId) {
-    return this.fetcher.delete(`v1/reviews/${reviewId}/likes`).then(res => ({
+    return this.fetcher.delete(`v1/reviews/${reviewId}/like`).then(res => ({
       // エラー処理の時はここを決める。
       res,
     }));
   }
-
 
   // fetchCurrencyPosts(currencyId, cursor = Date(), limit = 10) {
   //   return this.fetcher.get(`v1/currencies/${currencyId}/articles`, {
@@ -78,7 +80,7 @@ export default class ArticlesRepository {
   //   return this.fetcher.article('v1/articles/', {
   //     user_id: userId,
   //     text,
-  //     image_data: images,
+  //     image_url: images,
   //   }).then(res => ({
   //     success: res.data.success,
   //     articles: res.data.data.map(article => Article.fromJson(article)),

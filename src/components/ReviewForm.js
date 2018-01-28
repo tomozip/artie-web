@@ -54,7 +54,7 @@ class ReviewForm extends Component {
     return (
       <div className="review_form">
         <div className="form_left_block">
-          <img src={this.context.userData.imageData} alt="user profile" className="form_user_img" />
+          <img src={this.context.userData.imageUrl} alt="user profile" className="form_user_img" />
         </div>
         <div className="form_right_block">
           <textarea
@@ -66,7 +66,7 @@ class ReviewForm extends Component {
           <div className="form_bottom_block">
             <div className="c_form_rating">
               <MuiThemeProvider>
-                <span className="form_rating_score">{this.state.rating.toFixed(1)}</span>
+                <span className="form_average_rating">{this.state.rating.toFixed(1)}</span>
                 <Slider
                   className="slider"
                   min={1}
@@ -114,7 +114,7 @@ ReviewForm.propTypes = {
 
 ReviewForm.contextTypes = {
   userData: PropTypes.shape({
-    imageData: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
   }).isRequired,
 };
 

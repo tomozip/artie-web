@@ -7,10 +7,10 @@
         "id": 1,
         "full_name": "shimatomo",
         "account_name": "@aa",
-        "image_data": "https://placehold.jp/100x100.png",
+        "image_url": "https://placehold.jp/100x100.png",
         "evaluation_point": 3,
-        "total_like_count": 0,
-        "following_count": 0,
+        "total_likes_count": 0,
+        "followings_count": 0,
         "followers_count": 0
       },
       "rating": 4.2,
@@ -26,10 +26,10 @@
         "id": 1,
         "full_name": "shimatomo",
         "account_name": "@aa",
-        "image_data": "https://placehold.jp/100x100.png",
+        "image_url": "https://placehold.jp/100x100.png",
         "evaluation_point": 3,
-        "total_like_count": 0,
-        "following_count": 0,
+        "total_likes_count": 0,
+        "followings_count": 0,
         "followers_count": 0
       },
       "rating": 4.2,
@@ -37,6 +37,25 @@
       "likes_count": 72,
       "posted_at": "3時間前",
       "is_liked": false
+    },
+    {
+      "user": {
+        "id": 1,
+        "full_name": "shimatomo",
+        "account_name": "@aa",
+        "image_url": "https://placehold.jp/100x100.png",
+        "evaluation_point": 3,
+        "total_likes_count": 0,
+        "followings_count": 0,
+        "followers_count": 0
+      },
+      "text": "shimad",
+      "rating": 2.5,
+      "likes_count": 72,
+      "posted_at": "3時間前",
+      "is_liked": true,
+      "articleId": "1",
+      "id": 3
     }
   ],
   "likes": [],
@@ -44,98 +63,78 @@
     {
       "id": 1,
       "url": "https://google.co.jp",
-      "review_count_number": 128,
+      "reviews_count": 128,
+      "published_at": "1998-02-25 20:14:00",
       "title": "大寒波到来！気象庁による緊急勧告、5年ぶりああああああああああああああああああああ",
       "image_url": "https://placehold.jp/500x120.png",
       "categories": [
         {
           "id": 1,
-          "name": "技術",
-          "created_at": "1998-02-25",
-          "updated_at": "1998-02-25"
+          "name": "技術"
         },
         {
           "id": 2,
-          "name": "初心者向け",
-          "created_at": "1998-02-25",
-          "updated_at": "1998-02-25"
+          "name": "初心者向け"
         }
       ],
-      "rating_score": 4.2,
-      "created_at": "1998-02-25",
-      "updated_at": "1998-02-25"
+      "average_rating": 4.2
     },
     {
       "id": 2,
       "url": "https://google.co.jp",
-      "review_count_number": 128,
+      "reviews_count": 128,
+      "published_at": "1998-02-25 20:14:00",
       "title": "大寒波到来！気象庁による緊急勧告、5年ぶりああああああああああああああああああああ",
       "image_url": "https://placehold.jp/500x120.png",
       "categories": [
         {
           "id": 1,
-          "name": "技術",
-          "created_at": "1998-02-25",
-          "updated_at": "1998-02-25"
+          "name": "技術"
         },
         {
           "id": 2,
-          "name": "初心者向け",
-          "created_at": "1998-02-25",
-          "updated_at": "1998-02-25"
+          "name": "初心者向け"
         }
       ],
-      "rating_score": 4.2,
-      "created_at": "1998-02-25",
-      "updated_at": "1998-02-25"
+      "average_rating": 4.2
     },
     {
       "id": 3,
       "url": "https://google.co.jp",
-      "review_count_number": 128,
+      "reviews_count": 128,
+      "published_at": "1998-02-25 20:14:00",
       "title": "大寒波到来！気象庁による緊急勧告、5年ぶりああああああああああああああああああああ",
       "image_url": "https://placehold.jp/500x120.png",
       "categories": [
         {
           "id": 1,
-          "name": "技術",
-          "created_at": "1998-02-25",
-          "updated_at": "1998-02-25"
+          "name": "技術"
         },
         {
           "id": 2,
-          "name": "初心者向け",
-          "created_at": "1998-02-25",
-          "updated_at": "1998-02-25"
+          "name": "初心者向け"
         }
       ],
-      "rating_score": 4.2,
-      "created_at": "1998-02-25",
-      "updated_at": "1998-02-25"
+      "average_rating": 4.2
     },
     {
       "id": 4,
       "url": "https://google.co.jp",
-      "review_count_number": 128,
+      "reviews_count": 128,
+      "published_at": "1998-02-25 20:14:00",
       "title": "大寒波到来！気象庁による緊急勧告、5年ぶりああああああああああああああああああああ",
       "image_url": "https://placehold.jp/500x120.png",
       "categories": [
         {
           "id": 1,
-          "name": "技術",
-          "created_at": "1998-02-25",
-          "updated_at": "1998-02-25"
+          "name": "技術"
         },
         {
           "id": 2,
-          "name": "初心者向け",
-          "created_at": "1998-02-25",
-          "updated_at": "1998-02-25"
+          "name": "初心者向け"
         }
       ],
-      "rating_score": 4.2,
-      "created_at": "1998-02-25",
-      "updated_at": "1998-02-25"
+      "average_rating": 4.2
     }
   ]
 }

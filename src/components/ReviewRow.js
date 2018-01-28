@@ -46,7 +46,7 @@ class ReviewRow extends Component {
       <div className="review_row">
         <div className="row_left_block">
           <img
-            src={this.props.review.user.imageData}
+            src={this.props.review.user.imageUrl}
             alt="review user profile"
             className="row_user_img"
           />

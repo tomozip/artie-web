@@ -40,9 +40,9 @@ class ArticleCard extends Component {
             <div className="c_header_img">
               <img src={this.props.article.imageUrl} alt="article header" className="header_img" />
             </div>
-            <div className="review_count">
-              <span className="review_count_number">{this.props.article.reviewCountNumber}</span>
-              <span className="review_count_unit">reviews</span>
+            <div className="reviews_count">
+              <span className="reviews_count_number">{this.props.article.reviewsCount}</span>
+              <span className="reviews_count_unit">reviews</span>
             </div>
           </div>
           <div className="article_body">
@@ -56,7 +56,7 @@ class ArticleCard extends Component {
             </div>
             <div className="article_rating">
               <span className="article_rating_star_icon">★</span>
-              <span className="article_rating_score">{this.props.article.ratingScore}</span>
+              <span className="article_average_rating">{this.props.article.averageRating}</span>
             </div>
           </div>
         </div>

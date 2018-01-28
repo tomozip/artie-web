@@ -34,7 +34,7 @@ export default class PostsRepository {
     return this.fetcher.post('v1/posts/', {
       user_id: userId,
       text,
-      image_data: images,
+      image_url: images,
     }).then(res => ({
       success: res.data.success,
       posts: res.data.data.map(post => Post.fromJson(post)),

@@ -60,8 +60,10 @@ class ArticleDetail extends Component {
     RootRepository.articles.createReview(
       this.props.articleDetail.article.id,
       text,
-      rating)
-      .then((response) => {
+      rating,
+    )
+      .then(() => {
+        // TODO: エラー処理
         RootRepository.articles.fetchArticleReviews(this.props.articleDetail.article.id)
           .then(res => this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
       });
@@ -69,22 +71,20 @@ class ArticleDetail extends Component {
 
   handlePostLike(reviewId) {
     RootRepository.articles.createLike(reviewId)
-      .then(res => {
+      .then(res =>
         // エラー処理
         /* eslint arrow-parens: 0 */
         /* eslint class-methods-use-this: 0 */
-        return res;
-      });
+        res);
   }
 
   handleDeleteLike(reviewId) {
     RootRepository.articles.deleteLIke(reviewId)
-      .then(res => {
+      .then(res =>
         // エラー処理
         /* eslint arrow-parens: 0 */
         /* eslint class-methods-use-this: 0 */
-        return res;
-      });
+        res);
   }
 
   render() {
@@ -107,11 +107,11 @@ class ArticleDetail extends Component {
                             className="header_img"
                           />
                         </div>
-                        <div className="review_count">
-                          <span className="review_count_number">
-                            {this.props.articleDetail.article.reviewCountNumber}
+                        <div className="reviews_count">
+                          <span className="reviews_count_number">
+                            {this.props.articleDetail.article.reviewsCount}
                           </span>
-                          <span className="review_count_unit">reviews</span>
+                          <span className="reviews_count_unit">reviews</span>
                         </div>
                       </a>
                       <div className="preview_body">
@@ -132,8 +132,8 @@ class ArticleDetail extends Component {
                         </div>
                         <div className="preview_rating">
                           <span className="preview_rating_star">★</span>
-                          <span className="preview_rating_score">
-                            {this.props.articleDetail.article.ratingScore}
+                          <span className="preview_average_rating">
+                            {this.props.articleDetail.article.averageRating}
                           </span>
                         </div>
                         <a

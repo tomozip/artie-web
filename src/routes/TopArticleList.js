@@ -22,7 +22,7 @@ import RootRepository from '../repositories/RootRepository';
 class TopArticleList extends Component {
   static fetch(dispatch, params = null) {
     const fetchFeaturedArticles = () =>
-      RootRepository.articles.fetchFeaturedArticles(params.page)
+      RootRepository.articles.fetchFeaturedArticles()
         .then((res) => {
           dispatch((featuredArticleActions.fetchInitialFeaturedArticles(res)));
         });

@@ -30,7 +30,7 @@ class PostForm extends Component {
     return (
       <div className="post_form">
         <div className="post_left_block">
-          {/* <img className="post_user_img" src={context.user.imageData} alt="profile" /> */}
+          {/* <img className="post_user_img" src={context.user.imageUrl} alt="profile" /> */}
           <img className="post_user_img" src="https://placehold.jp/150x150.png" alt="profile" />
         </div>
         <div className="post_right_block">

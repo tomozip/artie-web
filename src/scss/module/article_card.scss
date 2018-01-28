@@ -36,13 +36,13 @@
     object-position: center;
   }
 
-  .review_count {
+  .reviews_count {
     @include absolute($bottom: $default_space * 2, $left: $default_space * 3);
     line-height: $line_height_small;
     z-index: 2;
   }
 
-  .review_count_number {
+  .reviews_count_number {
     @include oneliner;
     color: $cyan_dark_color;
     font-family: $font_family_feature;
@@ -50,7 +50,7 @@
     margin-right: $default_space;
   }
 
-  .review_count_unit {
+  .reviews_count_unit {
     @include oneliner;
     color: $blue_gray_color;
     font-size: $font_size_footnote_medium;
@@ -107,7 +107,7 @@
     margin-right: $default_space * .5;
   }
 
-  .article_rating_score {
+  .article_average_rating {
     @include oneliner;
     color: $orange_color;
     font-family: $font_family_feature;

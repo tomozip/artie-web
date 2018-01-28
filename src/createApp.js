@@ -9,7 +9,7 @@ import route from './route';
 const withReduxProvider = (store, children, userDeviceData, accessToken) => {
   const userData = {
     id: 1,
-    imageData: 'https://placehold.jp/100x100.png',
+    imageUrl: 'https://placehold.jp/100x100.png',
     fullName: 'shimatomo',
   };
   return (

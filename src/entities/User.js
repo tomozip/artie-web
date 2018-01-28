@@ -6,25 +6,23 @@ export default class User {
     const {
       id,
       fullName,
-      accountName,
-      imageData,
+      // accountName,
+      imageUrl,
       email,
-      password,
       evaluationPoint,
-      totalLikeCount,
-      followingCount,
+      totalLikesCount,
+      followingsCount,
       followersCount,
     } = params;
 
     this.id = assertions.number('id', id);
     this.fullName = assertions.string('fullName', fullName);
-    this.accountName = assertions.string('accountName', accountName);
-    this.imageData = assertions.string('imageData', imageData);
+    // this.accountName = assertions.string('accountName', accountName);
+    this.imageUrl = assertions.string('imageUrl', imageUrl);
     this.email = assertions.string('email', email, true);
-    this.password = assertions.string('password', password, true);
     this.evaluationPoint = assertions.number('evaluationPoint', evaluationPoint);
-    this.totalLikeCount = assertions.number('totalLikeCount', totalLikeCount);
-    this.followingCount = assertions.number('followingCount', followingCount);
+    this.totalLikesCount = assertions.number('totalLikesCount', totalLikesCount);
+    this.followingsCount = assertions.number('followingsCount', followingsCount);
     this.followersCount = assertions.number('followersCount', followersCount);
   }
 
@@ -32,13 +30,12 @@ export default class User {
     return new User({
       id: json.id,
       fullName: json.full_name,
-      accountName: json.account_name,
-      imageData: json.image_data,
+      // accountName: json.account_name,
+      imageUrl: json.image_url,
       email: json.email ? json.email : null,
-      password: json.password ? json.password : null,
       evaluationPoint: json.evaluation_point,
-      totalLikeCount: json.total_like_count,
-      followingCount: json.following_count,
+      totalLikesCount: json.total_likes_count,
+      followingsCount: json.followings_count,
       followersCount: json.followers_count,
     });
   }
