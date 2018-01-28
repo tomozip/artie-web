@@ -11,6 +11,7 @@ export default class Review {
       text,
       postedAt,
       likesCount,
+      isLiked,
       rating,
       user,
     } = params;
@@ -19,6 +20,7 @@ export default class Review {
     this.text = assertions.string('text', text);
     this.postedAt = assertions.string('postedAt', postedAt);
     this.likesCount = assertions.number('likesCount', likesCount);
+    this.isLiked = assertions.bool('isLiked', isLiked);
     this.rating = assertions.number('rating', rating);
     this.user = assertions.object('user', user);
   }
@@ -29,6 +31,7 @@ export default class Review {
       text: json.text,
       postedAt: json.posted_at,
       likesCount: json.likes_count,
+      isLiked: json.is_liked,
       rating: json.rating,
       user: User.fromJson(json.user),
     });

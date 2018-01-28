@@ -11,10 +11,37 @@ import { faThumbsUp } from '@fortawesome/fontawesome-free-regular';
 // entities
 import Review from '../entities/Review';
 
-/* eslint react/prefer-stateless-function: 0 */
-
 class ReviewRow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLiked: this.props.review.isLiked,
+      likesCount: this.props.review.likesCount,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    if (this.state.isLiked) {
+      this.props.handleDeleteLike(this.props.review.id);
+      this.setState({
+        isLiked: false,
+        likesCount: this.state.likesCount - 1,
+      });
+    } else {
+      this.props.handlePostLike(this.props.review.id);
+      this.setState({
+        isLiked: true,
+        likesCount: this.state.likesCount + 1,
+      });
+    }
+  }
+
   render() {
+    const style = {
+      width: `${this.props.review.rating * 20}%`,
+    };
     return (
       <div className="review_row">
         <div className="row_left_block">
@@ -39,25 +66,43 @@ class ReviewRow extends Component {
           <div className="row_rating">
             <div className="c_row_rating_stars">
               <span className="row_rating_stars_track">★★★★★</span>
-              <span className="row_rating_stars">★★★★★</span>
+              <span
+                className="row_rating_stars"
+                style={style}
+              >
+                ★★★★★
+              </span>
             </div>
             <span className="row_rating_point">{this.props.review.rating}</span>
           </div>
           <p className="review_text">{this.props.review.text}</p>
           <div className="row_bottom_block">
             <div className="row_like_block">
-              <FontAwesomeIcon icon={faThumbsUp} className="thumbs_up_icon" />
-              <span className="review_likes_count">{this.props.review.likesCount}</span>
+              {
+                this.state.isLiked ?
+                  <BrightThumbsUpIcon
+                    className="bright_thumbs_up_icon"
+                    onClick={this.handleClick}
+                  /> :
+                  <FontAwesomeIcon
+                    icon={faThumbsUp}
+                    className="thumbs_up_icon"
+                    onClick={this.handleClick}
+                  />
+              }
+              <span className="review_likes_count">{this.state.likesCount}</span>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 ReviewRow.propTypes = {
   review: PropTypes.instanceOf(Review).isRequired,
-}
+  handlePostLike: PropTypes.func.isRequired,
+  handleDeleteLike: PropTypes.func.isRequired,
+};
 
 export default ReviewRow;

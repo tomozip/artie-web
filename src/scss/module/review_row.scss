@@ -126,11 +126,21 @@
     cursor: pointer;
   }
 
+  .bright_thumbs_up_icon {
+    width: $default_space * 6;
+    height: $default_space * 6;
+    margin-right: $default_space;
+    cursor: pointer;
+    color: $cyan_color;
+    transform: translateY(-$default_space * .5);
+  }
+
   .review_likes_count {
     @include oneliner;
     font-family: $font_family_feature_bold;
     font-size: $font_size_head_medium;
     letter-spacing: $letter_spacing_caption_large;
     color: $cyan_color;
+    text-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
   }
 }

@@ -43,8 +43,23 @@ export default class ArticlesRepository {
     }).then(res => ({
       // エラー処理の時はここを決める。
       res,
-    }))
+    }));
   }
+
+  createLike(reviewId) {
+    return this.fetcher.post(`v1/reviews/${reviewId}/likes`).then(res => ({
+      // エラー処理の時はここを決める。
+      res,
+    }));
+  }
+
+  deleteLIke(reviewId) {
+    return this.fetcher.delete(`v1/reviews/${reviewId}/likes`).then(res => ({
+      // エラー処理の時はここを決める。
+      res,
+    }));
+  }
+
 
   // fetchCurrencyPosts(currencyId, cursor = Date(), limit = 10) {
   //   return this.fetcher.get(`v1/currencies/${currencyId}/articles`, {

@@ -31,9 +31,11 @@ class ArticleDetail extends Component {
     return Promise.all(fetchPosts);
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handlePostRivew = this.handlePostRivew.bind(this);
+    this.handlePostLike = this.handlePostLike.bind(this);
+    this.handleDeleteLike = this.handleDeleteLike.bind(this);
   }
 
   componentDidMount() {
@@ -65,25 +67,27 @@ class ArticleDetail extends Component {
       });
   }
 
-  //
-  // handleChangeFocusedCurrency(id) {
-  //   const currency = articleDetail.currencies.find(elem => elem.id === id);
-  //   this.context.dispatch(articleDetailActions.changeFocusedCurrency(currency));
-  // }
-  //
-  // handleCreatePost(text, images = []) {
-  //   const userId = 1;
-  //   return RootRepository.posts.createPost(userId, text, images)
-  //     .then(res => this.context.dispatch(articleDetailActions.fetchInitialNewArrivalPosts(res)));
-  // }
-  //
-  // handleDeletePost(postId) {
-  //   return RootRepository.posts.deletePost(postId)
-  //     .then(res => this.context.dispatch(articleDetailActions.fetchInitialNewArrivalPosts(res)));
-  // }
+  handlePostLike(reviewId) {
+    RootRepository.articles.createLike(reviewId)
+      .then(res => {
+        // エラー処理
+        /* eslint arrow-parens: 0 */
+        /* eslint class-methods-use-this: 0 */
+        return res;
+      });
+  }
+
+  handleDeleteLike(reviewId) {
+    RootRepository.articles.deleteLIke(reviewId)
+      .then(res => {
+        // エラー処理
+        /* eslint arrow-parens: 0 */
+        /* eslint class-methods-use-this: 0 */
+        return res;
+      });
+  }
 
   render() {
-    // console.log('Article', this.props.articleDetail.article);
     return (
       <div className="article_detail">
         <Header />
@@ -159,12 +163,13 @@ class ArticleDetail extends Component {
                           <div className="l_review_row" key={review.id}>
                             <ReviewRow
                               review={review}
+                              handlePostLike={this.handlePostLike}
+                              handleDeleteLike={this.handleDeleteLike}
                             />
                           </div>
                         ))
                       }
                     </div>
-
                   </div>
                 )
               }
