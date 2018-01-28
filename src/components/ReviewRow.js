@@ -15,7 +15,6 @@ import Review from '../entities/Review';
 
 class ReviewRow extends Component {
   render() {
-    console.log(this.props.review);
     return (
       <div className="review_row">
         <div className="row_left_block">

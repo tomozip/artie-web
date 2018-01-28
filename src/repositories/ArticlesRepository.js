@@ -36,6 +36,16 @@ export default class ArticlesRepository {
     }));
   }
 
+  createReview(id, text, rating) {
+    return this.fetcher.post(`v1/articles/${id}/reviews`, {
+      text,
+      rating,
+    }).then(res => ({
+      // エラー処理の時はここを決める。
+      res,
+    }))
+  }
+
   // fetchCurrencyPosts(currencyId, cursor = Date(), limit = 10) {
   //   return this.fetcher.get(`v1/currencies/${currencyId}/articles`, {
   //     params: {

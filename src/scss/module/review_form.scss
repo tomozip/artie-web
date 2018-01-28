@@ -39,21 +39,32 @@
 
   .c_form_rating {
     @include calc('width', '100% - #{$default_space * 26}');
+    @include relative;
     float: left;
     height: 100%;
-    display: table;
   }
 
   .form_rating_score {
-    @include oneliner;
+    line-height: $default_space * 9;
     font-family: $font_family_feature_bold;
     font-size: $font_size_sub_title_large;
-    display: table-cell;
-    vertical-align: middle;
     margin-right: $default_space * 3;
     color: $orange_color;
     letter-spacing: $letter_spacing_head_medium;
     text-shadow: 0 $default_space * .5 $default_space * 2 $text_shadow_color;
+  }
+
+  .slider {
+    @include absolute($top: 50%, $left: $default_space * 13);
+    transform: translateY(-50%);
+    width: $default_space * 40;
+
+    & > div {
+      margin: 0 !important;
+      & > div {
+        background-color: rgb(189, 189, 189);
+      }
+    }
   }
 
   .c_form_post {

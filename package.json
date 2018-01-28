@@ -70,6 +70,7 @@
     "json-server": "^0.12.1",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.4",
+    "material-ui": "^0.20.0",
     "newrelic": "^2.4.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",

@@ -37,13 +37,15 @@
       "posted_at": "3時間前"
     }
   ],
-  "articles": [{
+  "articles": [
+    {
       "id": 1,
       "url": "https://google.co.jp",
       "review_count_number": 128,
       "title": "大寒波到来！気象庁による緊急勧告、5年ぶりああああああああああああああああああああ",
       "image_url": "https://placehold.jp/500x120.png",
-      "categories": [{
+      "categories": [
+        {
           "id": 1,
           "name": "技術",
           "created_at": "1998-02-25",
@@ -66,7 +68,8 @@
       "review_count_number": 128,
       "title": "大寒波到来！気象庁による緊急勧告、5年ぶりああああああああああああああああああああ",
       "image_url": "https://placehold.jp/500x120.png",
-      "categories": [{
+      "categories": [
+        {
           "id": 1,
           "name": "技術",
           "created_at": "1998-02-25",
@@ -89,7 +92,8 @@
       "review_count_number": 128,
       "title": "大寒波到来！気象庁による緊急勧告、5年ぶりああああああああああああああああああああ",
       "image_url": "https://placehold.jp/500x120.png",
-      "categories": [{
+      "categories": [
+        {
           "id": 1,
           "name": "技術",
           "created_at": "1998-02-25",
@@ -112,7 +116,8 @@
       "review_count_number": 128,
       "title": "大寒波到来！気象庁による緊急勧告、5年ぶりああああああああああああああああああああ",
       "image_url": "https://placehold.jp/500x120.png",
-      "categories": [{
+      "categories": [
+        {
           "id": 1,
           "name": "技術",
           "created_at": "1998-02-25",

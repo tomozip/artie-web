@@ -22,7 +22,7 @@ class PostForm extends Component {
   }
 
   handleClick(e) {
-    this.props.onClick(this.state.text);
+    this.props.onClick(this.state.text, this.state.rating);
     e.preventDefault();
   }
 

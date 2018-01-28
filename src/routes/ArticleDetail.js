@@ -31,13 +31,11 @@ class ArticleDetail extends Component {
     return Promise.all(fetchPosts);
   }
 
-  // constructor() {
-  //   super();
-  //   this.handleChangeFocusedCurrency = this.handleChangeFocusedCurrency.bind(this);
-  //   this.handleCreatePost = this.handleCreatePost.bind(this);
-  //   this.handleCreatePost = this.handleDeletePost.bind(this);
-  // }
-  //
+  constructor() {
+    super();
+    this.handlePostRivew = this.handlePostRivew.bind(this);
+  }
+
   componentDidMount() {
     const { dispatch } = this.context;
 
@@ -55,6 +53,18 @@ class ArticleDetail extends Component {
     }
     // this.handleChangeFocusedCurrency(match.params.id)
   }
+
+  handlePostRivew(text, rating) {
+    RootRepository.articles.createReview(
+      this.props.articleDetail.article.id,
+      text,
+      rating)
+      .then((response) => {
+        RootRepository.articles.fetchArticleReviews(this.props.articleDetail.article.id)
+          .then(res => this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
+      });
+  }
+
   //
   // handleChangeFocusedCurrency(id) {
   //   const currency = articleDetail.currencies.find(elem => elem.id === id);
@@ -132,7 +142,9 @@ class ArticleDetail extends Component {
                     </div>
                     {/* ---Review Form--- */}
                     <div className="l_review_form">
-                      <ReviewForm />
+                      <ReviewForm
+                        handlePostRivew={this.handlePostRivew}
+                      />
                     </div>
                     {/* ---Review List--- */}
                     <div className="review_list">
