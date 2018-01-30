@@ -17,16 +17,23 @@ const storageConfig = {
       tokenAuth: state.app.tokenAuth,
     },
   }),
+  merge: (initialState, persistedState) => ({
+    app: {
+      tokenAuth: Object.assign(initialState.app.tokenAuth, persistedState.app.tokenAuth),
+    },
+  }),
 };
 
-const enhancer = compose(
-  // using redux-localstorage as midlware here. https://github.com/elgerlambert/redux-localstorage
-  persistState('state', storageConfig));
+// using redux-localstorage as midlware here. https://github.com/elgerlambert/redux-localstorage
+const enhancer = compose(persistState('state', storageConfig));
 
-const configureStore = initialState => createStore(
+export const configerClientStore = initialState => createStore(
   rootReducer,
   initialState,
   enhancer,
 );
 
-export default configureStore;
+export const configureServerStore = initialState => createStore(
+  rootReducer,
+  initialState,
+);

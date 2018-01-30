@@ -5,7 +5,7 @@ import express from 'express';
 import { match } from 'react-router';
 import { renderToString } from 'react-dom/server';
 
-import configureStore from '../configureStore';
+import { configureServerStore } from '../configureStore';
 import { createServerApp } from '../createApp';
 import template from './template';
 import route from '../route';
@@ -32,11 +32,11 @@ app.use((req, res) => {
     } else if (redirect) {
       res.redirect(302, redirect.pathname + redirect.search);
     } else if (renderProps) {
-      const store = configureStore();
+      const store = configureServerStore();
 
       const params = Object.assign({}, renderProps.params, {
         page: Number(req.query.page) || 1,
-      })
+      });
 
       const promises = renderProps.components
         .map((c) => {

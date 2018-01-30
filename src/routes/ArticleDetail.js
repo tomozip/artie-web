@@ -78,15 +78,14 @@ class ArticleDetail extends Component {
 
   handlePostLike(reviewId) {
     if (this.props.tokenAuth.isSignedIn) {
-      RootRepository(window).articles.createLike(reviewId)
+      return RootRepository(window).articles.createLike(reviewId)
         .then(res =>
           // エラー処理
           /* eslint arrow-parens: 0 */
           /* eslint class-methods-use-this: 0 */
           !!res);
-    } else {
-      this.context.dispatch(headerActions.toggleAuthModal());
     }
+    this.context.dispatch(headerActions.toggleAuthModal());
   }
 
   handleDeleteLike(reviewId) {

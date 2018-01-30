@@ -30,12 +30,14 @@ class ReviewRow extends Component {
         likesCount: this.state.likesCount - 1,
       });
     } else {
-      this.props.handlePostLike(this.props.review.id);
+      const res = this.props.handlePostLike(this.props.review.id);
       // TODO: fix!
-      this.setState({
-        isLiked: true,
-        likesCount: this.state.likesCount + 1,
-      });
+      if (res) {
+        this.setState({
+          isLiked: true,
+          likesCount: this.state.likesCount + 1,
+        });
+      }
     }
   }
 

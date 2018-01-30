@@ -6,7 +6,7 @@ import ReactModal from 'react-modal';
 // import es6Promise from 'es6-promise';
 
 import { createClientApp } from '../createApp';
-import configureStore from '../configureStore';
+import { configerClientStore } from '../configureStore';
 // import { getLanguage } from './locale';
 // import GoogleAnalyticsUtil from '../utils/GoogleAnalyticsUtil';
 
@@ -20,8 +20,15 @@ const accessToken = window.__ACCESS_TOKEN__;
 delete window.__PRELOADED_STATE__;
 delete window.__ACCESS_TOKEN__;
 
+// Check authentication and udpate tokenAuth data in localStorage
+// const persistState = JSON.parse(window.localStorage.redux).app.tokenAuth.currentUser
+// if (persistState.accessToken) {
+//   RootRepository(window).tokenAuth.check();
+// }
+// window.localStorage.setItem('redux', )
+
 // Create Redux store with initial state.
-const store = configureStore(preloadedState);
+const store = configerClientStore(preloadedState);
 
 const synced = syncHistoryWithStore(browserHistory, store);
 

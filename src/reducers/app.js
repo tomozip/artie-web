@@ -7,7 +7,6 @@ import featuredArticle from './featuredArticle';
 import articleDetail from './articleDetail';
 import header from './header';
 
-
 const appReducer = combineReducers({
   tokenAuth,
   featuredArticle,

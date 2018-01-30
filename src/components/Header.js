@@ -18,7 +18,7 @@ import ReviewForm from './ReviewForm';
 import ReviewBtn from './ReviewBtn';
 
 // entities
-import User from '../entities/User';
+import AuthUser from '../entities/AuthUser';
 
 // repositories
 import RootRepository from '../repositories/RootRepository';
@@ -84,15 +84,8 @@ class Header extends Component {
 
     window.addEventListener('message', (ev) => {
       if (ev.origin === 'http://localhost:3001') {
-        const data = {
-          id: ev.data.id,
-          imageUrl: ev.data.image_data,
-          fullName: ev.data.fullname,
-          uId: '872072265785106432',
-          client: '99T2ZmGilrD9tlRiTallCA',
-          accessToken: 'BuAThl1dq6At_bHEogvc4A',
-        };
-        this.context.dispatch(tokenAuthActions.signIn(data));
+        const currentUser = AuthUser.fromJson(ev.data)
+        this.context.dispatch(tokenAuthActions.signIn(currentUser));
         this.handleToggleAuthModal();
       }
     });
@@ -188,7 +181,7 @@ Header.propTypes = {
   }).isRequired,
   tokenAuth: PropTypes.shape({
     isSignedIn: PropTypes.bool.isRequired,
-    currentUser: PropTypes.instanceOf(User).isRequired,
+    currentUser: PropTypes.instanceOf(AuthUser).isRequired,
   }).isRequired,
 };
 
