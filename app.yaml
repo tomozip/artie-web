@@ -1,0 +1,6 @@
+env: flex
+runtime: nodejs
+env_variables:
+  NODE_ENV: 'production'
+  NODE_PATH: './src'
+  NPM_CONFIG_PRODUCTION: false
