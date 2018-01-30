@@ -1,7 +1,7 @@
 import {
   env,
-  coinServerBaseUrl,
+  artieApiBaseUrl,
 } from '../../config/development';
 
 export const Env = env;
-export const CoinServerBaseUrl = coinServerBaseUrl;
+export const ArtieApiBaseUrl = artieApiBaseUrl;

@@ -1,2 +1,2 @@
 export const env = 'development';
-export const coinServerBaseUrl = 'http://localhost:3001';
+export const artieApiBaseUrl = 'http://localhost:3001';

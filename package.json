@@ -1,7 +1,7 @@
 {
-  "name": "coin_now_client",
+  "name": "artie-web",
   "version": "1.0.0",
-  "description": "client for CoinNow",
+  "description": "web client for Artie",
   "main": "index.js",
   "author": "tomozip <dev.tomoki@gmail.com>",
   "license": "MIT",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:tomozip/coin_now_client.git"
+    "url": "git@github.com:tomozip/artie-web.git"
   },
   "babel": {
     "presets": [
