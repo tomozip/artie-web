@@ -12,7 +12,7 @@ import route from '../route';
 // import NotFound from '../routes/NotFound';
 
 const app = express();
-const port = 8080;
+const port = 3000;
 const ENV = process.env.NODE_ENV || 'development';
 // const isDevelopment = ENV === 'development';
 
