@@ -76,8 +76,8 @@ class ArticleDetail extends Component {
     }
   }
 
-  handlePostLike(reviewId) {
-    if (this.props.tokenAuth.isSignedIn) {
+  handlePostLike(reviewId, reviewerId) {
+    if (this.props.tokenAuth.isSignedIn && this.props.tokenAuth.currentUser.id !== reviewerId) {
       return RootRepository(window).articles.createLike(reviewId)
         .then(res =>
           // エラー処理
@@ -179,7 +179,7 @@ class ArticleDetail extends Component {
                           <div className="l_review_row" key={review.id}>
                             <ReviewRow
                               review={review}
-                              handlePostLike={this.handlePostLike}
+                              handlePostLike={this.handlePostLike, review.user.id}
                               handleDeleteLike={this.handleDeleteLike}
                             />
                           </div>
