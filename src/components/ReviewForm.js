@@ -1,6 +1,7 @@
 // libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Slider from 'material-ui/Slider';
 
@@ -9,11 +10,6 @@ import ReviewBtn from './ReviewBtn';
 
 // entities
 import User from '../entities/User';
-
-// icons
-// import AddImages from 'react-icons/lib/fa/image';
-
-/* eslint react/prefer-stateless-function: 0 */
 
 class ReviewForm extends Component {
   constructor(props) {
@@ -26,8 +22,6 @@ class ReviewForm extends Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSliderChange = this.handleSliderChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   handleTextChange(e) {
@@ -44,21 +38,15 @@ class ReviewForm extends Component {
     this.setState({ text: '', rating: 1.0 });
   }
 
-  //
-  // handleChange(e) {
-  //   this.setState({ text: e.target.value });
-  // }
-  //
-  // handleClick(e) {
-  //   this.props.onClick(this.state.text);
-  //   e.preventDefault();
-  // }
-
   render() {
     return (
       <div className="review_form">
         <div className="form_left_block">
-          <img src={this.context.userData.imageUrl} alt="user profile" className="form_user_img" />
+          <img
+            src={this.props.tokenAuth.currentUser.imageUrl}
+            alt="user profile"
+            className="form_user_img"
+          />
         </div>
         <div className="form_right_block">
           <textarea
@@ -89,35 +77,25 @@ class ReviewForm extends Component {
             </div>
           </div>
         </div>
-        {/* <div className="post_left_block">
-          <img className="post_user_img" src="https://placehold.jp/150x150.png" alt="profile" />
-        </div>
-        <div className="post_right_block">
-          <textarea
-            className="post_form_text_area"
-            value={this.state.text}
-            onChange={this.handleChange}
-            placeholder="You're feeding..."
-          />
-          <div className="post_right_block_bottom">
-            <AddImages className="add_images_icon" />
-            <button className="submit_btn" onClick={this.handleClick}>
-              <Send className="send_icon" />
-              <span className="send_text">Post</span>
-            </button>
-          </div>
-        </div> */}
       </div>
     );
   }
 }
 
-ReviewForm.propTypes = {
-  handlePostRivew: PropTypes.func.isRequired,
-};
+const mapStateToProps = state => ({
+  tokenAuth: state.app.tokenAuth,
+});
 
 ReviewForm.contextTypes = {
-  userData: PropTypes.instanceOf(User).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default ReviewForm;
+ReviewForm.propTypes = {
+  handlePostRivew: PropTypes.func.isRequired,
+  tokenAuth: PropTypes.shape({
+    isSignedIn: PropTypes.bool.isRequired,
+    currentUser: PropTypes.instanceOf(User).isRequired,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps)(ReviewForm);

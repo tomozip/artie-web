@@ -1,4 +1,4 @@
-.review_modal_overlay {
+.overlay {
   @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
   z-index: 3;
 
@@ -10,18 +10,21 @@
   }
 }
 
-.review_modal {
-  @include absolute($top: $default_space * 35, $left: 50%);
+.modal {
   @include transform(translateX(-50%));
   width: $default_space * 150;
   background-color: $white_color;
   border-radius: $default_space * 2;
-  padding: $default_space * 5 $default_space * 17.5;
   z-index: 4;
 
   &:focus {
     outline: none;
   }
+}
+
+.review_modal {
+  @include absolute($top: $default_space * 35, $left: 50%);
+  padding: $default_space * 5 $default_space * 17.5;
 
   .l_modal_title {
     margin-bottom: $default_space * 7.5;

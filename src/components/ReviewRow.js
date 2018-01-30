@@ -31,6 +31,7 @@ class ReviewRow extends Component {
       });
     } else {
       this.props.handlePostLike(this.props.review.id);
+      // TODO: fix!
       this.setState({
         isLiked: true,
         likesCount: this.state.likesCount + 1,

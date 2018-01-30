@@ -1,0 +1,72 @@
+.auth_modal {
+  @include absolute($top: $default_space * 35, $left: 50%);
+  padding: $default_space * 9 $default_space * 17.5 $default_space * 11;
+
+  .l_modal_title {
+    margin-bottom: $default_space * 3;
+    text-align: center;
+  }
+
+  .modal_title {
+    @include oneliner;
+    font-family: $font_family_feature_bold;
+    font-size: $font_size_sub_title_large;
+    color: $black_color;
+    letter-spacing: $letter_spacing_caption_large;
+  }
+
+  .l_modal_description {
+    margin-bottom: $default_space * 10.5;
+    text-align: center;
+  }
+
+  .modal_description {
+    @include oneliner;
+    font-family: $font_family_default;
+    font-size: $font_size_footnote_medium;
+    color: $blue_gray_color;
+    letter-spacing: $letter_spacing_caption_large;
+  }
+
+  .btn_list {
+    height: $default_space * 10;
+    width: 100%;
+  }
+
+  .twitter_btn {
+    @include oneliner;
+    @include relative;
+    @include shadow;
+    @include ease_transition;
+    padding-right: $default_space * 5;
+    padding-left: $default_space * 15;
+    height: 100%;
+    background-image: linear-gradient(-180deg, $light_twitter_color 0%, $twitter_color 100%);
+    border-radius: $default_space * 2;
+    display: table;
+    margin: 0 auto;
+
+    &:hover {
+      @include transform(scale(1.03));
+    }
+  }
+
+  .twitter_icon {
+    @include absolute($top: 50%, $left: $default_space * 5);
+    @include transform(translateY(-50%));
+    width: $default_space * 7;
+    height: $default_space * 7;
+    margin-right: $default_space * 3;
+    color: $white_color;
+  }
+
+  .btn_text {
+    @include oneliner;
+    font-family: $font_family_default;
+    font-size: $font_size_body_medium;
+    color: $white_color;
+    display: table-cell;
+    letter-spacing: $letter_spacing_caption_large;
+    vertical-align: middle;
+  }
+}

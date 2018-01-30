@@ -9,23 +9,15 @@ import route from './route';
 
 // const isDevelopment = process.env.NODE_ENV === 'development';
 
-const withReduxProvider = (store, children, userDeviceData, accessToken) => {
-  const userData = {
-    id: 1,
-    imageUrl: 'https://placehold.jp/100x100.png',
-    fullName: 'shimatomo',
-  };
-  return (
-    <ContextInjector
-      dispatch={store.dispatch}
-      userData={userData}
-    >
-      <Provider store={store}>
-        {children}
-      </Provider>
-    </ContextInjector>
-  );
-};
+const withReduxProvider = (store, children, userDeviceData, accessToken) => (
+  <ContextInjector
+    dispatch={store.dispatch}
+  >
+    <Provider store={store}>
+      {children}
+    </Provider>
+  </ContextInjector>
+);
 
 export const createClientApp = (store, history, userDeviceData, accessToken) =>
   withReduxProvider(

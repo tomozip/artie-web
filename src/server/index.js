@@ -1,8 +1,10 @@
+// libs
 import React from 'react';
 import Helmet from 'react-helmet';
 import express from 'express';
 import { match } from 'react-router';
 import { renderToString } from 'react-dom/server';
+
 import configureStore from '../configureStore';
 import { createServerApp } from '../createApp';
 import template from './template';

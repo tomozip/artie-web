@@ -22,7 +22,7 @@ import RootRepository from '../repositories/RootRepository';
 class TopArticleList extends Component {
   static fetch(dispatch, params = null) {
     const fetchFeaturedArticles = () =>
-      RootRepository.articles.fetchFeaturedArticles()
+      RootRepository().articles.fetchFeaturedArticles()
         .then((res) => {
           dispatch((featuredArticleActions.fetchInitialFeaturedArticles(res)));
         });
@@ -40,23 +40,12 @@ class TopArticleList extends Component {
     const { dispatch } = this.context;
 
     if (!this.props.featuredArticle.isFetched) {
-      RootRepository.articles.fetchFeaturedArticles()
+      RootRepository(window).articles.fetchFeaturedArticles()
         .then((res) => {
           dispatch((featuredArticleActions.fetchInitialFeaturedArticles(res)));
         });
     }
   }
-
-  // handleCreatePost(text, images = []) {
-  // const userId = 1;
-  // return RootRepository.articles.createPost(userId, text, images)
-  //   .then(res => this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(res)));
-  // }
-
-  // handleDeletePost(postId) {
-  // return RootRepository.articles.deletePost(postId)
-  //   .then(res => this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(res)));
-  // }
 
   render() {
     return (

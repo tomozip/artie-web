@@ -1,11 +1,17 @@
 // libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import ReactModal from 'react-modal';
 
 // icons
 import SearchIcon from 'react-icons/lib/md/search';
+import TwitterIcon from 'react-icons/lib/fa/twitter';
+
+// actions
+import * as headerActions from '../actions/header';
+import * as tokenAuthActions from '../actions/tokenAuth';
 
 // components
 import ReviewForm from './ReviewForm';
@@ -22,45 +28,103 @@ class Header extends Component {
     super(props);
     this.state = {
       url: '',
-      showModal: false,
+      showReviewModal: false,
     };
 
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleOpenReviewModal = this.handleOpenReviewModal.bind(this);
+    this.handleCloseReviewModal = this.handleCloseReviewModal.bind(this);
     this.handleUrlTextChange = this.handleUrlTextChange.bind(this);
     this.handlePostArticle = this.handlePostArticle.bind(this);
+    this.handleToggleAuthModal = this.handleToggleAuthModal.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
-  handleOpenModal() {
-    this.setState({ showModal: true });
+  handleOpenReviewModal() {
+    if (this.props.tokenAuth.isSignedIn) {
+      this.setState({ showReviewModal: true });
+    } else {
+      this.handleToggleAuthModal();
+    }
   }
 
-  handleCloseModal() {
-    this.setState({ showModal: false });
+  handleCloseReviewModal() {
+    this.setState({ showReviewModal: false });
   }
 
   handleUrlTextChange(e) {
     this.setState({ url: e.target.value });
   }
 
+  handleToggleAuthModal() {
+    this.context.dispatch(headerActions.toggleAuthModal());
+  }
+
   handlePostArticle(text, rating) {
-    RootRepository.articles.createArticle(this.state.url, text, rating)
+    RootRepository(window)
+      .articles.createArticle(this.state.url, text, rating)
       .then(() => {
         // TODO: エラー処理
-        this.handleCloseModal();
+        this.handleCloseReviewModal();
         this.setState({ url: '' });
       });
+  }
+
+  handleSignIn() {
+    // TODO: refactor
+    const windowLogin = window.open('http://localhost:3001/auth/twitter', null, '');
+    let count = 0;
+    const repeatPost = setInterval(() => {
+      windowLogin.postMessage('requestCredentials', '*');
+      count += 1;
+      if (windowLogin.closed || count > 60) {
+        clearInterval(repeatPost);
+        windowLogin.close();
+      }
+    }, 1000);
+
+    window.addEventListener('message', (ev) => {
+      if (ev.origin === 'http://localhost:3001') {
+        const data = {
+          id: ev.data.id,
+          imageUrl: ev.data.image_data,
+          fullName: ev.data.fullname,
+          uId: '872072265785106432',
+          client: '99T2ZmGilrD9tlRiTallCA',
+          accessToken: 'BuAThl1dq6At_bHEogvc4A',
+        };
+        this.context.dispatch(tokenAuthActions.signIn(data));
+        this.handleToggleAuthModal();
+      }
+    });
   }
 
   render() {
     return (
       <div className="header">
         <ReactModal
-          isOpen={this.state.showModal}
-          // contentLabel="onRequestClose Example"
-          onRequestClose={this.handleCloseModal}
-          className="review_modal"
-          overlayClassName="review_modal_overlay"
+          isOpen={this.props.header.showAuthModal}
+          onRequestClose={this.handleToggleAuthModal}
+          className="auth_modal modal"
+          overlayClassName="overlay"
+        >
+          <div className="l_modal_title">
+            <p className="modal_title">ログインしてArtieに参加</p>
+          </div>
+          <div className="l_modal_description">
+            <p className="modal_description">ログインすることで、レビューやいいねなどが可能になります！</p>
+          </div>
+          <div className="btn_list">
+            <button className="twitter_btn" onClick={this.handleSignIn}>
+              <TwitterIcon className="twitter_icon" />
+              <span className="btn_text">Twitterでログイン</span>
+            </button>
+          </div>
+        </ReactModal>
+        <ReactModal
+          isOpen={this.state.showReviewModal}
+          onRequestClose={this.handleCloseReviewModal}
+          className="review_modal modal"
+          overlayClassName="overlay"
         >
           <div className="l_modal_title">
             <p className="modal_title">review</p>
@@ -91,12 +155,16 @@ class Header extends Component {
         </div>
         <div className="header_right_block">
           <div className="header_user_block">
-            <img className="header_user_image" src={this.context.userData.imageUrl} alt="profile" />
-            <p className="header_user_name">{this.context.userData.fullName}</p>
+            <img
+              className="header_user_image"
+              src={this.props.tokenAuth.currentUser.imageUrl}
+              alt="profile"
+            />
+            <p className="header_user_name">{this.props.tokenAuth.currentUser.fullName}</p>
           </div>
           <div className="l_review_btn">
             <ReviewBtn
-              onClick={this.handleOpenModal}
+              onClick={this.handleOpenReviewModal}
             />
           </div>
         </div>
@@ -105,8 +173,23 @@ class Header extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  header: state.app.header,
+  tokenAuth: state.app.tokenAuth,
+});
+
 Header.contextTypes = {
-  userData: PropTypes.instanceOf(User).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default Header;
+Header.propTypes = {
+  header: PropTypes.shape({
+    showAuthModal: PropTypes.bool.isRequired,
+  }).isRequired,
+  tokenAuth: PropTypes.shape({
+    isSignedIn: PropTypes.bool.isRequired,
+    currentUser: PropTypes.instanceOf(User).isRequired,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps)(Header);

@@ -7,6 +7,8 @@ import _ from 'lodash';
 
 // actions
 import * as articleDetailActions from '../actions/articleDetail';
+// TODO: コレは単一責任じゃなさすぎるから直す。
+import * as headerActions from '../actions/header';
 
 // components
 import Header from '../components/Header';
@@ -15,6 +17,7 @@ import ReviewRow from '../components/ReviewRow';
 
 // entities
 import Article from '../entities/Article';
+import User from '../entities/User';
 
 // repositories
 import RootRepository from '../repositories/RootRepository';
@@ -22,10 +25,10 @@ import RootRepository from '../repositories/RootRepository';
 class ArticleDetail extends Component {
   static fetch(dispatch, params = null) {
     const fetchArticle = () =>
-      RootRepository.articles.fetchArticle(params.id)
+      RootRepository().articles.fetchArticle(params.id)
         .then(res => dispatch(articleDetailActions.fetchArticle(res)));
     const fetchArticleReviews = () =>
-      RootRepository.articles.fetchArticleReviews(params.id)
+      RootRepository().articles.fetchArticleReviews(params.id)
         .then(res => dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
     const fetchPosts = _.concat(fetchArticle(), fetchArticleReviews());
     return Promise.all(fetchPosts);
@@ -46,10 +49,10 @@ class ArticleDetail extends Component {
                       Number(this.props.routeParams.id) === fetchedArticleId;
 
     if (!isFetched) {
-      RootRepository.articles.fetchArticle(this.props.routeParams.id)
+      RootRepository(window).articles.fetchArticle(this.props.routeParams.id)
         .then(res => dispatch(articleDetailActions.fetchArticle(res)))
         .then(() => {
-          RootRepository.articles.fetchArticleReviews(this.props.routeParams.id)
+          RootRepository(window).articles.fetchArticleReviews(this.props.routeParams.id)
             .then(res => dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
         });
     }
@@ -57,29 +60,37 @@ class ArticleDetail extends Component {
   }
 
   handlePostRivew(text, rating) {
-    RootRepository.articles.createReview(
-      this.props.articleDetail.article.id,
-      text,
-      rating,
-    )
-      .then(() => {
-        // TODO: エラー処理
-        RootRepository.articles.fetchArticleReviews(this.props.articleDetail.article.id)
-          .then(res => this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
-      });
+    if (this.props.tokenAuth.isSignedIn) {
+      RootRepository(window).articles.createReview(
+        this.props.articleDetail.article.id,
+        text,
+        rating,
+      )
+        .then(() => {
+          // TODO: エラー処理
+          RootRepository(window).articles.fetchArticleReviews(this.props.articleDetail.article.id)
+            .then(res => this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
+        });
+    } else {
+      this.context.dispatch(headerActions.toggleAuthModal());
+    }
   }
 
   handlePostLike(reviewId) {
-    RootRepository.articles.createLike(reviewId)
-      .then(res =>
-        // エラー処理
-        /* eslint arrow-parens: 0 */
-        /* eslint class-methods-use-this: 0 */
-        res);
+    if (this.props.tokenAuth.isSignedIn) {
+      RootRepository(window).articles.createLike(reviewId)
+        .then(res =>
+          // エラー処理
+          /* eslint arrow-parens: 0 */
+          /* eslint class-methods-use-this: 0 */
+          !!res);
+    } else {
+      this.context.dispatch(headerActions.toggleAuthModal());
+    }
   }
 
   handleDeleteLike(reviewId) {
-    RootRepository.articles.deleteLIke(reviewId)
+    RootRepository(window).articles.deleteLIke(reviewId)
       .then(res =>
         // エラー処理
         /* eslint arrow-parens: 0 */
@@ -192,6 +203,7 @@ class ArticleDetail extends Component {
 
 const mapStateToProps = state => ({
   articleDetail: state.app.articleDetail,
+  tokenAuth: state.app.tokenAuth,
 });
 
 ArticleDetail.contextTypes = {
@@ -203,6 +215,10 @@ ArticleDetail.propTypes = {
     // TODO: articleではなく、reviewsを含んでいるので直書きして直す
     article: PropTypes.instanceOf(Article).isRequired,
     isFetched: PropTypes.bool.isRequired,
+  }).isRequired,
+  tokenAuth: PropTypes.shape({
+    isSignedIn: PropTypes.bool.isRequired,
+    currentUser: PropTypes.instanceOf(User).isRequired,
   }).isRequired,
   routeParams: PropTypes.shape({
     id: PropTypes.string.isRequired,
