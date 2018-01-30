@@ -9,15 +9,16 @@
   "scripts": {
     "test": "echo \"no test specified\"",
     "lint": "eslint src/",
-    "build": "webpack --config webpack.config.dev.babel.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.babel.js && NODE_ENV=production webpack --config webpack.config.server.babel.js",
+    "development_build": "webpack --config webpack.config.dev.babel.js",
     "watch": "webpack --config webpack.config.dev.babel.js --watch",
     "staging_build": "NODE_ENV=staging webpack --config webpack.config.prod.babel.js",
     "production_build": "NODE_ENV=production webpack --config webpack.config.prod.babel.js",
     "staging_server_build": "NODE_ENV=staging webpack --config webpack.config.server.babel.js",
     "production_server_build": "NODE_ENV=production webpack --config webpack.config.server.babel.js",
-    "start": "nodemon src/server/index.js --exec babel-node --presets es2015 --watch src",
+    "development-start": "nodemon src/server/index.js --exec babel-node --presets es2015 --watch src",
     "start-staging": "NODE_ENV=staging node ./dist/server.js",
-    "start-production": "NODE_ENV=production node ./dist/server.js",
+    "start": "NODE_ENV=production node ./dist/server.js",
     "mock-server": "json-server --watch mock/db.json --routes mock/routes.json -p 3001"
   },
   "repository": {
