@@ -15,7 +15,7 @@
     "production_build": "NODE_ENV=production webpack --config webpack.config.prod.babel.js",
     "staging_server_build": "NODE_ENV=staging webpack --config webpack.config.server.babel.js && sed -i '1i require(\"newrelic\");' dist/server.js",
     "production_server_build": "NODE_ENV=production webpack --config webpack.config.server.babel.js && sed -i '1i require(\"newrelic\");' dist/server.js",
-    "start": "nodemon src/server/index.js --exec babel-node --presets es2015,stage-1 --watch src",
+    "start": "nodemon src/server/index.js --exec babel-node --presets es2015 --watch src",
     "start-staging": "NODE_ENV=staging node ./dist/server.js",
     "start-production": "NODE_ENV=production node ./dist/server.js",
     "mock-server": "json-server --watch mock/db.json --routes mock/routes.json -p 3001"
