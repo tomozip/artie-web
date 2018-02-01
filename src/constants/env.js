@@ -1,7 +1,7 @@
 import {
   env,
   artieApiBaseUrl,
-} from '../../config/production';
+} from 'config';
 
 export const Env = env;
 export const ArtieApiBaseUrl = artieApiBaseUrl;

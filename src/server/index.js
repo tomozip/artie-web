@@ -12,15 +12,17 @@ import route from '../route';
 // import NotFound from '../routes/NotFound';
 
 const app = express();
-const port = 3000;
+// FIXME: ここをsudoから呼び出すのは危険？ https://qiita.com/janus_wel/items/ee0ea612a075f197a219
+const port = 80;
 const ENV = process.env.NODE_ENV || 'development';
-// const isDevelopment = ENV === 'development';
+const isDevelopment = ENV === 'development';
 
+// FIXME: これ調べとく！
 // Serving static files on only development env.
-if (ENV === 'development') {
-  app.use('/dist', express.static('dist'));
-  app.use('/images', express.static('images'));
-}
+// if (ENV === 'development') {
+app.use('/dist', express.static('dist'));
+app.use('/images', express.static('images'));
+// }
 
 app.get('/ping', (req, res) => res.send('pong'));
 
