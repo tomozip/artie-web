@@ -64,14 +64,14 @@ class ArticleDetail extends Component {
       RootRepository(window).articles.createReview(
         this.props.articleDetail.article.id,
         text,
-        rating,
-      )
+        rating)
         .then(() => {
           // TODO: エラー処理
           RootRepository(window).articles.fetchArticleReviews(this.props.articleDetail.article.id)
             .then(res =>
               this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
-        });
+        })
+        .catch(error => console.log('error', error));
     } else {
       this.context.dispatch(headerActions.toggleAuthModal());
     }

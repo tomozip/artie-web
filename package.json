@@ -12,6 +12,7 @@
     "build": "webpack --config webpack.config.dev.babel.js",
     "server_build": "webpack --config webpack.config.server.babel.js",
     "watch": "webpack --config webpack.config.dev.babel.js --watch",
+    "server_watch": "webpack --config webpack.config.server.babel.js --watch",
     "production_watch": "NODE_ENV=production webpack --config webpack.config.server.babel.js --watch",
     "staging_build": "NODE_ENV=staging webpack --config webpack.config.prod.babel.js",
     "production_build": "NODE_ENV=production webpack --config webpack.config.prod.babel.js",

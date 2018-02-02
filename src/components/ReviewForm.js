@@ -16,7 +16,7 @@ class ReviewForm extends Component {
     super(props);
     this.state = {
       text: '',
-      rating: 1.0,
+      rating: 0,
     };
 
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -35,10 +35,11 @@ class ReviewForm extends Component {
   handleClick(e) {
     this.props.handlePostRivew(this.state.text, this.state.rating.toFixed(1));
     e.preventDefault();
-    this.setState({ text: '', rating: 1.0 });
+    this.setState({ text: '', rating: null });
   }
 
   render() {
+    const displayableRating = rating => (rating < 1 ? '--' : rating.toFixed(1));
     return (
       <div className="review_form">
         <div className="form_left_block">
@@ -62,14 +63,15 @@ class ReviewForm extends Component {
           <div className="form_bottom_block">
             <div className="c_form_rating">
               <MuiThemeProvider>
-                <span className="form_average_rating">{this.state.rating.toFixed(1)}</span>
+                <span className="form_rating_unit">オススメ度</span>
+                <span className="form_average_rating">{displayableRating(this.state.rating)}</span>
                 <Slider
                   className="slider"
-                  min={1}
+                  min={0}
                   max={5}
                   step={0.1}
                   value={this.state.rating}
-                  defaultValue={1.0}
+                  defaultValue={0}
                   onChange={this.handleSliderChange}
                 />
               </MuiThemeProvider>

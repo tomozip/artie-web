@@ -43,6 +43,15 @@
     height: 100%;
   }
 
+  .form_rating_unit {
+    @include oneliner;
+    font-family: $font_family_default;
+    font-size: $font_size_caption_large;
+    color: $blue_gray_color;
+    margin-right: $default_space * 2;
+    vertical-align: middle;
+  }
+
   .form_average_rating {
     line-height: $default_space * 9;
     font-family: $font_family_feature_bold;
@@ -51,10 +60,11 @@
     color: $orange_color;
     letter-spacing: $letter_spacing_head_medium;
     text-shadow: 0 $default_space * .5 $default_space * 2 $text_shadow_color;
+    vertical-align: middle;
   }
 
   .slider {
-    @include absolute($top: 50%, $left: $default_space * 13);
+    @include absolute($top: 50%, $left: $default_space * 28);
     @include transform(translateY(-50%));
     width: $default_space * 40;
 
