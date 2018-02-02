@@ -24,7 +24,7 @@ class TopArticleList extends Component {
     const fetchFeaturedArticles = () =>
       RootRepository().articles.fetchFeaturedArticles()
         .then((res) => {
-          dispatch((featuredArticleActions.fetchInitialFeaturedArticles(res)));
+          dispatch(featuredArticleActions.fetchInitialFeaturedArticles(res));
         });
     const fetchPosts = _.concat(fetchFeaturedArticles());
     return Promise.all(fetchPosts);

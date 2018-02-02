@@ -2,6 +2,18 @@
 import Article from '../entities/Article';
 import Review from '../entities/Review';
 
+const isSuccess = (status) => {
+  switch (status) {
+    case 200:
+      return true;
+    case 400:
+    case 401:
+      return false;
+    default:
+      return false;
+  }
+};
+
 export default class ArticlesRepository {
   constructor(fetcher) {
     this.fetcher = fetcher;
@@ -45,6 +57,8 @@ export default class ArticlesRepository {
       text,
       rating,
     }).then(res => ({
+      // success: isSuccess(res.status),
+      // message: res,
       // エラー処理の時はここを決める。
       res,
     }));
@@ -62,8 +76,7 @@ export default class ArticlesRepository {
 
   createLike(reviewId) {
     return this.fetcher.post(`v1/reviews/${reviewId}/like`).then(res => ({
-      // エラー処理の時はここを決める。
-      res,
+      success: isSuccess(res.status),
     }));
   }
 

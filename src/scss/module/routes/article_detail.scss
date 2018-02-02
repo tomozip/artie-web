@@ -184,4 +184,10 @@
       margin-bottom: $default_space * 5;
     }
   }
+
+  .soon {
+    margin-top: 20px;
+    text-align: center;
+    font-size: $font_size_footnote_medium;
+  }
 }

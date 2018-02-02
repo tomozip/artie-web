@@ -12,10 +12,11 @@ import route from '../route';
 // import NotFound from '../routes/NotFound';
 
 const app = express();
-// FIXME: ここをsudoから呼び出すのは危険？ https://qiita.com/janus_wel/items/ee0ea612a075f197a219
-const port = 80;
+
 const ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = ENV === 'development';
+// FIXME: ここをsudoから呼び出すのは危険？ https://qiita.com/janus_wel/items/ee0ea612a075f197a219
+const port = isDevelopment ? 3000 : 80;
 
 // FIXME: これ調べとく！
 // Serving static files on only development env.

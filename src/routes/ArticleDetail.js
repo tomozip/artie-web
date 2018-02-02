@@ -69,7 +69,8 @@ class ArticleDetail extends Component {
         .then(() => {
           // TODO: エラー処理
           RootRepository(window).articles.fetchArticleReviews(this.props.articleDetail.article.id)
-            .then(res => this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
+            .then(res =>
+              this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
         });
     } else {
       this.context.dispatch(headerActions.toggleAuthModal());
@@ -77,15 +78,13 @@ class ArticleDetail extends Component {
   }
 
   handlePostLike(reviewId, reviewerId) {
-    if (this.props.tokenAuth.isSignedIn && this.props.tokenAuth.currentUser.id !== reviewerId) {
-      return RootRepository(window).articles.createLike(reviewId)
-        .then(res =>
-          // エラー処理
-          /* eslint arrow-parens: 0 */
-          /* eslint class-methods-use-this: 0 */
-          !!res);
+    if (!this.props.tokenAuth.isSignedIn) {
+      return this.context.dispatch(headerActions.toggleAuthModal());
     }
-    this.context.dispatch(headerActions.toggleAuthModal());
+    if (this.props.tokenAuth.currentUser.id !== reviewerId) {
+      return RootRepository(window).articles.createLike(reviewId)
+        .then(res => res.success)
+    }
   }
 
   handleDeleteLike(reviewId) {
@@ -179,7 +178,7 @@ class ArticleDetail extends Component {
                           <div className="l_review_row" key={review.id}>
                             <ReviewRow
                               review={review}
-                              handlePostLike={this.handlePostLike, review.user.id}
+                              handlePostLike={() => this.handlePostLike(review.id, review.user.id)}
                               handleDeleteLike={this.handleDeleteLike}
                             />
                           </div>
@@ -192,6 +191,7 @@ class ArticleDetail extends Component {
             </div>
             <div className="l_right_sidebar_block">
               関連するツイート
+              <p className="soon">Coming soon...</p>
             </div>
           </div>
         </div>
