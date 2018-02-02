@@ -1,6 +1,23 @@
 .review_form {
   @include pie-clearfix;
 
+  .errors {
+    padding-left: $default_space * 13;
+    margin-bottom: $default_space * 2;
+  }
+
+  .l_error_messages {
+    &:not(:last-child) {
+      margin-bottom: $default_space;
+    }
+  }
+
+  .error_message {
+    color: $error_color;
+    font-family: font_family_default;
+    font-size: $font_size_footnote_medium;
+  }
+
   .form_left_block {
     margin-right: $default_space * 3;
     float: left;

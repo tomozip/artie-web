@@ -61,20 +61,18 @@ class ArticleDetail extends Component {
 
   handlePostRivew(text, rating) {
     if (this.props.tokenAuth.isSignedIn) {
-      RootRepository(window).articles.createReview(
+      return RootRepository(window).articles.createReview(
         this.props.articleDetail.article.id,
         text,
-        rating)
+        rating,
+      )
         .then(() => {
-          // TODO: エラー処理
           RootRepository(window).articles.fetchArticleReviews(this.props.articleDetail.article.id)
             .then(res =>
               this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
-        })
-        .catch(error => console.log('error', error));
-    } else {
-      this.context.dispatch(headerActions.toggleAuthModal());
+        });
     }
+    this.context.dispatch(headerActions.toggleAuthModal());
   }
 
   handlePostLike(reviewId, reviewerId) {
@@ -83,7 +81,7 @@ class ArticleDetail extends Component {
     }
     if (this.props.tokenAuth.currentUser.id !== reviewerId) {
       return RootRepository(window).articles.createLike(reviewId)
-        .then(res => res.success)
+        .then(res => res.success);
     }
   }
 

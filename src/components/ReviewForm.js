@@ -15,6 +15,7 @@ class ReviewForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      errors: [],
       text: '',
       rating: 0,
     };
@@ -33,15 +34,29 @@ class ReviewForm extends Component {
   }
 
   handleClick(e) {
-    this.props.handlePostRivew(this.state.text, this.state.rating.toFixed(1));
+    const result = this.props.handlePostRivew(this.state.text, this.state.rating.toFixed(1));
+    if (result instanceof Promise) {
+      result.catch((err) => {
+        this.setState({ errors: err.response.data.errors });
+      });
+    }
     e.preventDefault();
-    this.setState({ text: '', rating: null });
+    this.setState({ text: '', rating: 0 });
   }
 
   render() {
     const displayableRating = rating => (rating < 1 ? '--' : rating.toFixed(1));
     return (
       <div className="review_form">
+        <div className="errors">
+          {
+            this.state.errors.map(error => (
+              <div className="l_error_messages" key={error.message}>
+                <span className="error_message">・{error.message}</span>
+              </div>
+            ))
+          }
+        </div>
         <div className="form_left_block">
           {
             this.props.tokenAuth ?

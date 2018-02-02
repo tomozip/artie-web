@@ -66,19 +66,14 @@ class Header extends Component {
   }
 
   handlePostArticle(text, rating) {
-    RootRepository(window).articles.createArticle(this.state.url, text, rating)
-      .then((res) => {
-        console.log(res);
-        // TODO: エラー処理
-        RootRepository().articles.fetchFeaturedArticles();
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .then((res) => {
-        this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(res));
-        this.handleCloseReviewModal();
-        this.setState({ url: '' });
+    return RootRepository(window).articles.createArticle(this.state.url, text, rating)
+      .then(() => {
+        RootRepository().articles.fetchFeaturedArticles()
+          .then((res) => {
+            this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(res));
+            this.handleCloseReviewModal();
+            this.setState({ url: '' });
+          });
       });
   }
 
