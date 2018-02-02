@@ -7,11 +7,12 @@ import featuredArticle from './featuredArticle';
 import articleDetail from './articleDetail';
 import header from './header';
 
-const appReducer = combineReducers({
-  tokenAuth,
+const appReducer = isClient => combineReducers({
+  tokenAuth: isClient ? tokenAuth : null,
   featuredArticle,
   articleDetail,
   header,
 });
 
-export default appReducer;
+export const clientAppReducer = appReducer(true);
+export const serverAppReducer = appReducer(false);

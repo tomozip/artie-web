@@ -42,11 +42,15 @@ class ReviewForm extends Component {
     return (
       <div className="review_form">
         <div className="form_left_block">
-          <img
-            src={this.props.tokenAuth.currentUser.imageUrl}
-            alt="user profile"
-            className="form_user_img"
-          />
+          {
+            this.props.tokenAuth ?
+              <img
+                src={this.props.tokenAuth.currentUser.imageUrl}
+                alt="user profile"
+                className="form_user_img"
+              /> :
+              <div className="form_user_img" />
+          }
         </div>
         <div className="form_right_block">
           <textarea

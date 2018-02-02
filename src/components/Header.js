@@ -9,7 +9,6 @@ import ReactModal from 'react-modal';
 // path
 import { artieApiBaseUrl } from 'config';
 
-
 // icons
 import SearchIcon from 'react-icons/lib/md/search';
 import TwitterIcon from 'react-icons/lib/fa/twitter';
@@ -17,6 +16,8 @@ import TwitterIcon from 'react-icons/lib/fa/twitter';
 // actions
 import * as headerActions from '../actions/header';
 import * as tokenAuthActions from '../actions/tokenAuth';
+// これでいいのかは不明。。
+import * as featuredArticleActions from '../actions/featuredArticle';
 
 // components
 import ReviewForm from './ReviewForm';
@@ -67,8 +68,11 @@ class Header extends Component {
   handlePostArticle(text, rating) {
     RootRepository(window)
       .articles.createArticle(this.state.url, text, rating)
-      .then(() => {
+      .then(() =>
         // TODO: エラー処理
+        RootRepository().articles.fetchFeaturedArticles())
+      .then((res) => {
+        this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(res));
         this.handleCloseReviewModal();
         this.setState({ url: '' });
       });
@@ -99,6 +103,7 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
+        {/* Authentication Modal */}
         <ReactModal
           isOpen={this.props.header.showAuthModal}
           onRequestClose={this.handleToggleAuthModal}
@@ -118,6 +123,7 @@ class Header extends Component {
             </button>
           </div>
         </ReactModal>
+        {/* Review Modal */}
         <ReactModal
           isOpen={this.state.showReviewModal}
           onRequestClose={this.handleCloseReviewModal}
@@ -131,6 +137,7 @@ class Header extends Component {
             <input
               className="modal_url_input"
               placeholder="おすすめ記事のURLを入力..."
+              type="url"
               value={this.state.url}
               onChange={this.handleUrlTextChange}
             />
@@ -142,6 +149,7 @@ class Header extends Component {
             />
           </div>
         </ReactModal>
+        {/* Normal Header content */}
         <div className="header_left_block">
           <div className="header_search_block">
             <input className="header_search_input" placeholder="検索" />
@@ -152,18 +160,23 @@ class Header extends Component {
           <Link to="/" className="header_logo">Artie</Link>
         </div>
         <div className="header_right_block">
-          <div className="header_user_block">
-            <img
-              className="header_user_image"
-              src={this.props.tokenAuth.currentUser.imageUrl}
-              alt="profile"
-            />
-            <p className="header_user_name">{this.props.tokenAuth.currentUser.fullName}</p>
-          </div>
-          <div className="l_review_btn">
-            <ReviewBtn
-              onClick={this.handleOpenReviewModal}
-            />
+          <div className="header_right_block_contents">
+            {
+              this.props.tokenAuth &&
+                <div className="header_user_block">
+                  <img
+                    className="header_user_image"
+                    src={this.props.tokenAuth.currentUser.imageUrl}
+                    alt="profile"
+                  />
+                  <p className="header_user_name">{this.props.tokenAuth.currentUser.fullName}</p>
+                </div>
+            }
+            <div className="l_review_btn">
+              <ReviewBtn
+                onClick={this.handleOpenReviewModal}
+              />
+            </div>
           </div>
         </div>
       </div>
