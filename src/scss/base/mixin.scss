@@ -52,6 +52,10 @@
   box-shadow: 0 $default_space * .5 $default_space * 3 $shadow_color;
 }
 
+@mixin text_shadow($color: $text_shadow_color) {
+  text-shadow: 0 $default_space * .5 $default_space * 2 $text_shadow_color;
+}
+
 @mixin optimize_length {
   overflow: hidden;
   text-overflow: ellipsis;

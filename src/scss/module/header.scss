@@ -15,6 +15,7 @@
   }
 
   .header_right_block {
+    @include relative;
     text-align: right;
   }
 
@@ -60,13 +61,17 @@
     height: $default_space * 5;
   }
 
+  .header_right_block_contents {
+    @include absolute($top: 50%, $right: 0);
+    @include transform(translateY(-50%));
+  }
+
   .header_user_block {
     text-align: right;
     padding: $default_space 0;
     box-sizing: border-box;
     display: inline-block;
     vertical-align: middle;
-    margin-right: $default_space * 5;
   }
 
   .header_user_image {
@@ -89,5 +94,6 @@
   .l_review_btn {
     display: inline-block;
     vertical-align: middle;
+    margin-left: $default_space * 5;
   }
 }
