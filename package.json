@@ -10,6 +10,7 @@
     "test": "echo \"no test specified\"",
     "lint": "eslint src/",
     "build": "webpack --config webpack.config.dev.babel.js",
+    "server_build": "webpack --config webpack.config.server.babel.js",
     "watch": "webpack --config webpack.config.dev.babel.js --watch",
     "production_watch": "NODE_ENV=production webpack --config webpack.config.server.babel.js --watch",
     "staging_build": "NODE_ENV=staging webpack --config webpack.config.prod.babel.js",
@@ -19,6 +20,7 @@
     "start": "nodemon src/server/index.js --exec babel-node --presets es2015 --watch src",
     "start-staging": "NODE_ENV=staging node ./dist/server.js",
     "mock-server": "json-server --watch mock/db.json --routes mock/routes.json -p 3001",
+    "development": "npm run build && npm run server_build && node ./dist/server.js",
     "production": "npm run production_build && npm run production_server_build"
   },
   "repository": {
