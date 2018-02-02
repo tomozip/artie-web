@@ -38,7 +38,11 @@ class ArticleCard extends Component {
         <div className="article_card">
           <div className="article_header">
             <div className="c_header_img">
-              <img src={this.props.article.imageUrl} alt="article header" className="header_img" />
+              <img
+                src={this.props.article.imageUrl || '/images/logo/default_header.jpg'}
+                alt="article header"
+                className="header_img"
+              />
             </div>
             <div className="reviews_count">
               <span className="reviews_count_number">{this.props.article.reviewsCount}</span>

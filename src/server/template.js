@@ -14,6 +14,10 @@ const template = (head, html, preloadedState, env) => {
         </script>
         <!-- End Google Tag Manager -->
 
+        <!-- TODO: titleはページ毎に変えたい -->
+        <link rel="icon" href="/images/logo/icon.ico" type="image/vnd.microsoft.icon">
+        <title>Artie | アーティ</title>
+
         <!-- Import webfonts -->
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <meta charset="UTF-8">

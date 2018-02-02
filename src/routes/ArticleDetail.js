@@ -115,7 +115,7 @@ class ArticleDetail extends Component {
                       >
                         <div className="c_header_img">
                           <img
-                            src={this.props.articleDetail.article.imageUrl}
+                            src={this.props.articleDetail.article.imageUrl || '/images/logo/default_header.jpg'}
                             alt="article header"
                             className="header_img"
                           />
