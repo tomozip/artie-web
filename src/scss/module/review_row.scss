@@ -97,9 +97,9 @@
 
   .row_rating_point {
     @include oneliner;
+    @include lato_bold;
     display: inline-block;
     color: $orange_color;
-    font-family: $font_family_feature_bold;
     font-size: $font_size_head_medium;
     letter-spacing: $letter_spacing_caption_large;
   }
@@ -137,7 +137,7 @@
 
   .review_likes_count {
     @include oneliner;
-    font-family: $font_family_feature_bold;
+    @include lato_bold;
     font-size: $font_size_head_medium;
     letter-spacing: $letter_spacing_caption_large;
     color: $cyan_color;

@@ -47,17 +47,17 @@
 
   .reviews_count_number {
     @include oneliner;
+    @include lato;
     color: $cyan_dark_color;
-    font-family: $font_family_feature;
     font-size: $font_size_title_medium;
     margin-right: $default_space;
   }
 
   .reviews_count_unit {
     @include oneliner;
+    @include lato;
     color: $blue_gray_color;
     font-size: $font_size_sub_title_medium;
-    font-family: $font_family_feature;
   }
 
   .preview_body {
@@ -118,9 +118,8 @@
 
   .preview_average_rating {
     @include oneliner;
+    @include lato_bold;
     color: $orange_color;
-    font-family: $font_family_feature_bold;
-    font-weight: bold;
     font-size: $font_size_title_medium;
     letter-spacing: $letter_spacing_footnone_medium;
   }
@@ -164,7 +163,7 @@
 
   .review_list_header_text {
     @include oneliner;
-    font-family: $font_family_feature_bold;
+    @include lato_bold;
     font-size: $font_size_sub_title_large;
     letter-spacing: $letter_spacing_footnone_medium;
     color: $black_color;

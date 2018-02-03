@@ -70,8 +70,8 @@
   }
 
   .form_average_rating {
+    @include lato_bold;
     line-height: $default_space * 9;
-    font-family: $font_family_feature_bold;
     font-size: $font_size_sub_title_large;
     margin-right: $default_space * 3;
     color: $orange_color;

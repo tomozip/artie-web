@@ -45,8 +45,8 @@
   .reviews_count_number {
     @include oneliner;
     @include text_shadow($dark_text_shadow_color);
+    @include lato;
     color: $cyan_dark_color;
-    font-family: $font_family_feature;
     font-size: $font_size_title_medium;
     margin-right: $default_space;
   }
@@ -54,9 +54,9 @@
   .reviews_count_unit {
     @include oneliner;
     @include text_shadow;
+    @include lato;
     color: $blue_gray_color;
     font-size: $font_size_body_medium;
-    font-family: $font_family_feature;
   }
 
   .article_body {
@@ -114,8 +114,8 @@
 
   .article_average_rating {
     @include oneliner;
+    @include lato;
     color: $orange_color;
-    font-family: $font_family_feature;
     font-weight: bold;
     font-size: $font_size_sub_title_medium;
     letter-spacing: $letter_spacing_footnone_medium;

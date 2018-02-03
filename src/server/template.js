@@ -19,7 +19,7 @@ const template = (head, html, preloadedState, env) => {
         <title>Artie | アーティ</title>
 
         <!-- Import webfonts -->
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,700i" rel="stylesheet">
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/dist/style.css" type="text/css">
         <script type="text/javascript" async defer src="//platform.twitter.com/widgets.js"></script>

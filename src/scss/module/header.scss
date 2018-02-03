@@ -28,7 +28,7 @@
 
   .header_logo {
     @include oneliner;
-    font-family: $font_family_feature_bold_italic;
+    @include lato_bold_italic;
     font-size: $font_size_title_medium;
     color: $black_color;
     display: table-cell;
