@@ -1,2 +1,17 @@
 .top_article_list {
+  .article_list {
+    margin: 0 auto;
+    width: $default_space * 235;
+  }
+
+  .l_article_card {
+    width: $default_space * 75;
+    display: inline-block;
+    margin-bottom: $default_space * 6;
+    vertical-align: middle;
+
+    &:not(:nth-child(3n)) {
+      margin-right: $default_space * 5;
+    }
+  }
 }

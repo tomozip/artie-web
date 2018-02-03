@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import ReactModal from 'react-modal';
 
-// FIXME: ここどこかに分離して消したい。
-// path
-import { artieApiBaseUrl } from 'config';
-
 // icons
 import SearchIcon from 'react-icons/lib/md/search';
 import TwitterIcon from 'react-icons/lib/fa/twitter';
@@ -18,6 +14,10 @@ import * as headerActions from '../actions/header';
 import * as tokenAuthActions from '../actions/tokenAuth';
 // これでいいのかは不明。。
 import * as featuredArticleActions from '../actions/featuredArticle';
+
+// FIXME: ここどこかに分離して消したい。
+// constants
+import { ArtieApiBaseUrl } from '../constants/env';
 
 // components
 import ReviewForm from './ReviewForm';
@@ -79,7 +79,7 @@ class Header extends Component {
 
   handleSignIn() {
     // TODO: refactor
-    const windowLogin = window.open(`${artieApiBaseUrl}/auth/twitter`, null, '');
+    const windowLogin = window.open(`${ArtieApiBaseUrl}/auth/twitter`, null, '');
     let count = 0;
     const repeatPost = setInterval(() => {
       windowLogin.postMessage('requestCredentials', '*');
@@ -91,7 +91,7 @@ class Header extends Component {
     }, 1000);
 
     window.addEventListener('message', (ev) => {
-      if (ev.origin === artieApiBaseUrl) {
+      if (ev.origin === ArtieApiBaseUrl) {
         const currentUser = AuthUser.fromJson(ev.data);
         this.context.dispatch(tokenAuthActions.signIn(currentUser));
         this.handleToggleAuthModal();
