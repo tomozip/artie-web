@@ -23,7 +23,7 @@
     "mock-server": "json-server --watch mock/db.json --routes mock/routes.json -p 3001",
     "development": "npm run build && npm run server_build && node ./dist/server.js",
     "production": "npm run production_build && npm run production_server_build",
-    "deploy": "NODE_ENV=production pm2 start ./dist/server.js"
+    "deploy": "pm2 kill && NODE_ENV=production pm2 start ./dist/server.js"
   },
   "repository": {
     "type": "git",
