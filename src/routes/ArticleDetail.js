@@ -28,7 +28,7 @@ class ArticleDetail extends Component {
       RootRepository().articles.fetchArticle(params.id)
         .then(res => dispatch(articleDetailActions.fetchArticle(res)));
     const fetchArticleReviews = () =>
-      RootRepository().articles.fetchArticleReviews(params.id)
+      RootRepository().articles.fetchArticleReviews(params.id, false)
         .then(res => dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
     const fetchPosts = _.concat(fetchArticle(), fetchArticleReviews());
     return Promise.all(fetchPosts);
@@ -36,6 +36,13 @@ class ArticleDetail extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      likeSucceeded: false,
+      likedReviewId: 0,
+      reviewSucceeded: false,
+      postedReviewErrors: [],
+    };
+
     this.handlePostRivew = this.handlePostRivew.bind(this);
     this.handlePostLike = this.handlePostLike.bind(this);
     this.handleDeleteLike = this.handleDeleteLike.bind(this);
@@ -47,41 +54,45 @@ class ArticleDetail extends Component {
     const fetchedArticleId = this.props.articleDetail.article.id;
     const isFetched = this.props.routeParams.id === undefined ||
                       Number(this.props.routeParams.id) === fetchedArticleId;
-
     if (!isFetched) {
       RootRepository(window).articles.fetchArticle(this.props.routeParams.id)
-        .then(res => dispatch(articleDetailActions.fetchArticle(res)))
-        .then(() => {
-          RootRepository(window).articles.fetchArticleReviews(this.props.routeParams.id)
-            .then(res => dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
-        });
+        .then(res => dispatch(articleDetailActions.fetchArticle(res)));
     }
-    // this.handleChangeFocusedCurrency(match.params.id)
+    if (!this.props.articleDetail.isFetchedReviews || !isFetched) {
+      RootRepository(window).articles.fetchArticleReviews(this.props.routeParams.id)
+        .then(res => dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
+    }
   }
 
   handlePostRivew(text, rating) {
     if (this.props.tokenAuth.isSignedIn) {
-      return RootRepository(window).articles.createReview(
+      RootRepository(window).articles.createReview(
         this.props.articleDetail.article.id,
         text,
         rating,
       )
-        .then(() => {
-          RootRepository(window).articles.fetchArticleReviews(this.props.articleDetail.article.id)
-            .then(res =>
-              this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
+        .then((res) => {
+          if (res.success) {
+            RootRepository(window).articles.fetchArticleReviews(this.props.articleDetail.article.id)
+              .then(reviews =>
+                this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(reviews)));
+          }
+          this.setState({ reviewSucceeded: res.success, postedReviewErrors: res.errors });
         });
-    }
-    this.context.dispatch(headerActions.toggleAuthModal());
+    } else this.context.dispatch(headerActions.toggleAuthModal());
   }
 
   handlePostLike(reviewId, reviewerId) {
     if (!this.props.tokenAuth.isSignedIn) {
-      return this.context.dispatch(headerActions.toggleAuthModal());
-    }
-    if (this.props.tokenAuth.currentUser.id !== reviewerId) {
-      return RootRepository(window).articles.createLike(reviewId)
-        .then(res => res.success);
+      this.context.dispatch(headerActions.toggleAuthModal());
+    } else if (this.props.tokenAuth.currentUser.id !== reviewerId) {
+      RootRepository(window).articles.createLike(reviewId)
+        // TODO: errorハンドリング
+        .then((res) => {
+          if (res.success) {
+            this.setState({ likeSucceeded: res.success, likedReviewId: reviewId });
+          } else this.setState({ likeSucceeded: res.success, likedReviewId: 0 });
+        });
     }
   }
 
@@ -102,7 +113,7 @@ class ArticleDetail extends Component {
           <div className="l_content_wrapper">
             <div className="l_main_block">
               {
-                this.props.articleDetail.isFetched && (
+                this.props.articleDetail.isFetchedArticle && (
                   <div>
                     {/* ---Article Preview--- */}
                     <div className="article_preview">
@@ -161,6 +172,8 @@ class ArticleDetail extends Component {
                     <div className="l_review_form">
                       <ReviewForm
                         handlePostRivew={this.handlePostRivew}
+                        success={this.state.reviewSucceeded}
+                        errors={this.state.postedReviewErrors}
                       />
                     </div>
                     {/* ---Review List--- */}
@@ -178,6 +191,8 @@ class ArticleDetail extends Component {
                               review={review}
                               handlePostLike={() => this.handlePostLike(review.id, review.user.id)}
                               handleDeleteLike={this.handleDeleteLike}
+                              success={this.state.likeSucceeded}
+                              likedReviewId={this.state.likedReviewId}
                             />
                           </div>
                         ))
@@ -211,7 +226,8 @@ ArticleDetail.propTypes = {
   articleDetail: PropTypes.shape({
     // TODO: articleではなく、reviewsを含んでいるので直書きして直す
     article: PropTypes.instanceOf(Article).isRequired,
-    isFetched: PropTypes.bool.isRequired,
+    isFetchedArticle: PropTypes.bool.isRequired,
+    isFetchedReviews: PropTypes.bool.isRequired,
   }).isRequired,
   tokenAuth: PropTypes.shape({
     isSignedIn: PropTypes.bool.isRequired,

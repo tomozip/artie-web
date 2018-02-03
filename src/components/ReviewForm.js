@@ -25,6 +25,11 @@ class ReviewForm extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.success) this.setState({ text: '', rating: 0 });
+    else this.setState({ errors: nextProps.errors });
+  }
+
   handleTextChange(e) {
     this.setState({ text: e.target.value });
   }
@@ -34,14 +39,7 @@ class ReviewForm extends Component {
   }
 
   handleClick(e) {
-    const result = this.props.handlePostRivew(this.state.text, this.state.rating.toFixed(1));
-    if (result instanceof Promise) {
-      result.catch((err) => {
-        this.setState({ errors: err.response.data.errors });
-      });
-    }
-    e.preventDefault();
-    this.setState({ text: '', rating: 0 });
+    this.props.handlePostRivew(this.state.text, this.state.rating.toFixed(1));
   }
 
   render() {
@@ -113,6 +111,8 @@ ReviewForm.contextTypes = {
 
 ReviewForm.propTypes = {
   handlePostRivew: PropTypes.func.isRequired,
+  success: PropTypes.bool.isRequired,
+  errors: PropTypes.array.isRequired,
   tokenAuth: PropTypes.shape({
     isSignedIn: PropTypes.bool.isRequired,
     currentUser: PropTypes.instanceOf(User).isRequired,

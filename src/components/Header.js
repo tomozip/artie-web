@@ -35,6 +35,8 @@ class Header extends Component {
     this.state = {
       url: '',
       showReviewModal: false,
+      postArticleSucceeded: false,
+      postedArticleErrors: [],
     };
 
     this.handleOpenReviewModal = this.handleOpenReviewModal.bind(this);
@@ -66,15 +68,16 @@ class Header extends Component {
   }
 
   handlePostArticle(text, rating) {
-    return RootRepository(window).articles.createArticle(this.state.url, text, rating)
-      .then(() => {
+    RootRepository(window).articles.createArticle(this.state.url, text, rating).then((res) => {
+      if (res.success) {
         RootRepository().articles.fetchFeaturedArticles()
-          .then((res) => {
-            this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(res));
-            this.handleCloseReviewModal();
-            this.setState({ url: '' });
+          .then((articles) => {
+            this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(articles));
+            this.setState({ url: '', showReviewModal: false });
           });
-      });
+      }
+      this.setState({ postArticleSucceeded: res.success, postedArticleErrors: res.errors });
+    });
   }
 
   handleSignIn() {
@@ -145,6 +148,8 @@ class Header extends Component {
           <div className="l_review_form">
             <ReviewForm
               handlePostRivew={this.handlePostArticle}
+              success={this.state.postArticleSucceeded}
+              errors={this.state.postedArticleErrors}
             />
           </div>
         </ReactModal>

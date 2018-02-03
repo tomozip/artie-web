@@ -22,6 +22,19 @@ class ReviewRow extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.success && nextProps.likedReviewId === this.props.review.id) {
+      this.setState({
+        isLiked: true,
+        likesCount: this.state.likesCount + 1,
+      });
+    }
+    // serverでは無かったlikedを表示用
+    if (nextProps.review.isLiked !== this.state.isLiked) {
+      this.setState({ isLiked: nextProps.review.isLiked });
+    }
+  }
+
   handleClick() {
     if (this.state.isLiked) {
       this.props.handleDeleteLike(this.props.review.id);
@@ -29,20 +42,7 @@ class ReviewRow extends Component {
         isLiked: false,
         likesCount: this.state.likesCount - 1,
       });
-    } else {
-      // if request post, result is Promise instance.
-      const result = this.props.handlePostLike();
-      if (result instanceof Promise) {
-        result.then((success) => {
-          if (success) {
-            this.setState({
-              isLiked: true,
-              likesCount: this.state.likesCount + 1,
-            });
-          }
-        });
-      }
-    }
+    } else this.props.handlePostLike();
   }
 
   render() {
@@ -110,6 +110,8 @@ ReviewRow.propTypes = {
   review: PropTypes.instanceOf(Review).isRequired,
   handlePostLike: PropTypes.func.isRequired,
   handleDeleteLike: PropTypes.func.isRequired,
+  success: PropTypes.bool.isRequired,
+  likedReviewId: PropTypes.number.isRequired,
 };
 
 export default ReviewRow;

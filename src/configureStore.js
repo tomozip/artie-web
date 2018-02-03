@@ -17,12 +17,12 @@ const storageConfig = {
       tokenAuth: state.app.tokenAuth,
     },
   }),
-  // ServerとClientで変更があるstateを保存しておく必要はそもそもないはず。
-  // merge: (initialState, persistedState) => ({
-  //   app: {
-  //     tokenAuth: Object.assign({}, initialState.app.tokenAuth, persistedState.app.tokenAuth),
-  //   },
-  // }),
+  // initialState = state by fetching in server.js; persistedState = state from localStorage.
+  merge: (initialState, persistedState) => Object.assign({}, initialState, {
+    app: Object.assign({}, initialState.app, {
+      tokenAuth: Object.assign({}, initialState.app.tokenAuth, persistedState.app.tokenAuth),
+    }),
+  }),
 };
 
 // using redux-localstorage as midlware here. https://github.com/elgerlambert/redux-localstorage

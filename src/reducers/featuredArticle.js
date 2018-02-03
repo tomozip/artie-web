@@ -3,7 +3,8 @@ import featuredArticleActionTypes from '../constants/featuredArticleActionTypes'
 
 const initialState = {
   articles: [],
-  // page: 1,
+  cursor: Date(),
+  hasNext: true,
   isFetched: false,
 };
 
@@ -12,13 +13,15 @@ const featuredArticle = (state = initialState, action) => {
     case featuredArticleActionTypes.FETCH_INITIAL_FEATURED_ARTICLES:
       return Object.assign({}, state, {
         articles: action.featuredArticle.articles,
-        // page: action.featuredArticle.page,
+        cursor: action.featuredArticle.cursor,
+        hasNext: action.featuredArticle.hasNext,
         isFetched: true,
       });
     case featuredArticleActionTypes.FETCH_NEXT_FEATURED_ARTICLES:
       return Object.assign({}, state, {
         articles: [...state.articles, ...action.featuredArticle.articles],
-        // page: action.featuredArticle.page,
+        cursor: action.featuredArticle.cursor,
+        hasNext: action.featuredArticle.hasNext,
       });
     default:
       return state;

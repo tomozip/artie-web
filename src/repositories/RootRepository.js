@@ -8,6 +8,7 @@ import { ArtieApiBaseUrl } from '../constants/env';
 import ArticlesRepository from './ArticlesRepository';
 
 export default (window) => {
+  const isClient = !!window;
   const state = window ? JSON.parse(window.localStorage.getItem('redux')) : null;
   const currentUser = state ? state.app.tokenAuth.currentUser : {};
   const fetcher = axios.create({
@@ -20,6 +21,6 @@ export default (window) => {
   });
 
   return {
-    articles: new ArticlesRepository(fetcher),
+    articles: new ArticlesRepository(fetcher, isClient),
   };
 };

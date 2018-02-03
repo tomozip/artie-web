@@ -6,9 +6,8 @@ const initialState = {
     reviews: [],
   },
   cursor: '',
-  isFetched: false,
-  // isFetchedArticle: false,
-  // isFetchedArticleReviews: false,
+  isFetchedArticle: false,
+  isFetchedReviews: false,
 };
 
 const articleDetail = (state = initialState, action) => {
@@ -17,7 +16,7 @@ const articleDetail = (state = initialState, action) => {
       return Object.assign({}, state, {
         article: Object.assign({}, state.article, action.articleDetail.article),
         // isFetchedArticle: true,
-        isFetched: true,
+        isFetchedArticle: true,
       });
     case articleDetailActionTypes.FETCH_INITIAL_ARTICLE_REVIEWS:
       return Object.assign({}, state, {
@@ -25,6 +24,7 @@ const articleDetail = (state = initialState, action) => {
           reviews: action.articleDetail.reviews,
         }),
         cursor: action.articleDetail.cursor,
+        isFetchedReviews: action.articleDetail.isClient,
         // isFetchedArticleReviews: true,
         // isFetched: state.isFetchedArticle,
       });

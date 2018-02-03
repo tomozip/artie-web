@@ -14,9 +14,19 @@ const isSuccess = (status) => {
   }
 };
 
+const handleResponse = promise => promise
+  .then(res => ({
+    success: isSuccess(res.status),
+    errors: [],
+  })).catch(res => ({
+    success: isSuccess(res.status),
+    errors: res.response.data.errors,
+  }));
+
 export default class ArticlesRepository {
-  constructor(fetcher) {
+  constructor(fetcher, isClient) {
     this.fetcher = fetcher;
+    this.isClient = isClient;
   }
 
   fetchArticle(id) {
@@ -26,16 +36,16 @@ export default class ArticlesRepository {
       }));
   }
 
-  fetchFeaturedArticles(cursor = Date(), limit = 10) {
+  fetchFeaturedArticles(cursor = Date(), limit = 15) {
     return this.fetcher.get('v1/articles/', {
       params: {
         cursor,
         limit,
       },
     }).then(res => ({
-      // articles: res.data.map(article => Article.fromJson(article)),
       articles: res.data.data.map(article => Article.fromJson(article)),
-      // cursor: res.data.cursor,
+      cursor: res.data.paging.cursor,
+      hasNext: res.data.paging.has_next,
     }));
   }
 
@@ -46,38 +56,30 @@ export default class ArticlesRepository {
         limit,
       },
     }).then(res => ({
+      // TODO: paging
       // reviews: res.data.map(review => Review.fromJson(review)),
       reviews: res.data.data.map(review => Review.fromJson(review)),
+      isClient: this.isClient,
     }));
   }
 
   createArticle(url, text, rating) {
-    return this.fetcher.post('v1/articles', {
+    return handleResponse(this.fetcher.post('v1/articles', {
       url,
       text,
       rating,
-    }).then(res => ({
-      // success: isSuccess(res.status),
-      // message: res,
-      // エラー処理の時はここを決める。
-      res,
     }));
   }
 
   createReview(id, text, rating) {
-    return this.fetcher.post(`v1/articles/${id}/reviews`, {
+    return handleResponse(this.fetcher.post(`v1/articles/${id}/reviews`, {
       text,
       rating,
-    }).then(res => ({
-      // エラー処理の時はここを決める。
-      res,
     }));
   }
 
   createLike(reviewId) {
-    return this.fetcher.post(`v1/reviews/${reviewId}/like`).then(res => ({
-      success: isSuccess(res.status),
-    }));
+    return handleResponse(this.fetcher.post(`v1/reviews/${reviewId}/like`));
   }
 
   deleteLIke(reviewId) {
