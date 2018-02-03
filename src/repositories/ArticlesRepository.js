@@ -56,9 +56,9 @@ export default class ArticlesRepository {
         limit,
       },
     }).then(res => ({
-      // TODO: paging
-      // reviews: res.data.map(review => Review.fromJson(review)),
       reviews: res.data.data.map(review => Review.fromJson(review)),
+      cursor: res.data.paging.cursor,
+      hasNext: res.data.paging.has_next,
       isClient: this.isClient,
     }));
   }

@@ -24,6 +24,7 @@ const articleDetail = (state = initialState, action) => {
           reviews: action.articleDetail.reviews,
         }),
         cursor: action.articleDetail.cursor,
+        hasNext: action.articleDetail.hasNext,
         isFetchedReviews: action.articleDetail.isClient,
         // isFetchedArticleReviews: true,
         // isFetched: state.isFetchedArticle,
@@ -34,6 +35,7 @@ const articleDetail = (state = initialState, action) => {
           reviews: [...state.article.reviews, ...action.articleDetail.reviews],
         }),
         cursor: action.articleDetail.cursor,
+        hasNext: action.articleDetail.hasNext,
       });
     // case articleDetailActionTypes.FETCH_INITIAL_CURRENCY_DETAIL_POSTS:
     //   return Object.assign({}, state, {

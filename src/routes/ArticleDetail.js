@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import _ from 'lodash';
 
@@ -43,6 +44,7 @@ class ArticleDetail extends Component {
       postedReviewErrors: [],
     };
 
+    this.handleLoad = this.handleLoad.bind(this);
     this.handlePostRivew = this.handlePostRivew.bind(this);
     this.handlePostLike = this.handlePostLike.bind(this);
     this.handleDeleteLike = this.handleDeleteLike.bind(this);
@@ -62,6 +64,16 @@ class ArticleDetail extends Component {
       RootRepository(window).articles.fetchArticleReviews(this.props.routeParams.id)
         .then(res => dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
     }
+  }
+
+  handleLoad() {
+    RootRepository(window).articles.fetchArticleReviews(
+      this.props.articleDetail.article.id,
+      this.props.articleDetail.cursor,
+      10,
+    ).then((res) => {
+      this.context.dispatch(articleDetailActions.fetchNextArticleReviews(res));
+    });
   }
 
   handlePostRivew(text, rating) {
@@ -106,6 +118,19 @@ class ArticleDetail extends Component {
   }
 
   render() {
+    const loader = <div className="loader">Loading ...</div>;
+    const reviewRows = this.props.articleDetail.article.reviews.map(review => (
+      <div className="l_review_row" key={review.id}>
+        <ReviewRow
+          review={review}
+          handlePostLike={() => this.handlePostLike(review.id, review.user.id)}
+          handleDeleteLike={this.handleDeleteLike}
+          success={this.state.likeSucceeded}
+          likedReviewId={this.state.likedReviewId}
+        />
+      </div>
+    ));
+
     return (
       <div className="article_detail">
         <Header />
@@ -184,19 +209,14 @@ class ArticleDetail extends Component {
                           <div className="review_list_header_border" />
                         </div>
                       </div>
-                      {
-                        this.props.articleDetail.article.reviews.map(review => (
-                          <div className="l_review_row" key={review.id}>
-                            <ReviewRow
-                              review={review}
-                              handlePostLike={() => this.handlePostLike(review.id, review.user.id)}
-                              handleDeleteLike={this.handleDeleteLike}
-                              success={this.state.likeSucceeded}
-                              likedReviewId={this.state.likedReviewId}
-                            />
-                          </div>
-                        ))
-                      }
+                      <InfiniteScroll
+                        loadMore={this.handleLoad}
+                        hasMore={this.props.articleDetail.hasNext}
+                        loader={loader}
+                        initialLoad={false}
+                      >
+                        {reviewRows}
+                      </InfiniteScroll>
                     </div>
                   </div>
                 )
@@ -228,6 +248,8 @@ ArticleDetail.propTypes = {
     article: PropTypes.instanceOf(Article).isRequired,
     isFetchedArticle: PropTypes.bool.isRequired,
     isFetchedReviews: PropTypes.bool.isRequired,
+    cursor: PropTypes.string.isRequired,
+    hasNext: PropTypes.bool.isRequired,
   }).isRequired,
   tokenAuth: PropTypes.shape({
     isSignedIn: PropTypes.bool.isRequired,

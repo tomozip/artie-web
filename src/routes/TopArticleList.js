@@ -58,7 +58,6 @@ class TopArticleList extends Component {
 
   render() {
     const loader = <div className="loader">Loading ...</div>;
-
     const cards = this.props.featuredArticle.articles.map(article => (
       <div className="l_article_card" key={article.id}>
         <ArticleCard
@@ -72,14 +71,13 @@ class TopArticleList extends Component {
         <Header />
         <div className="l_container">
           <InfiniteScroll
+            className="article_list"
             loadMore={this.handleLoad}
             hasMore={this.props.featuredArticle.hasNext}
             loader={loader}
             initialLoad={false}
           >
-            <div className="article_list">
-              {cards}
-            </div>
+            {cards}
           </InfiniteScroll>
         </div>
       </div>
