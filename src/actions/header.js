@@ -4,10 +4,13 @@ import headerActionTypes from '../constants/headerActionTypes';
 //   type: headerActionTypes.TOGGLE_REVIEW_MODAL,
 //   header,
 // });
-//
-/* eslint import/prefer-default-export: 0 */
 
 export const toggleAuthModal = header => ({
   type: headerActionTypes.TOGGLE_AUTH_MODAL,
+  header,
+});
+
+export const toggleLoadingModal = header => ({
+  type: headerActionTypes.TOGGLE_LOADING_MODAL,
   header,
 });

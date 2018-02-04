@@ -15,11 +15,11 @@ const tokenAuth = (state = initialState, action) => {
         isSignedIn: true,
         currentUser: action.tokenAuth,
       });
-    case tokenAuthActionTypes.SIGN_OUT:
-      return Object.assign({}, state, {
-        isSignedIn: true,
-        currentUser: {},
-      });
+    // case tokenAuthActionTypes.SIGN_OUT:
+    //   return Object.assign({}, state, {
+    //     isSignedIn: false,
+    //     currentUser: {},
+    //   });
     default:
       return state;
   }

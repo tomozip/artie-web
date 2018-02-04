@@ -1,0 +1,14 @@
+.article_preview_place_holder {
+  @include shadow;
+  border-radius: $default_space * 2;
+  margin-bottom: $default_space * 8.5;
+
+  .holder_header {
+    height: $default_space * 50;
+    background-color: $light_gray_color;
+  }
+
+  .holder_body {
+    height: $default_space * 46;
+  }
+}

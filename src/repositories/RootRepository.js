@@ -9,7 +9,7 @@ import ArticlesRepository from './ArticlesRepository';
 
 export default (window) => {
   const isClient = !!window;
-  const state = window ? JSON.parse(window.localStorage.getItem('redux')) : null;
+  const state = window ? JSON.parse(window.localStorage.getItem('artieRedux')) : null;
   const currentUser = state ? state.app.tokenAuth.currentUser : {};
   const fetcher = axios.create({
     baseURL: ArtieApiBaseUrl,

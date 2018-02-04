@@ -72,6 +72,7 @@
     box-sizing: border-box;
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
   }
 
   .header_user_image {
@@ -95,5 +96,47 @@
     display: inline-block;
     vertical-align: middle;
     margin-left: $default_space * 5;
+  }
+}
+
+
+// Menu Modal
+.none_overlay {
+  @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
+  z-index: 3;
+}
+
+.menu_modal {
+  @include absolute($top: $default_space * 14, $right: $default_space * 40.5);
+  @include shadow;
+  border-radius: $default_space * 2;
+  width: $default_space * 50;
+  padding: $default_space * 3 0;
+  background-color: $white_color;
+  z-index: 4;
+
+  &:focus {
+    outline: none;
+  }
+
+  .modal_row {
+    @include ease_transition;
+    padding: $default_space * 2 $default_space * 5;
+    cursor: pointer;
+    background-color: $white_color;
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    &:hover {
+      background-color: $light_gray_color;
+    }
+  }
+
+  .row_text {
+    @include oneliner;
+    font-family: $font_family_default;
+    font-size: $font_size_footnote_medium;
+    color: $black_color;
   }
 }

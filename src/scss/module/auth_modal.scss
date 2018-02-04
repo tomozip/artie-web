@@ -69,4 +69,10 @@
     letter-spacing: $letter_spacing_caption_large;
     vertical-align: middle;
   }
+
+  .preloader {
+    width: $default_space * 9.5;
+    margin: 0 auto;
+    display: block;
+  }
 }

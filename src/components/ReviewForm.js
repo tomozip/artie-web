@@ -25,9 +25,8 @@ class ReviewForm extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.success) this.setState({ text: '', rating: 0 });
-    else this.setState({ errors: nextProps.errors });
+  componentDidMount() {
+    if (this.props.errors.length > 0) this.setState({ errors: this.props.errors });
   }
 
   handleTextChange(e) {

@@ -34,18 +34,22 @@ class TopArticleList extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      isFetchingArticles: false,
+    }
 
     this.handleLoad = this.handleLoad.bind(this);
   }
 
   componentDidMount() {
-    const { dispatch } = this.context;
-
     if (!this.props.featuredArticle.isFetched) {
-      RootRepository(window).articles.fetchFeaturedArticles()
-        .then((res) => {
-          dispatch((featuredArticleActions.fetchInitialFeaturedArticles(res)));
-        });
+      this.setState({ isFetchingArticles: true }, () => {
+        RootRepository(window).articles.fetchFeaturedArticles()
+          .then((res) => {
+            this.context.dispatch((featuredArticleActions.fetchInitialFeaturedArticles(res)));
+            this.setState({ isFetchingArticles: false });
+          });
+      });
     }
   }
 
@@ -70,15 +74,19 @@ class TopArticleList extends Component {
       <div className="top_article_list">
         <Header />
         <div className="l_container">
-          <InfiniteScroll
-            className="article_list"
-            loadMore={this.handleLoad}
-            hasMore={this.props.featuredArticle.hasNext}
-            loader={loader}
-            initialLoad={false}
-          >
-            {cards}
-          </InfiniteScroll>
+          {
+            this.state.isFetchingArticles ?
+              <img src="/images/loader_gray.gif" alt="preloader" className="preloader" /> :
+              <InfiniteScroll
+                className="article_list"
+                loadMore={this.handleLoad}
+                hasMore={this.props.featuredArticle.hasNext}
+                loader={loader}
+                initialLoad={false}
+              >
+                {cards}
+              </InfiniteScroll>
+          }
         </div>
       </div>
     );

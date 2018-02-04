@@ -1,0 +1,11 @@
+.review_form_place_holder {
+  @include relative;
+  width: 100%;
+  height: $default_space * 37;
+
+  .preloader {
+    width: $default_space * 12.5;
+    @include absolute($top: 50%, $left: 50%);
+    @include transform(translate(-50%, -50%));
+  }
+}

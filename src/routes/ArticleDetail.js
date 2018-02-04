@@ -15,6 +15,8 @@ import * as headerActions from '../actions/header';
 import Header from '../components/Header';
 import ReviewForm from '../components/ReviewForm';
 import ReviewRow from '../components/ReviewRow';
+import ArticlePreviewPlaceHolder from '../components/ArticlePreviewPlaceHolder';
+import ReviewFormPlaceHolder from '../components/ReviewFormPlaceHolder';
 
 // entities
 import Article from '../entities/Article';
@@ -22,6 +24,8 @@ import User from '../entities/User';
 
 // repositories
 import RootRepository from '../repositories/RootRepository';
+
+/* eslint no-undef: 0 */
 
 class ArticleDetail extends Component {
   static fetch(dispatch, params = null) {
@@ -39,6 +43,9 @@ class ArticleDetail extends Component {
     super(props);
     this.state = {
       likeSucceeded: false,
+      isFetchingArticle: false,
+      isFetchingReviews: false,
+      isPostingReview: false,
       likedReviewId: 0,
       reviewSucceeded: false,
       postedReviewErrors: [],
@@ -51,18 +58,31 @@ class ArticleDetail extends Component {
   }
 
   componentDidMount() {
+    /* eslint react/no-did-mount-set-state: 0 */
     const { dispatch } = this.context;
 
     const fetchedArticleId = this.props.articleDetail.article.id;
     const isFetched = this.props.routeParams.id === undefined ||
                       Number(this.props.routeParams.id) === fetchedArticleId;
+
     if (!isFetched) {
-      RootRepository(window).articles.fetchArticle(this.props.routeParams.id)
-        .then(res => dispatch(articleDetailActions.fetchArticle(res)));
+      this.setState({ isFetchingArticle: true }, () => {
+        RootRepository(window).articles.fetchArticle(this.props.routeParams.id)
+          .then((res) => {
+            dispatch(articleDetailActions.fetchArticle(res));
+            this.setState({ isFetchingArticle: false });
+          });
+      });
     }
+
     if (!this.props.articleDetail.isFetchedReviews || !isFetched) {
-      RootRepository(window).articles.fetchArticleReviews(this.props.routeParams.id)
-        .then(res => dispatch(articleDetailActions.fetchInitialArticleReviews(res)));
+      this.setState({ isFetchingReviews: true }, () => {
+        RootRepository(window).articles.fetchArticleReviews(this.props.routeParams.id)
+          .then((res) => {
+            dispatch(articleDetailActions.fetchInitialArticleReviews(res));
+            this.setState({ isFetchingReviews: false });
+          });
+      });
     }
   }
 
@@ -78,19 +98,26 @@ class ArticleDetail extends Component {
 
   handlePostRivew(text, rating) {
     if (this.props.tokenAuth.isSignedIn) {
-      RootRepository(window).articles.createReview(
-        this.props.articleDetail.article.id,
-        text,
-        rating,
-      )
-        .then((res) => {
-          if (res.success) {
-            RootRepository(window).articles.fetchArticleReviews(this.props.articleDetail.article.id)
-              .then(reviews =>
-                this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(reviews)));
-          }
-          this.setState({ reviewSucceeded: res.success, postedReviewErrors: res.errors });
-        });
+      this.setState({ isPostingReview: true }, () => {
+        RootRepository(window).articles.createReview(
+          this.props.articleDetail.article.id,
+          text,
+          rating,
+        )
+          .then((res) => {
+            if (res.success) {
+              RootRepository(window).articles
+                .fetchArticleReviews(this.props.articleDetail.article.id)
+                .then(reviews =>
+                  this.context.dispatch(articleDetailActions.fetchInitialArticleReviews(reviews)));
+            }
+            this.setState({
+              isPostingReview: false,
+              reviewSucceeded: res.success,
+              postedReviewErrors: res.errors,
+            });
+          });
+      });
     } else this.context.dispatch(headerActions.toggleAuthModal());
   }
 
@@ -137,10 +164,11 @@ class ArticleDetail extends Component {
         <div className="l_container">
           <div className="l_content_wrapper">
             <div className="l_main_block">
-              {
-                this.props.articleDetail.isFetchedArticle && (
-                  <div>
-                    {/* ---Article Preview--- */}
+              <div>
+                {/* ---Article Preview--- */}
+                {
+                  this.state.isFetchingArticle ?
+                    <ArticlePreviewPlaceHolder /> :
                     <div className="article_preview">
                       <a
                         className="preview_header"
@@ -171,6 +199,7 @@ class ArticleDetail extends Component {
                         </a>
                         <div className="preview_categories">
                           {
+                            this.props.articleDetail.article.categories &&
                             this.props.articleDetail.article.categories.map(category => (
                               <span className="preview_category" key={category.id}>
                                 #{category.name}
@@ -189,41 +218,56 @@ class ArticleDetail extends Component {
                           href={this.props.articleDetail.article.url}
                           target="_blank"
                         >
-                          続きを読む
+                            続きを読む
                         </a>
                       </div>
                     </div>
-                    {/* ---Review Form--- */}
-                    <div className="l_review_form">
+                }
+                {/* ---Review Form--- */}
+                <div className="l_review_form">
+                  {
+                    this.state.isPostingReview ?
+                      <ReviewFormPlaceHolder bgColor="gray" /> :
                       <ReviewForm
                         handlePostRivew={this.handlePostRivew}
                         success={this.state.reviewSucceeded}
                         errors={this.state.postedReviewErrors}
                       />
+                  }
+                </div>
+                {/* ---Review List--- */}
+                <div className="review_list">
+                  <div className="l_review_list_header">
+                    <div className="review_list_header">
+                      <p className="review_list_header_text">reviews</p>
+                      <div className="review_list_header_border" />
                     </div>
-                    {/* ---Review List--- */}
-                    <div className="review_list">
-                      <div className="l_review_list_header">
-                        <div className="review_list_header">
-                          <p className="review_list_header_text">reviews</p>
-                          <div className="review_list_header_border" />
-                        </div>
-                      </div>
+                  </div>
+                  {
+                    this.state.isFetchingReviews ?
+                      <img
+                        src="/images/loader_gray.gif"
+                        alt="preloader"
+                        className="reviews_preload"
+                      /> :
                       <InfiniteScroll
                         loadMore={this.handleLoad}
                         hasMore={this.props.articleDetail.hasNext}
                         loader={loader}
                         initialLoad={false}
                       >
-                        {reviewRows}
+                        {
+                          reviewRows.length > 0 ?
+                           reviewRows :
+                           <p className="no_reviews">まだコメントがありません。</p>
+                        }
                       </InfiniteScroll>
-                    </div>
-                  </div>
-                )
-              }
+                  }
+                </div>
+              </div>
             </div>
             <div className="l_right_sidebar_block">
-              関連するツイート
+                関連するツイート
               <p className="soon">Coming soon...</p>
             </div>
           </div>

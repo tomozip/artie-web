@@ -21,6 +21,7 @@ import { ArtieApiBaseUrl } from '../constants/env';
 
 // components
 import ReviewForm from './ReviewForm';
+import ReviewFormPlaceHolder from './ReviewFormPlaceHolder';
 import ReviewBtn from './ReviewBtn';
 
 // entities
@@ -35,8 +36,12 @@ class Header extends Component {
     this.state = {
       url: '',
       showReviewModal: false,
+      showMenuModal: false,
       postArticleSucceeded: false,
       postedArticleErrors: [],
+      isPostingArticle: false,
+      isAuthenticating: false,
+      shouldCloseAuthModalOnClick: true,
     };
 
     this.handleOpenReviewModal = this.handleOpenReviewModal.bind(this);
@@ -44,7 +49,10 @@ class Header extends Component {
     this.handleUrlTextChange = this.handleUrlTextChange.bind(this);
     this.handlePostArticle = this.handlePostArticle.bind(this);
     this.handleToggleAuthModal = this.handleToggleAuthModal.bind(this);
+    this.handleToggleMenuModal = this.handleToggleMenuModal.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
+    this.handleOpenAuthModal = this.handleOpenAuthModal.bind(this);
   }
 
   handleOpenReviewModal() {
@@ -67,50 +75,91 @@ class Header extends Component {
     this.context.dispatch(headerActions.toggleAuthModal());
   }
 
+  handleToggleMenuModal() {
+    this.setState({ showMenuModal: !this.state.showMenuModal });
+  }
+
   handlePostArticle(text, rating) {
-    RootRepository(window).articles.createArticle(this.state.url, text, rating).then((res) => {
-      if (res.success) {
-        RootRepository().articles.fetchFeaturedArticles()
-          .then((articles) => {
-            this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(articles));
-            this.setState({ url: '', showReviewModal: false });
-          });
-      }
-      this.setState({ postArticleSucceeded: res.success, postedArticleErrors: res.errors });
+    this.setState({ isPostingArticle: true }, () => {
+      RootRepository(window).articles.createArticle(this.state.url, text, rating).then((res) => {
+        if (res.success) {
+          RootRepository().articles.fetchFeaturedArticles()
+            .then((articles) => {
+              this.context.dispatch(featuredArticleActions.fetchInitialFeaturedArticles(articles));
+              this.setState({ url: '', showReviewModal: false });
+            });
+        }
+        this.setState({
+          isPostingArticle: false,
+          postArticleSucceeded: res.success,
+          postedArticleErrors: res.errors,
+        });
+      });
     });
   }
 
   handleSignIn() {
     // TODO: refactor
-    const windowLogin = window.open(`${ArtieApiBaseUrl}/auth/twitter`, null, '');
-    let count = 0;
-    const repeatPost = setInterval(() => {
-      windowLogin.postMessage('requestCredentials', '*');
-      count += 1;
-      if (windowLogin.closed || count > 60) {
-        clearInterval(repeatPost);
-        windowLogin.close();
-      }
-    }, 1000);
+    this.setState({ isAuthenticating: true, shouldCloseAuthModalOnClick: false }, () => {
+      const windowLogin = window.open(`${ArtieApiBaseUrl}/auth/twitter`, null, '');
+      let count = 0;
+      const repeatPost = setInterval(() => {
+        windowLogin.postMessage('requestCredentials', '*');
+        count += 1;
+        if (windowLogin.closed || count > 60) {
+          clearInterval(repeatPost);
+          windowLogin.close();
+        }
+      }, 1000);
 
-    window.addEventListener('message', (ev) => {
-      if (ev.origin === ArtieApiBaseUrl) {
-        const currentUser = AuthUser.fromJson(ev.data);
-        this.context.dispatch(tokenAuthActions.signIn(currentUser));
-        this.handleToggleAuthModal();
-      }
+      window.addEventListener('message', (ev) => {
+        if (ev.origin === ArtieApiBaseUrl) {
+          const currentUser = AuthUser.fromJson(ev.data);
+          this.context.dispatch(tokenAuthActions.signIn(currentUser));
+          this.handleToggleAuthModal();
+          this.setState({ isAuthenticating: false, shouldCloseAuthModalOnClick: true });
+        }
+      });
     });
+  }
+
+  handleSignOut() {
+    window.localStorage.removeItem('artieRedux');
+    window.location.reload();
+  }
+
+  handleOpenAuthModal() {
+    this.setState({ showMenuModal: false });
+    this.handleToggleAuthModal();
   }
 
   render() {
     return (
       <div className="header">
+        {/* Menu Modal */}
+        <ReactModal
+          isOpen={this.state.showMenuModal}
+          onRequestClose={this.handleToggleMenuModal}
+          className="menu_modal"
+          overlayClassName="none_overlay"
+        >
+          {
+            (this.props.tokenAuth && this.props.tokenAuth.isSignedIn) ?
+              <button className="modal_row" onClick={this.handleSignOut}>
+                <span className="row_text">ログアウト</span>
+              </button> :
+              <button className="modal_row" onClick={this.handleOpenAuthModal}>
+                <span className="row_text">ログイン</span>
+              </button>
+          }
+        </ReactModal>
         {/* Authentication Modal */}
         <ReactModal
           isOpen={this.props.header.showAuthModal}
           onRequestClose={this.handleToggleAuthModal}
           className="auth_modal modal"
           overlayClassName="overlay"
+          shouldCloseOnOverlayClick={this.state.shouldCloseAuthModalOnClick}
         >
           <div className="l_modal_title">
             <p className="modal_title">ログインしてArtieに参加</p>
@@ -119,10 +168,14 @@ class Header extends Component {
             <p className="modal_description">ログインすることで、レビューやいいねなどが可能になります！</p>
           </div>
           <div className="btn_list">
-            <button className="twitter_btn" onClick={this.handleSignIn}>
-              <TwitterIcon className="twitter_icon" />
-              <span className="btn_text">Twitterでログイン</span>
-            </button>
+            {
+              this.state.isAuthenticating ?
+                <img src="/images/loader_white.gif" alt="preloader" className="preloader" /> :
+                <button className="twitter_btn" onClick={this.handleSignIn}>
+                  <TwitterIcon className="twitter_icon" />
+                  <span className="btn_text">Twitterでログイン</span>
+                </button>
+            }
           </div>
         </ReactModal>
         {/* Review Modal */}
@@ -146,11 +199,15 @@ class Header extends Component {
             <div className="modal_url_input_border" />
           </div>
           <div className="l_review_form">
-            <ReviewForm
-              handlePostRivew={this.handlePostArticle}
-              success={this.state.postArticleSucceeded}
-              errors={this.state.postedArticleErrors}
-            />
+            {
+              this.state.isPostingArticle ?
+                <ReviewFormPlaceHolder bgColor="white" /> :
+                <ReviewForm
+                  handlePostRivew={this.handlePostArticle}
+                  success={this.state.postArticleSucceeded}
+                  errors={this.state.postedArticleErrors}
+                />
+            }
           </div>
         </ReactModal>
         {/* Normal Header content */}
@@ -166,15 +223,16 @@ class Header extends Component {
         <div className="header_right_block">
           <div className="header_right_block_contents">
             {
-              this.props.tokenAuth &&
-                <div className="header_user_block">
+              this.props.tokenAuth ?
+                <button className="header_user_block" onClick={this.handleToggleMenuModal}>
                   <img
                     className="header_user_image"
                     src={this.props.tokenAuth.currentUser.imageUrl}
                     alt="profile"
                   />
                   <p className="header_user_name">{this.props.tokenAuth.currentUser.fullName}</p>
-                </div>
+                </button> :
+                <span />
             }
             <div className="l_review_btn">
               <ReviewBtn

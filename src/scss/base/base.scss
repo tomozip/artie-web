@@ -72,7 +72,7 @@ $cyan_dark_color: #006064;
 $orange_color: #FFC107;
 
 // functional colors
-$bg_color: $light_gray_color;
+$bg_color: #FAFAFA;
 $border_color: $bg_color;
 $shadow_color: rgba($black_color, .16);
 $text_shadow_color: rgba($black_color, .08);
@@ -103,7 +103,7 @@ body {
 }
 
 body {
-  background-color: #fafafa;
+  background-color: $bg_color;
   font-size: $font_size_body_medium;
   line-height: 1.5;
   margin: 0;

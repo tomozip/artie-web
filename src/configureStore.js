@@ -1,3 +1,5 @@
+
+
 // libs
 import { compose, combineReducers, createStore } from 'redux';
 import { routerReducer } from 'react-router-redux';
@@ -11,7 +13,7 @@ const rootReducer = isClient => combineReducers({
 });
 
 const storageConfig = {
-  key: 'redux',
+  key: 'artieRedux',
   slicer: paths => state => ({
     app: {
       tokenAuth: state.app.tokenAuth,
