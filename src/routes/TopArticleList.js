@@ -51,7 +51,7 @@ class TopArticleList extends Component {
   componentDidMount() {
     if (this.props.newArrivalArticle.isFetched) return;
     this.setState({ isFetchingArticles: true }, () => {
-      RootRepository(window).articles.fetchFeaturedArticles()
+      RootRepository(window).articles.fetchNewArrivalArticles()
         .then((res) => {
           this.context.dispatch((newArrivalArticleActions.fetchInitialNewArrivalArticles(res)));
           this.setState({ isFetchingArticles: false });
@@ -177,13 +177,13 @@ TopArticleList.contextTypes = {
 };
 
 TopArticleList.propTypes = {
-  featuredArticle: PropTypes.shape({
+  newArrivalArticle: PropTypes.shape({
     articles: PropTypes.arrayOf(PropTypes.instanceOf(Article)).isRequired,
-    cursor: PropTypes.string.isRequired,
+    cursor: PropTypes.number.isRequired,
     hasNext: PropTypes.bool.isRequired,
     isFetched: PropTypes.bool.isRequired,
   }).isRequired,
-  newArrivalArticle: PropTypes.shape({
+  featuredArticle: PropTypes.shape({
     articles: PropTypes.arrayOf(PropTypes.instanceOf(Article)).isRequired,
     cursor: PropTypes.string.isRequired,
     hasNext: PropTypes.bool.isRequired,

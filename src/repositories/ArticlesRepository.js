@@ -52,9 +52,8 @@ export default class ArticlesRepository {
     }));
   }
 
-  // TODO: ここをトレンドのapi叩くように変更
-  fetchFeaturedArticles(cursor = Date(), limit = 15) {
-    return this.fetcher.get('v1/articles/', {
+  fetchFeaturedArticles(cursor, limit = 15) {
+    return this.fetcher.get('v1/articles/trend', {
       params: {
         cursor,
         limit,
