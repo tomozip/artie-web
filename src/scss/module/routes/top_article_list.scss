@@ -4,6 +4,47 @@
     width: $default_space * 235;
   }
 
+  .list_header {
+    margin-bottom: $default_space * 7.5;
+    text-align: center;
+  }
+
+  .list_header_title {
+    @include ease_transition;
+    @include oneliner;
+    vertical-align: top;
+    display: inline-block;
+    font-family: $font_family_default;
+    font-size: $font_size_sub_title_medium;
+    color: $light_blue_gray_color;
+    padding-bottom: $default_space * 2;
+    margin-right: $default_space * 5;
+    cursor: pointer;
+
+    &:hover {
+      border-bottom: $default_space * .5 solid $light_blue_gray_color;
+    }
+  }
+
+  .focused {
+    font-weight: 600;
+    border-bottom: $default_space * .5 solid $cyan_color;
+    color: $black_color;
+  }
+
+  .title_border {
+    vertical-align: top;
+    display: inline-block;
+    padding-top: $default_space * .5;
+    width: 1px;
+    height: $default_space * 5;
+    background-color: $light_blue_gray_color;
+
+    &:not(:last-child) {
+      margin-right: $default_space * 5;
+    }
+  }
+
   .l_article_card {
     width: $default_space * 75;
     display: inline-block;

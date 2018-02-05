@@ -1,8 +1,10 @@
 // constants
 import featuredArticleActionTypes from '../constants/featuredArticleActionTypes';
+import * as contentTypes from '../constants/contentTypes';
 
 const initialState = {
   articles: [],
+  contentType: contentTypes.FEATURED_ARTICLE,
   cursor: Date(),
   hasNext: true,
   isFetched: false,

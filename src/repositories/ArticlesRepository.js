@@ -27,6 +27,9 @@ export default class ArticlesRepository {
   constructor(fetcher, isClient) {
     this.fetcher = fetcher;
     this.isClient = isClient;
+
+    this.fetchNewArrivalArticles = this.fetchNewArrivalArticles.bind(this);
+    this.fetchFeaturedArticles = this.fetchFeaturedArticles.bind(this);
   }
 
   fetchArticle(id) {
@@ -36,6 +39,20 @@ export default class ArticlesRepository {
       }));
   }
 
+  fetchNewArrivalArticles(cursor = Date(), limit = 15) {
+    return this.fetcher.get('v1/articles/', {
+      params: {
+        cursor,
+        limit,
+      },
+    }).then(res => ({
+      articles: res.data.data.map(article => Article.fromJson(article)),
+      cursor: res.data.paging.cursor,
+      hasNext: res.data.paging.has_next,
+    }));
+  }
+
+  // TODO: ここをトレンドのapi叩くように変更
   fetchFeaturedArticles(cursor = Date(), limit = 15) {
     return this.fetcher.get('v1/articles/', {
       params: {
