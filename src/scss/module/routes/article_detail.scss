@@ -246,7 +246,10 @@
   .reviews_preload {
     margin: 0 auto;
     display: block;
-    width: 50px;
+    width: $default_space * 12.5;
+    @media #{$iphone_large_media_query} {
+      width: $default_space * 8.5
+    }
   }
 
   .l_review_row {

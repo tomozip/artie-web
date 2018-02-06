@@ -133,6 +133,7 @@
 .none_overlay {
   @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
   z-index: 3;
+  -webkit-tap-highlight-color: $transpicuous_color;
 }
 
 .menu_modal {
@@ -143,9 +144,16 @@
   padding: $default_space * 3 0;
   background-color: $white_color;
   z-index: 4;
-
   &:focus {
     outline: none;
+  }
+  @media #{$iphone_large_media_query} {
+    top: $default_space * 12;
+    right: $default_space * 3;
+    width: $default_space * 37;
+    border-radius: $default_space;
+    padding: $default_space * 1.5 $default_space * 3;
+    box-sizing: border-box;
   }
 
   .modal_row {
@@ -156,9 +164,14 @@
     display: block;
     width: 100%;
     text-align: left;
-
     &:hover {
       background-color: $light_gray_color;
+    }
+    @media #{$iphone_large_media_query} {
+      padding: $default_space * 2 $default_space;
+      &:not(:last-child) {
+        border-bottom: 1px solid $light_gray_color;
+      }
     }
   }
 

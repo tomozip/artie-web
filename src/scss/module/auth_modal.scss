@@ -1,6 +1,13 @@
 .auth_modal {
   @include absolute($top: $default_space * 35, $left: 50%);
   padding: $default_space * 9 $default_space * 17.5 $default_space * 11;
+  @media #{$iphone_large_media_query} {
+    left: $default_space * 3;
+    right: $default_space * 3;
+    padding: $default_space * 6 $default_space * 3 $default_space * 8;
+    transform: none;
+    width: auto;
+  }
 
   .l_modal_title {
     margin-bottom: $default_space * 3;
@@ -13,11 +20,17 @@
     font-size: $font_size_sub_title_large;
     color: $black_color;
     letter-spacing: $letter_spacing_caption_large;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_sub_title_medium;
+    }
   }
 
   .l_modal_description {
     margin-bottom: $default_space * 10.5;
     text-align: center;
+    @media #{$iphone_large_media_query} {
+      margin-bottom: $default_space * 7;
+    }
   }
 
   .modal_description {
@@ -26,6 +39,9 @@
     font-size: $font_size_footnote_medium;
     color: $blue_gray_color;
     letter-spacing: $letter_spacing_caption_large;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_caption_medium;
+    }
   }
 
   .btn_list {

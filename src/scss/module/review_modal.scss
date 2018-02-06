@@ -1,6 +1,7 @@
 .overlay {
   @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
   z-index: 3;
+  -webkit-tap-highlight-color: $transpicuous_color;
 
   &::after {
     @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);

@@ -98,6 +98,9 @@
   .preloader {
     margin: $default_space * 7.5 auto 0;
     display: block;
-    width: 50px;
+    width: $default_space * 12.5;
+    @media #{$iphone_large_media_query} {
+      width: $default_space * 8.5;
+    }
   }
 }

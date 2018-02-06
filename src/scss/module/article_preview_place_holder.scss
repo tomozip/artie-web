@@ -2,13 +2,23 @@
   @include shadow;
   border-radius: $default_space * 2;
   margin-bottom: $default_space * 8.5;
+  @media #{$iphone_large_media_query} {
+    border-radius: $default_space;
+    margin: 0 $default_space * 3 $default_space * 5;
+  }
 
   .holder_header {
     height: $default_space * 50;
     background-color: $light_gray_color;
+    @media #{$iphone_large_media_query} {
+      height: $default_space * 25;
+    }
   }
 
   .holder_body {
     height: $default_space * 46;
+    @media #{$iphone_large_media_query} {
+      height: $default_space * 35.75;
+    }
   }
 }
