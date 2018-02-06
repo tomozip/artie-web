@@ -4,15 +4,24 @@
     border-radius: $default_space * 2;
     overflow: hidden;
     margin-bottom: $default_space * 8.5;
+    @media #{$iphone_large_media_query} {
+      margin: 0 $default_space * 3 $default_space * 5;
+    }
   }
 
   .preview_header {
     @include relative;
     display: block;
-
     &:hover {
       .header_img {
         @include transform(scale(1.05));
+      }
+    }
+    @media #{$iphone_large_media_query} {
+      &:hover {
+        .header_img {
+          @include transform(scale(1));
+        }
       }
     }
   }
@@ -21,12 +30,16 @@
     @include relative;
     height: $default_space * 50;
     overflow: hidden;
-
     &::before {
       @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
-      background-image: linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
+      background: -moz-linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
+      background: -webkit-linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
+      background: linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
       content: '';
       z-index: 1;
+    }
+    @media #{$iphone_large_media_query} {
+      height: $default_space * 25;
     }
   }
 
@@ -43,6 +56,10 @@
     @include absolute($bottom: $default_space * 2, $left: $default_space * 4);
     line-height: $line_height_small;
     z-index: 2;
+    @media #{$iphone_large_media_query} {
+      bottom: $default_space * 1.5;
+      left: $default_space * 3;
+    }
   }
 
   .reviews_count_number {
@@ -51,6 +68,10 @@
     color: $cyan_dark_color;
     font-size: $font_size_title_medium;
     margin-right: $default_space;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_sub_title_large;
+      margin-right: $default_space * .5;
+    }
   }
 
   .reviews_count_unit {
@@ -58,11 +79,14 @@
     @include lato;
     color: $blue_gray_color;
     font-size: $font_size_sub_title_medium;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_footnote_medium;
+    }
   }
 
   .preview_body {
     @include relative;
-    padding: $default_space * 3.5 $default_space * 5 $default_space * 4;
+    padding: $default_space * 2 $default_space * 3 $default_space * 3;
   }
 
   .preview_title_text {
@@ -77,12 +101,21 @@
     line-height: $line_height_default;
     margin-bottom: $default_space * 2.5;
     height: $default_space * 14.5;
-
     &:hover {
       opacity: .4;
     }
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_body_medium;
+      font-weight: 600;
+      margin-bottom: $default_space * 1.5;
+      height: $default_space * 11;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 
+  // TODO: レスポンシブル！！
   .preview_categories {
     @include calc('width', '100% - #{$default_space * 20}');
     display: inline-block;
@@ -97,7 +130,6 @@
     font-size: $font_size_caption_large;
     font-weight: 200;
     border-radius: $default_space;
-
     &:not(:last-child) {
       margin-right: $default_space * 1.5;
     }
@@ -108,6 +140,9 @@
     margin-bottom: $default_space * 3;
     width: $default_space * 20;
     text-align: right;
+    @media #{$iphone_large_media_query} {
+      margin-bottom: $default_space * 2;
+    }
   }
 
   .preview_rating_star {
@@ -115,6 +150,10 @@
     color: $orange_color;
     font-size: $font_size_sub_title_medium;
     margin-right: $default_space;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_head_medium;
+      margin-right: $default_space * .5;
+    }
   }
 
   .preview_average_rating {
@@ -123,6 +162,9 @@
     color: $orange_color;
     font-size: $font_size_title_medium;
     letter-spacing: $letter_spacing_footnone_medium;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_sub_title_medium;
+    }
   }
 
   .preview_read_more_btn {
@@ -138,10 +180,17 @@
     font-family: $font_family_default;
     font-size: $font_size_body_medium;
     letter-spacing: $letter_spacing_caption_large;
-
     &:hover {
       background-color: $light_blue_gray_color;
       color: $white_color;
+    }
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_body_medium;
+      border-radius: $default_space;
+      &:hover {
+        background-color: $white_color;
+        color: $blue_gray_color;
+      }
     }
   }
 
@@ -149,6 +198,9 @@
   .l_review_form {
     padding: 0 $default_space * 5;
     margin-bottom: $default_space * 6.5;
+    @media #{$iphone_large_media_query} {
+      display: none;
+    }
   }
 
   // review list
@@ -157,6 +209,9 @@
 
   .l_review_list_header {
     margin-bottom: $default_space * 5;
+    @media #{$iphone_large_media_query} {
+      margin-bottom: $default_space * 4;
+    }
   }
 
   .review_list_header {
@@ -171,6 +226,10 @@
     color: $black_color;
     display: inline-block;
     margin-bottom: $default_space * 2.5;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_head_medium;
+      margin-bottom: $default_space * 1.5;
+    }
   }
 
   .review_list_header_border {
@@ -178,6 +237,10 @@
     height: $default_space;
     background-color: $cyan_color;
     margin: 0 auto;
+    @media #{$iphone_large_media_query} {
+      width: $default_space * 13;
+      height: $default_space * .5;
+    }
   }
 
   .reviews_preload {
@@ -189,6 +252,9 @@
   .l_review_row {
     &:not(:last-child) {
       margin-bottom: $default_space * 5;
+      @media #{$iphone_large_media_query} {
+        margin-bottom: $default_space;
+      }
     }
   }
 

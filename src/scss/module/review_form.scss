@@ -54,7 +54,7 @@
   }
 
   .c_form_rating {
-    @include calc('width', '100% - #{$default_space * 26}');
+    @include calc('width', '100% - #{$default_space * 33}');
     @include relative;
     float: left;
     height: 100%;
@@ -97,6 +97,6 @@
     float: left;
     text-align: right;
     height: 100%;
-    width: $default_space * 26;
+    width: $default_space * 33;
   }
 }

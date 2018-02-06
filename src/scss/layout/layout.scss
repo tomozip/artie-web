@@ -5,16 +5,17 @@
 
 .l_container {
   @include absolute($top: $default_space * 12, $right: 0, $left: 0);
-  padding: $default_space * 7.5 $default_space * 10;
+  padding: $default_space * 5 $default_space * 10 $default_space * 7.5;
   // padding-top: $default_space * 24;
   //
   // @media #{$ipad_media_query} {
   //   padding-top: $default_space * 18;
   // }
   //
-  // @media #{$iphone_large_media_query} {
-  //   padding-top: $default_space * 12.5;
-  // }
+  @media #{$iphone_large_media_query} {
+    @include absolute($top: $default_space * 11);
+    padding: $default_space * 2.5 0 $default_space * 5;
+  }
   //
   // @media #{$iphone_small_media_query} {
   //   padding-top: $default_space * 12;
@@ -66,9 +67,11 @@
   //   width: 100%;
   // }
   //
-  // @media #{$iphone_large_media_query} {
-  //   padding: 0;
-  // }
+  @media #{$iphone_large_media_query} {
+    margin-right: 0;
+    float: none;
+    width: 100%;
+  }
 }
 
 .l_right_sidebar_block {
@@ -81,9 +84,11 @@
   //   width: 100%;
   // }
   //
-  // @media #{$iphone_large_media_query} {
-  //   box-sizing: border-box;
-  //   padding: ($default_space * 4) 0;
-  //   width: 100%;
-  // }
+  @media #{$iphone_large_media_query} {
+    // TODO: 一旦！！あとで有効化する。
+    display: none;
+    // box-sizing: border-box;
+    // padding: ($default_space * 4) 0;
+    // width: 100%;
+  }
 }

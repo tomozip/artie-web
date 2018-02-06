@@ -3,27 +3,46 @@
   border-radius: $default_space * 2;
   overflow: hidden;
   cursor: pointer;
-
   &:hover {
     .header_img {
       @include transform(scale(1.1));
     }
   }
+  @media #{$iphone_large_media_query} {
+    box-shadow: none;
+    height: $default_space * 19;
+    border-radius: 0;
+    &:hover {
+      .header_img {
+        @include transform(scale(1));
+      }
+    }
+  }
 
   .article_header {
     @include relative;
+    @media #{$iphone_large_media_query} {
+      float: left;
+      height: $default_space * 16.5;
+      width: $default_space * 25;
+      margin-right: $default_space * 3;
+    }
   }
 
   .c_header_img {
     @include relative;
     height: $default_space * 33;
     overflow: hidden;
-
     &::before {
       @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
-      background-image: linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
+      background: -moz-linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
+      background: -webkit-linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
+      background: linear-gradient(200deg, $transpicuous_color 50%, $white_color 100%);
       content: '';
       z-index: 1;
+    }
+    @media #{$iphone_large_media_query} {
+      height: 100%;
     }
   }
 
@@ -40,6 +59,9 @@
     @include absolute($bottom: $default_space * 2, $left: $default_space * 3);
     line-height: $line_height_small;
     z-index: 2;
+    @media #{$iphone_large_media_query} {
+      @include absolute($bottom: $default_space, $left: $default_space);
+    }
   }
 
   .reviews_count_number {
@@ -49,6 +71,10 @@
     color: $cyan_dark_color;
     font-size: $font_size_title_medium;
     margin-right: $default_space;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_head_medium;
+      margin-right: 0;
+    }
   }
 
   .reviews_count_unit {
@@ -57,11 +83,22 @@
     @include lato;
     color: $blue_gray_color;
     font-size: $font_size_body_medium;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_caption_medium;
+    }
   }
 
   .article_body {
     @include relative;
     padding: $default_space * 3;
+    @media #{$iphone_large_media_query} {
+      @include calc('width', '100% - #{$default_space * 28}');
+      float: left;
+      height: 100%;
+      border-bottom: 1px solid $light_gray_color;
+      box-sizing: border-box;
+      padding: $default_space * 1.5 0 $default_space * 3.5;
+    }
   }
 
   .article_title_text {
@@ -74,8 +111,15 @@
     line-height: $line_height_default;
     margin-bottom: $default_space * 2.5;
     height: $default_space * 11;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_footnote_medium;
+      line-height: $line_height_small;
+      height: $default_space * 7;
+      margin-bottom: $default_space * 1.5;
+    }
   }
 
+  // TODO: レスポンシブル対応！！
   .article_categories {
     @include calc('width', '100% - #{$default_space * 15}');
     display: inline-block;
@@ -110,6 +154,10 @@
     width: $default_space * 5;
     height: $default_space * 5;
     margin-right: $default_space * .5;
+    @media #{$iphone_large_media_query} {
+      height: $default_space * 4;
+      width: $default_space * 4;
+    }
   }
 
   .article_average_rating {
@@ -119,5 +167,8 @@
     font-weight: bold;
     font-size: $font_size_sub_title_medium;
     letter-spacing: $letter_spacing_footnone_medium;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_head_medium;
+    }
   }
 }

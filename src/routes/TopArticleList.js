@@ -41,6 +41,7 @@ class TopArticleList extends Component {
     this.state = {
       currentContentType: contentTypes.NEW_ARRIVAL_ARTICLE,
       isFetchingArticles: false,
+      isNewArrival: false,
     };
 
     this.currentContentType = this.currentContentType.bind(this);
@@ -132,34 +133,63 @@ class TopArticleList extends Component {
       <div className="top_article_list">
         <Header />
         <div className="l_container">
-          <div className="list_header">
-            <div className="title_border" />
-            <button
-              className={`list_header_title ${this.state.currentContentType === contentTypes.NEW_ARRIVAL_ARTICLE ? 'focused' : ''}`}
-              onClick={() => this.handleChangeCurrentContentType(contentTypes.NEW_ARRIVAL_ARTICLE)}
-            >ホーム
-            </button>
-            <div className="title_border" />
-            <button
-              className={`list_header_title ${this.state.currentContentType === contentTypes.FEATURED_ARTICLE ? 'focused' : ''}`}
-              onClick={() => this.handleChangeCurrentContentType(contentTypes.FEATURED_ARTICLE)}
-            >オススメ
-            </button>
-            <div className="title_border" />
+          <div className="article_list">
+            <div className="list_header">
+              <div className="c_list_header_title">
+                <button
+                  className={
+                    `list_header_title ${(this.state.currentContentType === contentTypes.NEW_ARRIVAL_ARTICLE && !this.state.isNewArrival) ? 'focused' : ''}`
+                  }
+                  onClick={
+                    () => {
+                      this.handleChangeCurrentContentType(contentTypes.NEW_ARRIVAL_ARTICLE);
+                      this.setState({ isNewArrival: false });
+                    }
+                  }
+                >
+                  <span className="list_header_title_text">ホーム</span>
+                </button>
+              </div>
+              <div className="title_border" />
+              <div className="c_list_header_title">
+                <button
+                  className={
+                    `list_header_title ${(this.state.currentContentType === contentTypes.NEW_ARRIVAL_ARTICLE && this.state.isNewArrival) ? 'focused' : ''}`
+                  }
+                  onClick={
+                    () => {
+                      this.handleChangeCurrentContentType(contentTypes.NEW_ARRIVAL_ARTICLE);
+                      this.setState({ isNewArrival: true });
+                    }
+                  }
+                >
+                  <span className="list_header_title_text">新着</span>
+                </button>
+              </div>
+              <div className="title_border" />
+              <div className="c_list_header_title">
+                <button
+                  className={`list_header_title ${this.state.currentContentType === contentTypes.FEATURED_ARTICLE ? 'focused' : ''}`}
+                  onClick={
+                    () => this.handleChangeCurrentContentType(contentTypes.FEATURED_ARTICLE)}
+                >
+                  <span className="list_header_title_text">トレンド</span>
+                </button>
+              </div>
+            </div>
+            {
+              this.state.isFetchingArticles ?
+                <img src="/images/loader_gray.gif" alt="preloader" className="preloader" /> :
+                <InfiniteScroll
+                  loadMore={this.handleLoad}
+                  hasMore={this.currentContentType().data.hasNext}
+                  loader={loader}
+                  initialLoad={false}
+                >
+                  {cards}
+                </InfiniteScroll>
+              }
           </div>
-          {
-            this.state.isFetchingArticles ?
-              <img src="/images/loader_gray.gif" alt="preloader" className="preloader" /> :
-              <InfiniteScroll
-                className="article_list"
-                loadMore={this.handleLoad}
-                hasMore={this.currentContentType().data.hasNext}
-                loader={loader}
-                initialLoad={false}
-              >
-                {cards}
-              </InfiniteScroll>
-          }
         </div>
       </div>
     );

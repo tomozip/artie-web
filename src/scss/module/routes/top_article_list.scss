@@ -2,46 +2,79 @@
   .article_list {
     margin: 0 auto;
     width: $default_space * 235;
+    @media #{$iphone_large_media_query} {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 $default_space * 3;
+    }
   }
 
   .list_header {
+    @include shadow;
+    border-radius: $default_space * 2;
+    background-color: $white_color;
     margin-bottom: $default_space * 7.5;
-    text-align: center;
+    height: $default_space * 12;
+    @media #{$iphone_large_media_query} {
+      background-color: $light_gray_color;
+      box-shadow: none;
+      border-radius: 0;
+      height: $default_space * 10;
+      margin-bottom: $default_space * 5;
+    }
+  }
+
+  .c_list_header_title {
+    @include calc('width', '(100% - #{$default_space}) / 3');
+    height: 100%;
+    float: left;
   }
 
   .list_header_title {
-    @include ease_transition;
-    @include oneliner;
-    vertical-align: top;
-    display: inline-block;
-    font-family: $font_family_default;
-    font-size: $font_size_sub_title_medium;
-    color: $light_blue_gray_color;
-    padding-bottom: $default_space * 2;
-    margin-right: $default_space * 5;
+    margin: 0 auto;
+    display: block;
     cursor: pointer;
-
+    height: 100%;
+    width: $default_space * 25;
+    box-sizing: border-box;
     &:hover {
       border-bottom: $default_space * .5 solid $light_blue_gray_color;
+    }
+    @media #{$iphone_large_media_query} {
+      width: $default_space * 17.5;
+      &:hover {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .list_header_title_text {
+    @include oneliner;
+    font-family: $font_family_default;
+    font-size: $font_size_head_medium;
+    color: $light_blue_gray_color;
+    @media #{$iphone_large_media_query} {
+      color: $gray_color;
+      font-size: $font_size_caption_large;
     }
   }
 
   .focused {
-    font-weight: 600;
-    border-bottom: $default_space * .5 solid $cyan_color;
-    color: $black_color;
+    border-bottom: $default_space * .5 solid $cyan_color !important;
+    .list_header_title_text {
+      color: $black_color;
+      font-weight: 600;
+    }
   }
 
   .title_border {
-    vertical-align: top;
-    display: inline-block;
-    padding-top: $default_space * .5;
+    float: left;
+    margin-top: $default_space * 3;
     width: 1px;
     height: $default_space * 5;
     background-color: $light_blue_gray_color;
-
-    &:not(:last-child) {
-      margin-right: $default_space * 5;
+    @media #{$iphone_large_media_query} {
+      height: $default_space * 4;
     }
   }
 
@@ -50,9 +83,15 @@
     display: inline-block;
     margin-bottom: $default_space * 6;
     vertical-align: middle;
-
     &:not(:nth-child(3n)) {
       margin-right: $default_space * 5;
+    }
+    @media #{$iphone_large_media_query} {
+      width: 100%;
+      margin-bottom: $default_space * 3;
+      &:not(:nth-child(3n)) {
+        margin-right: 0;
+      }
     }
   }
 

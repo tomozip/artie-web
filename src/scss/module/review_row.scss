@@ -4,11 +4,20 @@
   background-color: $white_color;
   border-radius: $default_space * 2;
   padding: $default_space * 3 $default_space * 5;
+  @media #{$iphone_large_media_query} {
+    box-shadow: none;
+    border-radius: 0;
+    padding: $default_space * 2 $default_space * 3;
+  }
 
   .row_left_block {
     float: left;
     width: $default_space * 10;
     margin-right: $default_space * 3;
+    @media #{$iphone_large_media_query} {
+      margin-right: $default_space * 2;
+      width: $default_space * 7;
+    }
   }
 
   .row_user_img {
@@ -28,11 +37,17 @@
   .row_meta_block {
     @include pie-clearfix;
     margin-bottom: $default_space * 1.5;
+    @media #{$iphone_large_media_query} {
+      margin-bottom: $default_space;
+    }
   }
 
   .row_meta_left_block {
     float: left;
     padding: $default_space 0;
+    @media #{$iphone_large_media_query} {
+      padding: $default_space * .5 0;
+    }
   }
 
   .user_name {
@@ -43,6 +58,10 @@
     color: $black_color;
     margin-bottom: $default_space;
     letter-spacing: $letter_spacing_caption_medim;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_footnote_medium;
+      margin-bottom: $default_space * .5;
+    }
   }
 
   .review_posted_date {
@@ -51,6 +70,9 @@
     font-size: $font_size_caption_large;
     color: $light_blue_gray_color;
     letter-spacing: $letter_spacing_caption_medim;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_caption_medium;
+    }
   }
 
   .row_meta_right_block {
@@ -63,11 +85,18 @@
     width: $default_space * 8;
     height: $default_space * 8;
     cursor: pointer;
+    @media #{$iphone_large_media_query} {
+      height: $default_space * 6;
+      width: $default_space * 6;
+    }
   }
 
   .row_rating {
     @include oneliner;
     margin-bottom: $default_space * 2;
+    @media #{$iphone_large_media_query} {
+      margin-bottom: $default_space * 1.5;
+    }
   }
 
   .c_row_rating_stars {
@@ -76,6 +105,11 @@
     margin-right: $default_space;
     height: $default_space * 4;
     width: $default_space * 20;
+    @media #{$iphone_large_media_query} {
+      width: $default_space * 16;
+      height: $default_space * 3;
+      margin-right: 0;
+    }
   }
 
   .row_rating_stars {
@@ -86,6 +120,9 @@
     width: 0%;
     white-space: nowrap;
     overflow: hidden;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_caption_large;
+    }
   }
 
   .row_rating_stars_track {
@@ -93,6 +130,9 @@
     @include oneliner;
     font-size: $font_size_body_medium;
     color: $gray_color;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_caption_large;
+    }
   }
 
   .row_rating_point {
@@ -102,6 +142,9 @@
     color: $orange_color;
     font-size: $font_size_head_medium;
     letter-spacing: $letter_spacing_caption_large;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_body_medium;
+    }
   }
 
   .review_text {
@@ -110,6 +153,9 @@
     line-height: $line_height_default;
     color: $black_color;
     margin-bottom: $default_space * 2.5;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_caption_large;
+    }
   }
 
   .row_bottom_block {

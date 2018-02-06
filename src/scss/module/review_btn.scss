@@ -2,19 +2,43 @@
   @include ease-transition;
   @include shadow;
   background-image: linear-gradient(-180deg, $light_cyan_color 0%, $cyan_color 100%);
-  border-radius: $default_space * 25;
-  padding: $default_space * 1.5 $default_space * 4 $default_space * 2;
+  border-radius: $default_space * 2;
+  padding: 0 $default_space * 3;
+  height: $default_space * 9;
   cursor: pointer;
-
   &:hover {
     opacity: .75;
+  }
+  @media #{$iphone_large_media_query} {
+    height: $default_space * 8;
+    border-radius: $default_space;
+    padding: $default_space $default_space * 2;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .review_btn_icon {
+    height: $default_space * 6;
+    width: $default_space * 6;
+    vertical-align: middle;
+    margin-right: $default_space * 1.5;
+    @media #{$iphone_large_media_query} {
+      height: $default_space * 5.5;
+      width: $default_space * 5.5;
+      margin-right: $default_space;
+    }
   }
 
   .review_btn_text {
     @include oneliner;
-    @include lato;
-    font-size: $font_size_sub_title_medium;
+    font-family: $font_family_default;
+    font-size: $font_size_head_medium;
     color: $white_color;
+    vertical-align: middle;
     letter-spacing: $letter_spacing_caption_large;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_footnote_medium;
+    }
   }
 }

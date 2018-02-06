@@ -6,6 +6,10 @@
   box-sizing: border-box;
   box-shadow: 0 $default_space * .5 $default_space * 2 $shadow_color;
   z-index: 3;
+  @media #{$iphone_large_media_query} {
+    height: $default_space * 11;
+    padding: 0 $default_space * 3;
+  }
 
   .header_left_block,
   .header_right_block {
@@ -14,9 +18,18 @@
     height: 100%;
   }
 
+  .header_left_block {
+    @media #{$iphone_large_media_query} {
+      display: none;
+    }
+  }
+
   .header_right_block {
     @include relative;
     text-align: right;
+    @media #{$iphone_large_media_query} {
+      @include calc('width', '100% - #{$default_space * 13}');
+    }
   }
 
   .c_header_logo {
@@ -24,6 +37,9 @@
     height: 100%;
     display: table;
     float: left;
+    @media #{$iphone_large_media_query} {
+      width: $default_space * 13;
+    }
   }
 
   .header_logo {
@@ -33,6 +49,9 @@
     color: $black_color;
     display: table-cell;
     vertical-align: middle;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_sub_title_large;
+    }
   }
 
   .header_search_block {
@@ -83,6 +102,10 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: $default_space * 2;
+    @media #{$iphone_large_media_query} {
+      margin-right: 0;
+      width: $default_space * 8;
+    }
   }
 
   .header_user_name {
@@ -90,12 +113,18 @@
     display: inline-block;
     vertical-align: middle;
     line-height: $line_height_small;
+    @media #{$iphone_large_media_query} {
+      display: none;
+    }
   }
 
   .l_review_btn {
     display: inline-block;
     vertical-align: middle;
     margin-left: $default_space * 5;
+    @media #{$iphone_large_media_query} {
+      margin-left: $default_space * 3;
+    }
   }
 }
 
