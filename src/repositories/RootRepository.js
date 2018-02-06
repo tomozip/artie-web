@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // comstants
-import { ArtieApiBaseUrl } from '../constants/env';
+import { ArtieApiBaseUrl, ApplicationToken } from '../constants/env';
 
 // repositories
 import ArticlesRepository from './ArticlesRepository';
@@ -17,6 +17,7 @@ export default (window) => {
       Uid: currentUser.uId || '',
       'Access-Token': currentUser.accessToken || '',
       Client: currentUser.client || '',
+      'X-Application-Token': ApplicationToken,
     },
   });
 
