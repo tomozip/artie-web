@@ -64,12 +64,14 @@ class ReviewForm extends Component {
           }
         </div>
         <div className="form_right_block">
-          <textarea
-            className="form_area"
-            placeholder="コメントを入力...（任意）"
-            value={this.state.text}
-            onChange={this.handleTextChange}
-          />
+          <div className="l_form_area">
+            <textarea
+              className="form_area"
+              placeholder="コメントを入力...（任意）"
+              value={this.state.text}
+              onChange={this.handleTextChange}
+            />
+          </div>
           <div className="form_bottom_block">
             <div className="c_form_rating">
               <MuiThemeProvider>

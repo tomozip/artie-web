@@ -44,10 +44,15 @@
     }
   }
 
-  .form_area {
+  .l_form_area {
     @include shadow;
-    padding: $default_space * 2;
     margin-bottom: $default_space * 3;
+    border-radius: $default_space * 1.5;
+    overflow: hidden;
+  }
+
+  .form_area {
+    padding: $default_space * 2;
     display: block;
     font-family: $font_family_default;
     font-size: $font_size_footnote_medium;
@@ -55,7 +60,6 @@
     height: $default_space * 25;
     color: $dark_blue_gray_color;
     box-sizing: border-box;
-    border-radius: $default_space * 1.5;
     line-height: $line_height_default;
   }
 

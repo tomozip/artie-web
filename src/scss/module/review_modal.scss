@@ -40,7 +40,7 @@
   .l_modal_title {
     margin-bottom: $default_space * 7.5;
     @media #{$iphone_large_media_query} {
-      margin-bottom: $default_space * 6;
+      margin-bottom: $default_space * 5.5;
     }
   }
 
@@ -58,7 +58,7 @@
   .l_modal_url_input {
     margin-bottom: $default_space * 8.5;
     @media #{$iphone_large_media_query} {
-      margin-bottom: $default_space * 6.5;
+      margin-bottom: $default_space * 5;
     }
   }
 
@@ -74,6 +74,7 @@
     @media #{$iphone_large_media_query} {
       font-size: $font_size_footnote_medium;
       letter-spacing: $letter_spacing_caption_medim;
+      padding: $default_space * .5 $default_space;
     }
   }
 
