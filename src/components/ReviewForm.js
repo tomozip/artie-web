@@ -29,17 +29,15 @@ class ReviewForm extends Component {
     if (this.props.errors.length > 0) this.setState({ errors: this.props.errors });
   }
 
-  handleTextChange(e) {
-    this.setState({ text: e.target.value });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors.length > 0) this.setState({ errors: nextProps.errors });
   }
 
-  handleSliderChange(event, value) {
-    this.setState({ rating: value });
-  }
+  handleTextChange(e) { this.setState({ text: e.target.value }); }
 
-  handleClick(e) {
-    this.props.handlePostRivew(this.state.text, this.state.rating.toFixed(1));
-  }
+  handleSliderChange(event, value) { this.setState({ rating: value }); }
+
+  handleClick() { this.props.handlePostRivew(this.state.text, this.state.rating.toFixed(1)); }
 
   render() {
     const displayableRating = rating => (rating < 1 ? '--' : rating.toFixed(1));

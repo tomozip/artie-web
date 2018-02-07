@@ -4,6 +4,9 @@
   .errors {
     padding-left: $default_space * 13;
     margin-bottom: $default_space * 2;
+    @media #{$iphone_large_media_query} {
+      padding-left: 0;
+    }
   }
 
   .l_error_messages {
@@ -21,6 +24,9 @@
   .form_left_block {
     margin-right: $default_space * 3;
     float: left;
+    @media #{$iphone_large_media_query} {
+      display: none;
+    }
   }
 
   .form_user_img {
@@ -33,6 +39,9 @@
   .form_right_block {
     @include calc('width', '100% - #{$default_space * 13}');
     float: left;
+    @media #{$iphone_large_media_query} {
+      width: 100%;
+    }
   }
 
   .form_area {
@@ -47,10 +56,14 @@
     color: $dark_blue_gray_color;
     box-sizing: border-box;
     border-radius: $default_space * 1.5;
+    line-height: $line_height_default;
   }
 
   .form_bottom_block {
     height: $default_space * 9;
+    @media #{$iphone_large_media_query} {
+      height: auto;
+    }
   }
 
   .c_form_rating {
@@ -58,6 +71,11 @@
     @include relative;
     float: left;
     height: 100%;
+    @media #{$iphone_large_media_query} {
+      float: none;
+      width: 100%;
+      margin-bottom: $default_space * 2;
+    }
   }
 
   .form_rating_unit {
@@ -67,6 +85,9 @@
     color: $blue_gray_color;
     margin-right: $default_space * 2;
     vertical-align: middle;
+    @media #{$iphone_large_media_query} {
+      margin-right: $default_space * 3;
+    }
   }
 
   .form_average_rating {
@@ -84,11 +105,19 @@
     @include absolute($top: 50%, $left: $default_space * 28);
     @include transform(translateY(-50%));
     width: $default_space * 40;
-
     & > div {
       margin: 0 !important;
       & > div {
         background-color: rgb(189, 189, 189);
+      }
+    }
+    @media #{$iphone_large_media_query} {
+      right: $default_space * 1.5;
+      left: auto;
+      width: $default_space * 45;
+      & > div > div div:last-child {
+        height: $default_space * 5 !important;
+        width: $default_space * 5 !important;
       }
     }
   }
@@ -98,5 +127,9 @@
     text-align: right;
     height: 100%;
     width: $default_space * 33;
+    @media #{$iphone_large_media_query} {
+      float: none;
+      width: 100%;
+    }
   }
 }

@@ -56,28 +56,17 @@ class Header extends Component {
   }
 
   handleOpenReviewModal() {
-    if (this.props.tokenAuth.isSignedIn) {
-      this.setState({ showReviewModal: true });
-    } else {
-      this.handleToggleAuthModal();
-    }
+    if (this.props.tokenAuth.isSignedIn) this.setState({ showReviewModal: true });
+    else this.handleToggleAuthModal();
   }
 
-  handleCloseReviewModal() {
-    this.setState({ showReviewModal: false });
-  }
+  handleCloseReviewModal() { this.setState({ showReviewModal: false }); }
 
-  handleUrlTextChange(e) {
-    this.setState({ url: e.target.value });
-  }
+  handleUrlTextChange(e) { this.setState({ url: e.target.value }); }
 
-  handleToggleAuthModal() {
-    this.context.dispatch(headerActions.toggleAuthModal());
-  }
+  handleToggleAuthModal() { this.context.dispatch(headerActions.toggleAuthModal()); }
 
-  handleToggleMenuModal() {
-    this.setState({ showMenuModal: !this.state.showMenuModal });
-  }
+  handleToggleMenuModal() { this.setState({ showMenuModal: !this.state.showMenuModal }); }
 
   handlePostArticle(text, rating) {
     this.setState({ isPostingArticle: true }, () => {
@@ -186,12 +175,12 @@ class Header extends Component {
           overlayClassName="overlay"
         >
           <div className="l_modal_title">
-            <p className="modal_title">review</p>
+            <p className="modal_title">おすすめ記事をレビュー</p>
           </div>
           <div className="l_modal_url_input">
             <input
               className="modal_url_input"
-              placeholder="おすすめ記事のURLを入力..."
+              placeholder="記事のURLを入力..."
               type="url"
               value={this.state.url}
               onChange={this.handleUrlTextChange}

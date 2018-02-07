@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
+import ReactModal from 'react-modal';
 
 import _ from 'lodash';
 
@@ -49,12 +50,15 @@ class ArticleDetail extends Component {
       likedReviewId: 0,
       reviewSucceeded: false,
       postedReviewErrors: [],
+      showReviewModal: false,
     };
 
     this.handleLoad = this.handleLoad.bind(this);
     this.handlePostRivew = this.handlePostRivew.bind(this);
     this.handlePostLike = this.handlePostLike.bind(this);
     this.handleDeleteLike = this.handleDeleteLike.bind(this);
+    this.handleOpenReviewModal = this.handleOpenReviewModal.bind(this);
+    this.handleCloseReviewModal = this.handleCloseReviewModal.bind(this);
   }
 
   componentDidMount() {
@@ -144,6 +148,9 @@ class ArticleDetail extends Component {
         res);
   }
 
+  handleOpenReviewModal() { this.setState({ showReviewModal: true }); }
+  handleCloseReviewModal() { this.setState({ showReviewModal: false }); }
+
   render() {
     const loader = <div className="loader">Loading ...</div>;
     const reviewRows = this.props.articleDetail.article.reviews.map(review => (
@@ -161,6 +168,30 @@ class ArticleDetail extends Component {
     return (
       <div className="article_detail">
         <Header />
+        {/* Review Modal */}
+        {
+          <ReactModal
+            isOpen={this.state.showReviewModal}
+            onRequestClose={this.handleCloseReviewModal}
+            className="review_form_modal modal"
+            overlayClassName="overlay"
+          >
+            <div className="l_modal_title">
+              <p className="modal_title">この記事をレビュー</p>
+            </div>
+            <div className="l_review_form">
+              {
+                this.state.isPostingReview ?
+                  <ReviewFormPlaceHolder bgColor="white" /> :
+                  <ReviewForm
+                    handlePostRivew={this.handlePostRivew}
+                    success={this.state.reviewSucceeded}
+                    errors={this.state.postedReviewErrors}
+                  />
+              }
+            </div>
+          </ReactModal>
+        }
         <div className="l_container">
           <div className="l_content_wrapper">
             <div className="l_main_block">
@@ -234,6 +265,25 @@ class ArticleDetail extends Component {
                         errors={this.state.postedReviewErrors}
                       />
                   }
+                </div>
+                <div className="modal_review_form">
+                  {
+                    this.props.tokenAuth ?
+                      <img
+                        src={this.props.tokenAuth ? this.props.tokenAuth.currentUser.imageUrl : ''}
+                        alt="user profile"
+                        className="modal_review_form_user_img"
+                      /> :
+                      <span className="modal_review_form_user_img" />
+                  }
+                  <button className="modal_review_form_btn" onClick={this.handleOpenReviewModal}>
+                    <img
+                      src="/images/logo/review_icon_cyan.jpg"
+                      alt="review icon"
+                      className="modal_review_form_btn_icon"
+                    />
+                    <span className="modal_review_form_btn_text">この記事をレビュー</span>
+                  </button>
                 </div>
                 {/* ---Review List--- */}
                 <div className="review_list">

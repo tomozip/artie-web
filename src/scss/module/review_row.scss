@@ -160,9 +160,11 @@
 
   .row_bottom_block {
     text-align: right;
+    height: $default_space * 6;
   }
 
   .row_like_block {
+    height: 100%;
   }
 
   .thumbs_up_icon {
@@ -173,7 +175,7 @@
   }
 
   .bright_thumbs_up_icon {
-    @include transform(translateY(-$default_space * .5));
+    @include transform(translateY(-$default_space));
     width: $default_space * 6;
     height: $default_space * 6;
     margin-right: $default_space;

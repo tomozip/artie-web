@@ -7,5 +7,8 @@
     width: $default_space * 12.5;
     @include absolute($top: 50%, $left: 50%);
     @include transform(translate(-50%, -50%));
+    @media #{$iphone_large_media_query} {
+      width: $default_space * 8.5;
+    }
   }
 }

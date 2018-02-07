@@ -1,0 +1,29 @@
+.review_form_modal {
+  padding: $default_space * 9 $default_space * 17.5;
+  @media #{$iphone_large_media_query} {
+    @include absolute($top: $default_space * 25, $right: $default_space * 3, $left: $default_space * 3);
+    padding: $default_space * 6 $default_space * 5;
+  }
+
+  .l_modal_title {
+    margin-bottom: $default_space * 8.5;
+    @media #{$iphone_large_media_query} {
+      margin-bottom: $default_space * 6.5;
+    }
+  }
+
+  .modal_title {
+    @include oneliner;
+    text-align: center;
+    font-size: $font_size_sub_title_medium;
+    letter-spacing: $letter_spacing_footnone_medium;
+    color: $black_color;
+    @media #{$iphone_large_media_query} {
+      font-size: $font_size_head_medium;
+    }
+  }
+
+  .l_review_form {
+    width: 100%;
+  }
+}

@@ -203,6 +203,53 @@
     }
   }
 
+  // review form for mobile
+  .modal_review_form {
+    display: none;
+    @media #{$iphone_large_media_query} {
+      display: block;
+      height: $default_space * 8;
+      margin-bottom: $default_space * 5;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 $default_space * 6;
+    }
+  }
+
+  .modal_review_form_user_img {
+    @include calc('margin-right', '50% - #{$default_space * 32.75}');
+    height: 100%;
+    width: $default_space * 8;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+
+  .modal_review_form_btn {
+    @include shadow;
+    padding: 0 $default_space * 3;
+    box-sizing: border-box;
+    border-radius: $default_space;
+    border: 1px solid $cyan_color;
+    height: 100%;
+    vertical-align: middle;
+    background-color: $white_color;
+  }
+
+  .modal_review_form_btn_icon {
+    height: $default_space * 5.5;
+    width: $default_space * 5.5;
+    margin-right: $default_space * 1.5;
+    vertical-align: middle;
+  }
+
+  .modal_review_form_btn_text {
+    @include oneliner;
+    font-family: $font_family_default;
+    font-size: $font_size_body_medium;
+    color: $cyan_color;
+    vertical-align: middle;
+  }
+
   // review list
   .review_list {
   }

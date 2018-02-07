@@ -10,7 +10,7 @@
   }
   @media #{$iphone_large_media_query} {
     box-shadow: none;
-    height: $default_space * 19;
+    height: $default_space * 19.5;
     border-radius: 0;
     &:hover {
       .header_img {
@@ -113,8 +113,8 @@
     height: $default_space * 11;
     @media #{$iphone_large_media_query} {
       font-size: $font_size_footnote_medium;
-      line-height: $line_height_small;
-      height: $default_space * 7;
+      line-height: 1.25;
+      height: $default_space * 8;
       margin-bottom: $default_space * 1.5;
     }
   }
